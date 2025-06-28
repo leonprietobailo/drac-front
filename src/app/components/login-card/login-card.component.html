@@ -1,0 +1,43 @@
+<section class="login-frame-container">
+  <div class="login-frame">
+    <h1>Iniciar sessió</h1>
+
+    <!-- <form class="login-form"> -->
+    <div class="login-form">
+      <div class="username-container">
+        <p-floatlabel variant="on">
+          <input id="username" pInputText [(ngModel)]="username_value" />
+          <label for="username">Usuari</label>
+        </p-floatlabel>
+      </div>
+
+      <div class="password-container">
+        <p-floatlabel variant="on">
+          <p-password [(ngModel)]="password_value" id="password" [toggleMask]="true" [feedback]="false" />
+          <label for="password">Contrasenya</label>
+        </p-floatlabel>
+        <div class="password-forgotten-container">
+          Has oblidat la contrasenya?
+        </div>
+      </div>
+
+      <!-- <div class="login-button-container"> -->
+      <p-button icon="/assets/icons/login.svg" label="Entra">
+        <img src="/assets/icons/login.svg" alt="Login Icon">
+      </p-button>
+      <!-- </div> -->
+
+
+      <div class="create-account-container">
+        Crear compte
+      </div>
+      <div class="login-form"></div>
+      <!-- </form> -->
+    </div>
+
+  </div>
+
+
+
+
+</section>
