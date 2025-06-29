@@ -1,6 +1,7 @@
 .login-frame-container {
   display: flex;
-  height: 952px;
+  height: calc(100vh - 76px);
+  width: 100vw;
   justify-content: center;
   align-items: center;
 
