@@ -51,52 +51,28 @@
     <!-- Phase Specific: Phase 1 -->
     <div class="contents-phase1">
       <div class="phase1-login-info">
-        ADREÇA D'ENVIAMENT
-        <div class="input-rows">
+        VALIDAR EL COMPTE
 
-
-          <div class="horizontal-fields-display">
-            <p-floatlabel variant="on">
-              <input id="username" pInputText [(ngModel)]="street_num" />
-              <label for="username">Carrer, número</label>
-            </p-floatlabel>
-
-            <p-floatlabel variant="on">
-              <input id="username" pInputText [(ngModel)]="block_flat" />
-              <label for="username">Bloc, pis</label>
-            </p-floatlabel>
+        <div class="validate-desc">
+          T'hem enviat un codi de verificació al teu correu electrònic.<br>
+          <div class="validate-desc-sub">
+            Revisa la teva bústia d'entrada (i també la carpeta de correu no desitjat o spam). Introdueix el codi de 4
+            dígits que t’hem enviat per continuar amb el registre.
           </div>
 
-          <div class="horizontal-fields-display">
-            <p-floatlabel variant="on">
-              <input id="username" pInputText [(ngModel)]="zip_code" />
-              <label for="username">Codi postal</label>
-            </p-floatlabel>
+        </div>
 
-            <p-floatlabel variant="on">
-              <input id="username" pInputText [(ngModel)]="city" />
-              <label for="username">Ciutat</label>
-            </p-floatlabel>
-          </div>
+        <p-inputotp [(ngModel)]="value3" size="large" />
 
-          <div class="phase1-login-form">
-            <p-floatlabel variant="on">
-              <input id="username" pInputText [(ngModel)]="province" />
-              <label for="username">Ciutat</label>
-            </p-floatlabel>
-          </div>
+        <div class="validate-resend">
+          Torna a enviar el codi
+        </div>
+        <div class="back-next-buttons">
+          <p-button label="Finalitzar"></p-button>
+          <p-button label="Enrere" [link]="true"> <img src="/assets/icons/chevron-left.svg" alt="Login Icon"></p-button>
         </div>
 
 
-
-      </div>
-      <div class="phase1-footer">
-        <p-button class="back-btn" label="Enrere" [link]="true"> <img src="/assets/icons/chevron-left.svg"
-            alt="Login Icon"></p-button>
-        <!-- Next Button -->
-        <p-button label="Següent">
-          <img src="/assets/icons/chevron-right.svg" alt="Login Icon">
-        </p-button>
       </div>
     </div>
   </div>
