@@ -1,119 +1,117 @@
 .header-wrapper {
-    display: flex;
-    // width: var(--screenWidth, 1440px);
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  // width: var(--screenWidth, 1440px);
+  justify-content: space-between;
+  align-items: center;
 
-    border-bottom: 4px solid #0476D9;
-    box-shadow: 0px 2px 25px 0px rgba(0, 0, 0, 0.10);
+  border-bottom: 4px solid #0476d9;
+  box-shadow: 0px 2px 25px 0px rgba(0, 0, 0, 0.1);
 }
 
 header {
-    display: flex;
-    height: 72px;
-    padding: 0px var(--padding, 80px);
-    justify-content: space-between;
-    align-items: center;
-    flex: 1 0 0;
+  display: flex;
+  height: 72px;
+  padding: 0px var(--padding, 80px);
+  justify-content: space-between;
+  align-items: center;
+  flex: 1 0 0;
 
-    border-bottom: 4px solid #FF5255;
-    background: rgba(63, 140, 118, 0.80);
-    backdrop-filter: blur(15px);
+  border-bottom: 4px solid #ff5255;
+  background: rgba(63, 140, 118, 0.8);
+  backdrop-filter: blur(15px);
 }
 
 .logo-wrapper {
-    display: flex;
-    width: 40px;
+  display: flex;
+  width: 40px;
+  height: 40px;
+  padding-right: 0.146px;
+  justify-content: center;
+  align-items: center;
+
+  .logo-container {
+    width: 39.854px;
     height: 40px;
-    padding-right: 0.146px;
-    justify-content: center;
-    align-items: center;
+    flex-shrink: 0;
+    aspect-ratio: 39.85/40;
 
-    .logo-container {
-        width: 39.854px;
-        height: 40px;
-        flex-shrink: 0;
-        aspect-ratio: 39.85/40.00;
-
-        background: url(/assets/logo.jpg) lightgray 50% / cover no-repeat;
-    }
+    background: url(/assets/logo.jpg) lightgray 50% / cover no-repeat;
+  }
 }
 
 .main-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+
+  .button-wrapper {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 24px;
+    align-items: flex-start;
 
-    .button-wrapper {
-        display: flex;
-        align-items: flex-start;
+    .button-text-wrapper {
+      display: flex;
+      padding: 8px 12px;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
 
-        .button-text-wrapper {
-            display: flex;
-            padding: 8px 12px;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-
-            // typography 
-            color: #FFF;
-            font-family: Inter;
-            font-size: 16px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 24px;
-        }
+      // typography
+      color: #fff;
+      font-family: Inter;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px;
     }
-
+  }
 }
 
 .profile-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+
+  .shop-wrapper {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
+    align-items: flex-start;
 
-    .shop-wrapper {
-        display: flex;
-        align-items: flex-start;
+    .shop-text-wrapper {
+      display: flex;
+      padding: 8px 14px;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
 
-        .shop-text-wrapper {
-            display: flex;
-            padding: 8px 14px;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
+      border-radius: 50px;
+      background: #ff5255;
 
-            border-radius: 50px;
-            background: #FF5255;
-
-            // typography 
-            color: #FFF;
-            font-family: Inter;
-            font-size: 16px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 24px;
-            /* 150% */
-        }
+      // typography
+      color: #fff;
+      font-family: Inter;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px;
+      /* 150% */
     }
+  }
 }
 
 .config-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .config-icon-wrapper {
     display: flex;
+    width: 40px;
+    height: 40px;
+    padding: 6px 7px;
     justify-content: center;
     align-items: center;
-
-    .config-icon-wrapper {
-        display: flex;
-        width: 40px;
-        height: 40px;
-        padding: 6px 7px;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-
-
-    }
+    gap: 10px;
+    cursor: pointer;
+  }
 }
