@@ -1,0 +1,101 @@
+<div class="register-mainframe">
+  <div class="register-stepper-main">
+
+    <div class="register-stepper-contents">
+      Registre
+      <div class="register-stepper-phases">
+        <div class="register-phase phase-active">
+          <div class="register-phase-level phase-level-active">
+            1
+          </div>
+          Crear compte
+        </div>
+        <div class="register-phase-line">
+          <svg width="4" height="28" viewBox="0 0 4 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 1.5L2 26.5" stroke-width="3" stroke-linecap="round" />
+          </svg>
+        </div>
+        <div class="register-phase">
+          <div class="register-phase-level">
+            2
+          </div>
+          Dades personals
+        </div>
+        <div class="register-phase-line">
+          <svg width="4" height="28" viewBox="0 0 4 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 1.5L2 26.5" stroke-width="3" stroke-linecap="round" />
+          </svg>
+        </div>
+        <div class="register-phase">
+          <div class="register-phase-level">
+            3
+          </div>
+          Dades d'enviament
+        </div>
+        <div class="register-phase-line">
+          <svg width="4" height="28" viewBox="0 0 4 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 1.5L2 26.5" stroke-width="3" stroke-linecap="round" />
+          </svg>
+        </div>
+        <div class="register-phase">
+          <div class="register-phase-level">
+            4
+          </div>
+          Validar compte
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="register-contents-main">
+    <!-- Phase Specific: Phase 1 -->
+    <div class="contents-phase1">
+      <div class="phase1-login-info">
+        ADREÇA D'ENVIAMENT
+        <div class="input-rows">
+
+
+          <div class="horizontal-fields-display">
+            <p-floatlabel variant="on">
+              <input id="username" pInputText [(ngModel)]="street_num" />
+              <label for="username">Carrer, número</label>
+            </p-floatlabel>
+
+            <p-floatlabel variant="on">
+              <input id="username" pInputText [(ngModel)]="block_flat" />
+              <label for="username">Bloc, pis</label>
+            </p-floatlabel>
+          </div>
+
+          <div class="horizontal-fields-display">
+            <p-floatlabel variant="on">
+              <input id="username" pInputText [(ngModel)]="zip_code" />
+              <label for="username">Codi postal</label>
+            </p-floatlabel>
+
+            <p-floatlabel variant="on">
+              <input id="username" pInputText [(ngModel)]="city" />
+              <label for="username">Ciutat</label>
+            </p-floatlabel>
+          </div>
+
+          <div class="phase1-login-form">
+            <p-floatlabel variant="on">
+              <input id="username" pInputText [(ngModel)]="province" />
+              <label for="username">Ciutat</label>
+            </p-floatlabel>
+          </div>
+        </div>
+
+
+
+      </div>
+      <div class="phase1-footer">
+        <!-- Next Button -->
+        <p-button label="Següent">
+          <img src="/assets/icons/chevron-right.svg" alt="Login Icon">
+        </p-button>
+      </div>
+    </div>
+  </div>
+</div>
