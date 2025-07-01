@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import { FormGroup, FormsModule } from '@angular/forms';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ButtonModule } from 'primeng/button';
 import { DatePickerModule } from 'primeng/datepicker';
+import { InputOtpModule } from 'primeng/inputotp';
 
 @Component({
-  selector: 'app-register-card-ph3',
+  selector: 'app-register-step-totp',
   imports: [
     FloatLabelModule,
     FormsModule,
@@ -17,14 +18,17 @@ import { DatePickerModule } from 'primeng/datepicker';
     CheckboxModule,
     ButtonModule,
     DatePickerModule,
+    InputOtpModule,
   ],
-  templateUrl: './register-card-ph3.component.html',
-  styleUrl: './register-card-ph3.component.scss',
+  templateUrl: './register-step-totp.component.html',
+  styleUrl: './register-step-totp.component.scss',
 })
-export class RegisterCardComponentPh3 {
+export class RegisterStepTotp {
+  @Input() form!: FormGroup;
   street_num: any;
   block_flat: any;
   zip_code: any;
   city: any;
   province: any;
+  value3: any;
 }

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import { FormGroup, FormsModule } from '@angular/forms';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
@@ -8,7 +8,7 @@ import { ButtonModule } from 'primeng/button';
 import { DatePickerModule } from 'primeng/datepicker';
 
 @Component({
-  selector: 'app-register-card-ph2',
+  selector: 'app-register-step-address',
   imports: [
     FloatLabelModule,
     FormsModule,
@@ -18,12 +18,14 @@ import { DatePickerModule } from 'primeng/datepicker';
     ButtonModule,
     DatePickerModule,
   ],
-  templateUrl: './register-card-ph2.component.html',
-  styleUrl: './register-card-ph2.component.scss',
+  templateUrl: './register-step-address.component.html',
+  styleUrl: './register-step-address.component.scss',
 })
-export class RegisterCardComponentPh2 {
-  name: any;
-  surname: any;
-  phone: any;
-  value3: Date | undefined;
+export class RegisterStepAddress {
+  @Input() form!: FormGroup;
+  street_num: any;
+  block_flat: any;
+  zip_code: any;
+  city: any;
+  province: any;
 }
