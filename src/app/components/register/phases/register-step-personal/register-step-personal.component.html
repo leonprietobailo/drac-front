@@ -1,97 +1,33 @@
-<div class="register-mainframe">
-  <div class="register-stepper-main">
+<div class="phase1-login-info">
+  DADES D'IDENTIFICACIÓ
+  <div class="input-rows">
 
-    <div class="register-stepper-contents">
-      Registre
-      <div class="register-stepper-phases">
-        <div class="register-phase phase-active">
-          <div class="register-phase-level phase-level-active">
-            1
-          </div>
-          Crear compte
-        </div>
-        <div class="register-phase-line">
-          <svg width="4" height="28" viewBox="0 0 4 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 1.5L2 26.5" stroke-width="3" stroke-linecap="round" />
-          </svg>
-        </div>
-        <div class="register-phase">
-          <div class="register-phase-level">
-            2
-          </div>
-          Dades personals
-        </div>
-        <div class="register-phase-line">
-          <svg width="4" height="28" viewBox="0 0 4 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 1.5L2 26.5" stroke-width="3" stroke-linecap="round" />
-          </svg>
-        </div>
-        <div class="register-phase">
-          <div class="register-phase-level">
-            3
-          </div>
-          Dades d'enviament
-        </div>
-        <div class="register-phase-line">
-          <svg width="4" height="28" viewBox="0 0 4 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 1.5L2 26.5" stroke-width="3" stroke-linecap="round" />
-          </svg>
-        </div>
-        <div class="register-phase">
-          <div class="register-phase-level">
-            4
-          </div>
-          Validar compte
-        </div>
-      </div>
+
+    <div class="horizontal-fields-display">
+      <p-floatlabel variant="on">
+        <input id="username" pInputText [(ngModel)]="name" />
+        <label for="username">Nom</label>
+      </p-floatlabel>
+
+      <p-floatlabel variant="on">
+        <input id="username" pInputText [(ngModel)]="surname" />
+        <label for="username">Cognoms</label>
+      </p-floatlabel>
     </div>
 
+    <div class="phase1-login-form">
+      <p-floatlabel variant="on">
+        <p-datepicker [(ngModel)]="value3" inputId="on_label" showIcon iconDisplay="input" dateFormat="dd/mm/yy" />
+        <label for="on_label">Data de naixement</label>
+      </p-floatlabel>
+    </div>
   </div>
-  <div class="register-contents-main">
-    <!-- Phase Specific: Phase 1 -->
-    <div class="contents-phase1">
-      <div class="phase1-login-info">
-        DADES D'IDENTIFICACIÓ
-        <div class="input-rows">
+  CONTACTE
 
-
-          <div class="horizontal-fields-display">
-            <p-floatlabel variant="on">
-              <input id="username" pInputText [(ngModel)]="name" />
-              <label for="username">Nom</label>
-            </p-floatlabel>
-
-            <p-floatlabel variant="on">
-              <input id="username" pInputText [(ngModel)]="surname" />
-              <label for="username">Cognoms</label>
-            </p-floatlabel>
-          </div>
-
-          <div class="phase1-login-form">
-            <p-floatlabel variant="on">
-              <p-datepicker [(ngModel)]="value3" inputId="on_label" showIcon iconDisplay="input"
-                dateFormat="dd/mm/yy" />
-              <label for="on_label">Data de naixement</label>
-            </p-floatlabel>
-          </div>
-        </div>
-        CONTACTE
-
-        <div class="phase1-login-form">
-          <p-floatlabel variant="on">
-            <input id="username" pInputText [(ngModel)]="phone" />
-            <label for="username">Telèfon</label>
-          </p-floatlabel>
-        </div>
-      </div>
-      <div class="phase1-footer">
-        <p-button class="back-btn" label="Enrere" [link]="true"> <img src="/assets/icons/chevron-left.svg"
-            alt="Login Icon"></p-button>
-        <!-- Next Button -->
-        <p-button label="Següent">
-          <img src="/assets/icons/chevron-right.svg" alt="Login Icon">
-        </p-button>
-      </div>
-    </div>
+  <div class="phase1-login-form">
+    <p-floatlabel variant="on">
+      <input id="username" pInputText [(ngModel)]="phone" />
+      <label for="username">Telèfon</label>
+    </p-floatlabel>
   </div>
 </div>
