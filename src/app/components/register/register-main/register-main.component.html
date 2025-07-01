@@ -8,43 +8,51 @@
         Registre
         <div class="register-stepper-phases">
           <div class="register-phase phase-active">
-            <div class="register-phase-level phase-level-active">
+            <div class="register-phase-level" [ngClass]="{'active': currentStep >= 0}">
               1
             </div>
-            Crear compte
+            <div class="register-phase-title" [ngClass]="{'active': currentStep >= 0}">
+              Crear compte
+            </div>
           </div>
-          <div class="register-phase-line">
+          <div class="register-phase-line" [ngClass]="{'active': currentStep >= 1}">
             <svg width="4" height="28" viewBox="0 0 4 28" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M2 1.5L2 26.5" stroke-width="3" stroke-linecap="round" />
             </svg>
           </div>
           <div class="register-phase">
-            <div class="register-phase-level">
+            <div class="register-phase-level" [ngClass]="{'active': currentStep >= 1}">
               2
             </div>
-            Dades personals
+            <div class="register-phase-title" [ngClass]="{'active': currentStep >= 1}">
+              Dades personals
+            </div>
           </div>
-          <div class="register-phase-line">
+          <div class="register-phase-line" [ngClass]="{'active': currentStep >= 2}">
             <svg width="4" height="28" viewBox="0 0 4 28" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M2 1.5L2 26.5" stroke-width="3" stroke-linecap="round" />
             </svg>
           </div>
           <div class="register-phase">
-            <div class="register-phase-level">
+            <div class="register-phase-level" [ngClass]="{'active': currentStep >= 2}">
               3
             </div>
-            Dades d'enviament
+            <div class="register-phase-title" [ngClass]="{'active': currentStep >= 2}">
+              Dades d'enviament
+            </div>
           </div>
-          <div class="register-phase-line">
+          <div class="register-phase-line" [ngClass]="{'active': currentStep >= 3}">
             <svg width="4" height="28" viewBox="0 0 4 28" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M2 1.5L2 26.5" stroke-width="3" stroke-linecap="round" />
             </svg>
           </div>
           <div class="register-phase">
-            <div class="register-phase-level">
+            <div class="register-phase-level" [ngClass]="{'active': currentStep >= 3}">
               4
             </div>
-            Validar compte
+            <div class="register-phase-title" [ngClass]="{'active': currentStep >= 3}">
+              Validar compte
+            </div>
           </div>
         </div>
       </div>

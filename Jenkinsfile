@@ -26,7 +26,6 @@ pipeline {
           sudo rm -rf /var/www/drac/*
           sudo cp -r dist/drac/browser/* /var/www/drac/
           sudo chown -R www-data:www-data /var/www/drac
-          sudo systemctl restart apache2
         '''
       }
     }
