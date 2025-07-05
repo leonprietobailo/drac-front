@@ -1,36 +1,38 @@
-<div class="phase1-login-info">
-  Adreça d'enviament
-  <div class="input-rows">
+<form [formGroup]="form">
+  <div class="phase1-login-info">
+    Adreça d'enviament
+    <div class="input-rows">
 
-    <div class="horizontal-fields-display">
-      <p-floatlabel variant="on">
-        <input id="username" pInputText [(ngModel)]="street_num" />
-        <label for="username">Carrer, número</label>
-      </p-floatlabel>
+      <div class="horizontal-fields-display">
+        <p-floatlabel variant="on">
+          <input id="city" pInputText formControlName="city" [invalid]="isInvalid('city')" />
+          <label for="city">Ciutat</label>
+        </p-floatlabel>
 
-      <p-floatlabel variant="on">
-        <input id="username" pInputText [(ngModel)]="block_flat" />
-        <label for="username">Bloc, pis</label>
-      </p-floatlabel>
-    </div>
+        <p-floatlabel variant="on">
+          <input id="province" pInputText formControlName="province" [invalid]="isInvalid('province')" />
+          <label for="province">Provincia</label>
+        </p-floatlabel>
+      </div>
 
-    <div class="horizontal-fields-display">
-      <p-floatlabel variant="on">
-        <input id="username" pInputText [(ngModel)]="zip_code" />
-        <label for="username">Codi postal</label>
-      </p-floatlabel>
+      <div class="horizontal-fields-display">
+        <p-floatlabel variant="on">
+          <input id="streetNumber" pInputText formControlName="streetNumber" [invalid]="isInvalid('streetNumber')" />
+          <label for="streetNumber">Carrer, número</label>
+        </p-floatlabel>
 
-      <p-floatlabel variant="on">
-        <input id="username" pInputText [(ngModel)]="city" />
-        <label for="username">Ciutat</label>
-      </p-floatlabel>
-    </div>
+        <p-floatlabel variant="on">
+          <input id="blockFlat" pInputText formControlName="blockFlat" [invalid]="isInvalid('blockFlat')" />
+          <label for="blockFlat">Bloc, pis</label>
+        </p-floatlabel>
+      </div>
 
-    <div class="phase1-login-form">
-      <p-floatlabel variant="on">
-        <input id="username" pInputText [(ngModel)]="province" />
-        <label for="username">Ciutat</label>
-      </p-floatlabel>
+      <div class="phase1-login-form">
+        <p-floatlabel variant="on">
+          <input id="postalCode" pInputText formControlName="postalCode" [invalid]="isInvalid('postalCode')" />
+          <label for="postalCode">Codi postal</label>
+        </p-floatlabel>
+      </div>
     </div>
   </div>
-</div>
+</form>

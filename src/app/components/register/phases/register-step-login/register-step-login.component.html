@@ -1,26 +1,29 @@
-<div class="phase1-login-info">
-  Informació d'inici de sessió
-  <div class="phase1-login-form">
-    <p-floatlabel variant="on">
-      <input id="username" pInputText [(ngModel)]="username_value1" />
-      <label for="username">Usuari</label>
-    </p-floatlabel>
+<form [formGroup]="form">
+  <div class="phase1-login-info">
+    Informació d'inici de sessió
+    <div class="phase1-login-form">
+      <p-floatlabel variant="on">
+        <input id="username" pInputText formControlName="username" />
+        <label for="username">Usuari</label>
+      </p-floatlabel>
 
-    <p-floatlabel variant="on">
-      <input id="username" pInputText [(ngModel)]="username_value2" />
-      <label for="username">Contrasenya</label>
-    </p-floatlabel>
-  </div>
-  <div class="phase1-login-checklist">
-    <div class="phase1-login-checklist-item">
-      <!-- Checkbox1 -->
-      <p-checkbox inputId="policy" [binary]="true" />
-      <label for="policy" class="ml-2">Accepto la <a href="google.com">politica de privacitat</a>.</label>
+      <p-floatlabel variant="on">
+        <p-password formControlName="password" id="password" [toggleMask]="true" [feedback]="true"
+          [invalid]="isInvalid('password')" />
+        <label for="password">Contrasenya</label>
+      </p-floatlabel>
     </div>
-    <div class="phase1-login-checklist-item">
-      <!-- Checkbox2 -->
-      <p-checkbox inputId="news" [binary]="true" />
-      <label for="news" class="ml-2">Vull rebre novetats o ofertes.</label>
+    <div class="phase1-login-checklist">
+      <div class="phase1-login-checklist-item">
+        <!-- Checkbox1 -->
+        <p-checkbox inputId="policy" [binary]="true" />
+        <label for="policy" class="ml-2">Accepto la <a href="google.com">politica de privacitat</a>.</label>
+      </div>
+      <div class="phase1-login-checklist-item">
+        <!-- Checkbox2 -->
+        <p-checkbox inputId="news" [binary]="true" />
+        <label for="news" class="ml-2">Vull rebre novetats o ofertes.</label>
+      </div>
     </div>
   </div>
-</div>
+</form>

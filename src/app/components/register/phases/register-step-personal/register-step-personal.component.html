@@ -1,33 +1,36 @@
-<div class="phase1-login-info">
-  Dades d'identificació
-  <div class="input-rows">
+<form [formGroup]="form">
+  <div class="phase1-login-info">
+    Dades d'identificació
+    <div class="input-rows">
 
 
-    <div class="horizontal-fields-display">
-      <p-floatlabel variant="on">
-        <input id="username" pInputText [(ngModel)]="name" />
-        <label for="username">Nom</label>
-      </p-floatlabel>
+      <div class="horizontal-fields-display">
+        <p-floatlabel variant="on">
+          <input id="firstName" pInputText formControlName="firstName" [invalid]="isInvalid('firstName')" />
+          <label for="firstName">Nom</label>
+        </p-floatlabel>
 
-      <p-floatlabel variant="on">
-        <input id="username" pInputText [(ngModel)]="surname" />
-        <label for="username">Cognoms</label>
-      </p-floatlabel>
+        <p-floatlabel variant="on">
+          <input id="lastName" pInputText formControlName="lastName" [invalid]="isInvalid('lastName')" />
+          <label for="lastName">Cognoms</label>
+        </p-floatlabel>
+      </div>
+
+      <div class="phase1-login-form">
+        <p-floatlabel variant="on">
+          <p-datepicker inputId="birthdate" showIcon iconDisplay="input" dateFormat="dd/mm/yy"
+            formControlName="birthdate" [invalid]="isInvalid('birthdate')" />
+          <label for="birthdate">Data de naixement</label>
+        </p-floatlabel>
+      </div>
     </div>
+    Contacte
 
     <div class="phase1-login-form">
       <p-floatlabel variant="on">
-        <p-datepicker [(ngModel)]="value3" inputId="on_label" showIcon iconDisplay="input" dateFormat="dd/mm/yy" />
-        <label for="on_label">Data de naixement</label>
+        <input id="phone" pInputText formControlName="phone" [invalid]="isInvalid('phone')" />
+        <label for="phone">Telèfon</label>
       </p-floatlabel>
     </div>
   </div>
-  Contacte
-
-  <div class="phase1-login-form">
-    <p-floatlabel variant="on">
-      <input id="username" pInputText [(ngModel)]="phone" />
-      <label for="username">Telèfon</label>
-    </p-floatlabel>
-  </div>
-</div>
+</form>

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormGroup, FormsModule } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
@@ -10,7 +10,7 @@ import { ButtonModule } from 'primeng/button';
   selector: 'app-register-step-login',
   imports: [
     FloatLabelModule,
-    FormsModule,
+    ReactiveFormsModule,
     InputTextModule,
     PasswordModule,
     CheckboxModule,
@@ -24,4 +24,9 @@ export class RegisterStepLogin {
   username_value1: any;
   username_value2: any;
   checked: boolean = false;
+
+  isInvalid(controlName: string) {
+    const control = this.form.get(controlName);
+    return control?.invalid && control.touched;
+  }
 }

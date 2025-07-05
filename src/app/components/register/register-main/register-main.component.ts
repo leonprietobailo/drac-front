@@ -5,7 +5,12 @@ import { RegisterStepPersonal } from '../phases/register-step-personal/register-
 import { RegisterStepAddress } from '../phases/register-step-address/register-step-address.component';
 import { RegisterStepTotp } from '../phases/register-step-totp/register-step-totp.component';
 import { ButtonModule } from 'primeng/button';
-import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -17,7 +22,7 @@ import { CommonModule } from '@angular/common';
     RegisterStepAddress,
     RegisterStepTotp,
     ButtonModule,
-    FormsModule,
+    ReactiveFormsModule,
     CommonModule,
   ],
   templateUrl: './register-main.component.html',
@@ -29,14 +34,52 @@ export class RegisterMainComponent {
 
   constructor(private fb: FormBuilder) {
     this.registerForm = this.fb.group({
-      login: this.fb.group({}),
-      personal: this.fb.group({}),
-      address: this.fb.group({}),
-      totp: this.fb.group({}),
+      login: this.fb.group(
+        {
+          username: ['', [Validators.required, Validators.minLength(4)]],
+          password: ['', [Validators.required, Validators.minLength(6)]],
+        },
+        { updateOn: 'blur' }
+      ),
+      personal: this.fb.group(
+        {
+          firstName: ['', Validators.required],
+          lastName: ['', Validators.required],
+          birthdate: ['', Validators.required],
+          phone: [
+            '',
+            [Validators.required, Validators.pattern(/^\+?[1-9]\d{1,14}$/)],
+          ],
+        },
+        { updateOn: 'blur' }
+      ),
+      address: this.fb.group(
+        {
+          streetNumber: [''],
+          postalCode: [''],
+          city: [''],
+          province: [''],
+          blockFlat: [''],
+        },
+        { updateOn: 'blur' }
+      ),
+      totp: this.fb.group(
+        {
+          totp: ['', [Validators.required, Validators.minLength(4)]],
+        },
+        { updateOn: 'blur' }
+      ),
     });
   }
 
   nextStep(): void {
+    const currentKey = this.steps[this.currentStep].key;
+    const currentFormGroup = this.registerForm.get(currentKey) as FormGroup;
+    if (currentFormGroup.invalid) {
+      currentFormGroup.markAllAsTouched();
+      return;
+    }
+
     if (this.currentStep < this.steps.length - 1) {
       this.currentStep++;
     }
@@ -49,10 +92,15 @@ export class RegisterMainComponent {
   }
 
   submit(): void {
-    if (this.registerForm.valid) {
-      console.log(this.registerForm.value);
-      // handle final submission
+    if (this.registerForm.invalid) {
+      this.registerForm.markAllAsTouched();
+      return;
     }
+    console.log(JSON.stringify(this.registerForm.value, null, 2));
+    // if (this.registerForm.valid) {
+    //   console.log(this.registerForm.value);
+    //   // handle final submission
+    // }
   }
 
   steps = [

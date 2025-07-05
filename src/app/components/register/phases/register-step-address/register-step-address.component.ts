@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormGroup, FormsModule } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
@@ -11,12 +11,12 @@ import { DatePickerModule } from 'primeng/datepicker';
   selector: 'app-register-step-address',
   imports: [
     FloatLabelModule,
-    FormsModule,
     InputTextModule,
     PasswordModule,
     CheckboxModule,
     ButtonModule,
     DatePickerModule,
+    ReactiveFormsModule,
   ],
   templateUrl: './register-step-address.component.html',
   styleUrl: './register-step-address.component.scss',
@@ -28,4 +28,10 @@ export class RegisterStepAddress {
   zip_code: any;
   city: any;
   province: any;
+
+  isInvalid(controlName: string) {
+    const control = this.form.get(controlName);
+    console.log(control?.touched);
+    return control?.invalid && control.touched;
+  }
 }

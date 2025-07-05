@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormGroup, FormsModule } from '@angular/forms';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
@@ -17,6 +17,7 @@ import { DatePickerModule } from 'primeng/datepicker';
     CheckboxModule,
     ButtonModule,
     DatePickerModule,
+    ReactiveFormsModule,
   ],
   templateUrl: './register-step-personal.component.html',
   styleUrl: './register-step-personal.component.scss',
@@ -27,4 +28,10 @@ export class RegisterStepPersonal {
   surname: any;
   phone: any;
   value3: Date | undefined;
+
+  isInvalid(controlName: string) {
+    const control = this.form.get(controlName);
+    console.log(control?.touched);
+    return control?.invalid && control.touched;
+  }
 }

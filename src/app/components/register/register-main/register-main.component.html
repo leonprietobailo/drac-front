@@ -89,7 +89,7 @@
             <img src="/assets/icons/chevron-right.svg" alt="Login Icon">
             </p-button>
             } @else {
-            <p-button label="Finalitzar" (onClick)="nextStep()">
+            <p-button label="Finalitzar" (onClick)="submit()" [disabled]="!registerForm.valid">
               <img src="/assets/icons/chevron-right.svg" alt="Login Icon">
             </p-button>
             }

@@ -1,0 +1,6 @@
+<div class="otp-container">
+  @for (digit of digits; let i = $index; track $index) {
+  <input #otpInput class="otp-box" maxlength="1" [disabled]="disabled" [value]="digits[i]" (input)="onInput($event, i)"
+    (keydown)="onKeyDown($event, i)" />
+  }
+</div>
