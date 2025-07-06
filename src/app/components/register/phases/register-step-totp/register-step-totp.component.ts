@@ -36,7 +36,6 @@ export class RegisterStepTotp {
 
   isInvalid(controlName: string) {
     const control = this.form.get(controlName);
-    console.log(control?.invalid);
     return control?.invalid && control.touched;
   }
 }

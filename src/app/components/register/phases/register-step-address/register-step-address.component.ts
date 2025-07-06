@@ -31,7 +31,6 @@ export class RegisterStepAddress {
 
   isInvalid(controlName: string) {
     const control = this.form.get(controlName);
-    console.log(control?.touched);
     return control?.invalid && control.touched;
   }
 }

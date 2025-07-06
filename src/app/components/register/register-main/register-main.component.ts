@@ -108,7 +108,6 @@ export class RegisterMainComponent {
       this.api.requestTotp(payload).subscribe({
         next: (response) => {
           if (response.status === TotpResponseStatus.SUCCESS) {
-            console.log('TOTP Request Succesfully Sent');
             this.nextStep();
           } else if (response.status === TotpResponseStatus.TOO_MANY_TOTPS) {
             this.totpForm.get('totp')?.setErrors({ tooManyTotps: true });
@@ -143,7 +142,6 @@ export class RegisterMainComponent {
       this.registerForm.markAllAsTouched();
       return;
     }
-    console.log(JSON.stringify(this.registerForm.value, null, 2));
   }
 
   steps = [
