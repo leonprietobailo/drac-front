@@ -22,6 +22,24 @@
       width: 100%;
       padding-top: 14px;
       padding-bottom: 14px;
+
+      ::ng-deep .p-floatlabel {
+        color: #f00;
+      }
+
+      &.is-invalid {
+        border-color: #f00;
+      }
+    }
+
+    label {
+      &.is-invalid {
+        --p-floatlabel-focus-color: #f00;
+      }
+
+      span {
+        color: #f00;
+      }
     }
   }
 
@@ -37,6 +55,20 @@
       width: 100%;
       padding-top: 14px;
       padding-bottom: 14px;
+
+      &.is-invalid {
+        border-color: #f00;
+      }
+    }
+
+    label {
+      &.is-invalid {
+        --p-floatlabel-focus-color: #f00;
+      }
+
+      span {
+        color: #f00;
+      }
     }
 
     ::ng-deep .p-datepicker-input {

@@ -1,3 +1,4 @@
+import { requiredGroupIfAnyFilled } from './../phases/register-step-address/validators/group-or-none-mandatory';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { HeaderComponent } from '../../header/header.component';
 import { RegisterStepLogin } from '../phases/register-step-login/register-step-login.component';
@@ -13,8 +14,12 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RegisterApiService } from '../../../services/RegisterApiService';
-import { TotpRequestDto } from '../../../dto/request/register';
-import { TotpResponseStatus } from '../../../dto/response/register';
+import { TotpRequestDto, UserRequestDto } from '../../../dto/request/register';
+import {
+  TotpResponseStatus,
+  UserResponseStatus,
+} from '../../../dto/response/register';
+import { RegisterStepSuccessComponent } from '../phases/register-step-success/register-step-success.component';
 
 @Component({
   selector: 'app-register-main',
@@ -27,6 +32,7 @@ import { TotpResponseStatus } from '../../../dto/response/register';
     ButtonModule,
     ReactiveFormsModule,
     CommonModule,
+    RegisterStepSuccessComponent,
   ],
   templateUrl: './register-main.component.html',
   styleUrl: './register-main.component.scss',
@@ -34,8 +40,6 @@ import { TotpResponseStatus } from '../../../dto/response/register';
 export class RegisterMainComponent {
   currentStep = 0;
   registerForm: FormGroup;
-
-  @Output() proceed = new EventEmitter<void>();
 
   constructor(private fb: FormBuilder, private api: RegisterApiService) {
     this.registerForm = this.fb.group({
@@ -70,7 +74,7 @@ export class RegisterMainComponent {
           province: [''],
           blockFlat: [''],
         },
-        { updateOn: 'blur' }
+        { validators: requiredGroupIfAnyFilled, updateOn: 'blur' }
       ),
       totp: this.fb.group(
         {
@@ -119,6 +123,43 @@ export class RegisterMainComponent {
           console.error('Error requesting TOTP:', error);
         },
       });
+    } else if (this.currentStep === 3) {
+      const payload: UserRequestDto = {
+        email: this.loginForm.get('email')?.value,
+        password: this.loginForm.get('password')?.value,
+        firstName: this.personalForm.get('firstName')?.value,
+        lastName: this.personalForm.get('lastName')?.value,
+        birthdate: this.personalForm.get('birthdate')?.value,
+        phone: this.personalForm.get('phone')?.value,
+        totp: this.totpForm.get('totp')?.value,
+        address: {
+          city: this.addressForm.get('city')?.value,
+          province: this.addressForm.get('province')?.value,
+          street: this.addressForm.get('streetNumber')?.value,
+          flat: this.addressForm.get('blockFlat')?.value,
+          postalCode: this.addressForm.get('postalCode')?.value,
+        },
+      };
+
+      this.api.requestRegister(payload).subscribe({
+        next: (response) => {
+          if (response === UserResponseStatus.SUCCESS) {
+            // Registration successful, proceed to next step or show success message.
+            this.nextStep();
+          } else if (response === UserResponseStatus.WRONG_TOTP) {
+            this.totpForm.get('totp')?.setErrors({ wrongTotp: true });
+          } else if (response === UserResponseStatus.VALIDATION_FAILED) {
+            this.totpForm.get('totp')?.setErrors({ wrongValidations: true });
+          } else if (response === UserResponseStatus.TOTP_EXPIRED) {
+            this.totpForm.get('totp')?.setErrors({ totpExpired: true });
+          } else {
+            console.error('Unexpected registration response:', response);
+          }
+        },
+        error: (error) => {
+          console.error('Error during registration:', error);
+        },
+      });
     } else {
       // Nothing to attempt.
       this.nextStep();
@@ -137,18 +178,12 @@ export class RegisterMainComponent {
     }
   }
 
-  submit(): void {
-    if (this.registerForm.invalid) {
-      this.registerForm.markAllAsTouched();
-      return;
-    }
-  }
-
   steps = [
     { label: 'Login Details', key: 'login' },
     { label: 'Personal Info', key: 'personal' },
     { label: 'Address Info', key: 'address' },
     { label: 'TOTP', key: 'totp' },
+    { label: 'Success', key: 'success' },
   ];
 
   getCurrentStepForm(): FormGroup {

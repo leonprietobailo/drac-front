@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { TotpRequestDto } from '../dto/request/register';
-import { TotpResponseDto } from '../dto/response/register';
+import { TotpRequestDto, UserRequestDto } from '../dto/request/register';
+import { TotpResponseDto, UserResponseStatus } from '../dto/response/register';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -19,5 +19,12 @@ export class RegisterApiService {
 
   requestTotp(payload: TotpRequestDto): Observable<TotpResponseDto> {
     return this.http.post<TotpResponseDto>(`${this.baseUrl}/totp`, payload);
+  }
+
+  requestRegister(payload: UserRequestDto): Observable<UserResponseStatus> {
+    return this.http.post<UserResponseStatus>(
+      `${this.baseUrl}/persist`,
+      payload
+    );
   }
 }

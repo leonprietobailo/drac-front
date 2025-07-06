@@ -5,32 +5,38 @@
 
       <div class="horizontal-fields-display">
         <p-floatlabel variant="on">
-          <input id="city" pInputText formControlName="city" [invalid]="isInvalid('city')" />
-          <label for="city">Ciutat</label>
+          <input id="city" pInputText formControlName="city"
+            [ngClass]="{'is-invalid': form.hasError('inconsistentCity') }" />
+          <label [ngClass]="{'is-invalid': form.hasError('inconsistentStreetNumber') }" for="city">Ciutat</label>
         </p-floatlabel>
 
         <p-floatlabel variant="on">
-          <input id="province" pInputText formControlName="province" [invalid]="isInvalid('province')" />
-          <label for="province">Provincia</label>
+          <input id="province" pInputText formControlName="province"
+            [ngClass]="{'is-invalid': form.hasError('inconsistentProvince') }" />
+          <label [ngClass]="{'is-invalid': form.hasError('inconsistentStreetNumber') }" for="province">Provincia</label>
         </p-floatlabel>
       </div>
 
       <div class="horizontal-fields-display">
         <p-floatlabel variant="on">
-          <input id="streetNumber" pInputText formControlName="streetNumber" [invalid]="isInvalid('streetNumber')" />
-          <label for="streetNumber">Carrer, número</label>
+          <input id="streetNumber" pInputText formControlName="streetNumber"
+            [ngClass]="{'is-invalid': form.hasError('inconsistentStreetNumber') }" />
+          <label [ngClass]="{'is-invalid': form.hasError('inconsistentStreetNumber') }" for="streetNumber">Carrer,
+            número <span class="mandatory-decorator">*</span></label>
         </p-floatlabel>
 
         <p-floatlabel variant="on">
-          <input id="blockFlat" pInputText formControlName="blockFlat" [invalid]="isInvalid('blockFlat')" />
+          <input id="blockFlat" pInputText formControlName="blockFlat" />
           <label for="blockFlat">Bloc, pis</label>
         </p-floatlabel>
       </div>
 
       <div class="phase1-login-form">
         <p-floatlabel variant="on">
-          <input id="postalCode" pInputText formControlName="postalCode" [invalid]="isInvalid('postalCode')" />
-          <label for="postalCode">Codi postal</label>
+          <input id="postalCode" pInputText formControlName="postalCode"
+            [ngClass]="{'is-invalid': form.hasError('inconsistentPostalCode') }" />
+          <label [ngClass]="{'is-invalid': form.hasError('inconsistentStreetNumber') }" for="postalCode">Codi
+            postal</label>
         </p-floatlabel>
       </div>
     </div>

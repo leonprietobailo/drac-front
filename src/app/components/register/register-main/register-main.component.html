@@ -76,9 +76,13 @@
         @case (3) {
         <app-register-step-totp [form]="totpForm"></app-register-step-totp>
         }
+        @case (4) {
+        <app-register-step-success></app-register-step-success>
+        }
         }
 
-        <div class="phase1-footer">
+        <!-- Do not show footer when currentStep is 4 (success step) -->
+        @if (currentStep < 4) { <div class="phase1-footer">
           @if (currentStep > 0) {
           <p-button class="back-btn" label="Enrere" [link]="true" (onClick)="prevStep()">
             <img src="/assets/icons/chevron-left.svg" alt="Login Icon">
@@ -90,13 +94,14 @@
             <img src="/assets/icons/chevron-right.svg" alt="Login Icon">
             </p-button>
             } @else {
-            <p-button label="Finalitzar" (onClick)="submit()" [disabled]="!registerForm.valid">
+            <p-button label="Finalitzar" (onClick)="attemptNextStep()" [disabled]="!registerForm.valid">
               <img src="/assets/icons/chevron-right.svg" alt="Login Icon">
             </p-button>
             }
-        </div>
       </div>
+      }
     </div>
   </div>
+</div>
 
 </div>
