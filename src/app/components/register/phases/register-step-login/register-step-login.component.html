@@ -2,21 +2,28 @@
   <div class="phase1-login-info">
     Informació d'inici de sessió
     <div class="phase1-login-form">
+      @if (form.get('username')?.hasError('taken')) {
+      <div class="email-in-use">
+        La adreça de correu electrònic ja està en ús. <a href="/login">Inicia sessió.</a>
+      </div>
+      }
       <p-floatlabel variant="on">
         <input id="username" pInputText formControlName="username" />
         <label for="username">Usuari</label>
       </p-floatlabel>
 
       <p-floatlabel variant="on">
-        <p-password formControlName="password" id="password" [toggleMask]="true" [feedback]="true"
-          [invalid]="isInvalid('password')" />
-        <label for="password">Contrasenya</label>
+        <div [ngClass]="{'invalid-password': form.get('password')?.invalid && form.get('password')?.touched}">
+          <p-password formControlName="password" id="password" [toggleMask]="true" [feedback]="true" />
+          <label for="password">Contrasenya</label>
+        </div>
+
       </p-floatlabel>
     </div>
     <div class="phase1-login-checklist">
       <div class="phase1-login-checklist-item">
         <!-- Checkbox1 -->
-        <p-checkbox inputId="policy" [binary]="true" />
+        <p-checkbox inputId="policy" [binary]="true" formControlName="acceptTerms" />
         <label for="policy" class="ml-2">Accepto la <a href="google.com">politica de privacitat</a>.</label>
       </div>
       <div class="phase1-login-checklist-item">

@@ -19,6 +19,29 @@
     gap: 16px;
     font-size: 16px;
 
+    .email-in-use {
+      color: #ff0000;
+      font-family: Inter;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px; /* 150% */
+
+      a {
+        color: #ff0000;
+      }
+    }
+
+    .invalid-password {
+      ::ng-deep p-password .p-inputtext {
+        border-color: #ff0000;
+
+        &:focus {
+          border-color: #ff0000;
+        }
+      }
+    }
+
     input {
       width: 250px;
       padding-top: 14px;

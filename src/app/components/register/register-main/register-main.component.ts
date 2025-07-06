@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { HeaderComponent } from '../../header/header.component';
 import { RegisterStepLogin } from '../phases/register-step-login/register-step-login.component';
 import { RegisterStepPersonal } from '../phases/register-step-personal/register-step-personal.component';
@@ -12,6 +12,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { RegisterApiService } from '../../../services/RegisterApiService';
 
 @Component({
   selector: 'app-register-main',
@@ -32,15 +33,21 @@ export class RegisterMainComponent {
   currentStep = 0;
   registerForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  @Output() proceed = new EventEmitter<void>();
+
+  constructor(private fb: FormBuilder, private api: RegisterApiService) {
     this.registerForm = this.fb.group({
-      login: this.fb.group(
-        {
-          username: ['', [Validators.required, Validators.minLength(4)]],
-          password: ['', [Validators.required, Validators.minLength(6)]],
-        },
-        { updateOn: 'blur' }
-      ),
+      login: this.fb.group({
+        username: this.fb.control('', {
+          validators: [Validators.required, Validators.email],
+          updateOn: 'blur',
+        }),
+        password: this.fb.control('', {
+          validators: [Validators.required, Validators.minLength(6)],
+          updateOn: 'blur',
+        }),
+        acceptTerms: [false, Validators.requiredTrue],
+      }),
       personal: this.fb.group(
         {
           firstName: ['', Validators.required],
@@ -73,15 +80,28 @@ export class RegisterMainComponent {
   }
 
   nextStep(): void {
-    const currentKey = this.steps[this.currentStep].key;
-    const currentFormGroup = this.registerForm.get(currentKey) as FormGroup;
-    if (currentFormGroup.invalid) {
-      currentFormGroup.markAllAsTouched();
+    this.getCurrentStepForm().markAllAsTouched();
+    if (this.getCurrentStepForm().invalid) {
       return;
     }
 
-    if (this.currentStep < this.steps.length - 1) {
-      this.currentStep++;
+    if (this.currentStep === 0) {
+      // API Call to check email availability.
+      const username = this.loginForm.get('username')?.value;
+      this.api.getEmailExists(username).subscribe((isTaken) => {
+        if (isTaken) {
+          this.loginForm.get('username')?.setErrors({ taken: true });
+          return;
+        }
+
+        if (this.currentStep < this.steps.length - 1) {
+          this.currentStep++;
+        }
+      });
+    } else {
+      if (this.currentStep < this.steps.length - 1) {
+        this.currentStep++;
+      }
     }
   }
 
@@ -97,10 +117,6 @@ export class RegisterMainComponent {
       return;
     }
     console.log(JSON.stringify(this.registerForm.value, null, 2));
-    // if (this.registerForm.valid) {
-    //   console.log(this.registerForm.value);
-    //   // handle final submission
-    // }
   }
 
   steps = [
@@ -109,6 +125,10 @@ export class RegisterMainComponent {
     { label: 'Address Info', key: 'address' },
     { label: 'TOTP', key: 'totp' },
   ];
+
+  getCurrentStepForm(): FormGroup {
+    return this.registerForm.get(this.steps[this.currentStep].key) as FormGroup;
+  }
 
   get loginForm(): FormGroup {
     return this.registerForm.get('login') as FormGroup;
