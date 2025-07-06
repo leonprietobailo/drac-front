@@ -85,7 +85,7 @@
           </p-button>
           }
 
-          @if (currentStep < steps.length - 1) { <p-button label="Següent" (onClick)="nextStep()"
+          @if (currentStep < steps.length - 1) { <p-button label="Següent" (onClick)="attemptNextStep()"
             [disabled]="getCurrentStepForm().invalid">
             <img src="/assets/icons/chevron-right.svg" alt="Login Icon">
             </p-button>

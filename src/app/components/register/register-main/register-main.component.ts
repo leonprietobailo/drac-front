@@ -13,6 +13,8 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RegisterApiService } from '../../../services/RegisterApiService';
+import { TotpRequestDto } from '../../../dto/request/register';
+import { TotpResponseStatus } from '../../../dto/response/register';
 
 @Component({
   selector: 'app-register-main',
@@ -38,7 +40,7 @@ export class RegisterMainComponent {
   constructor(private fb: FormBuilder, private api: RegisterApiService) {
     this.registerForm = this.fb.group({
       login: this.fb.group({
-        username: this.fb.control('', {
+        email: this.fb.control('', {
           validators: [Validators.required, Validators.email],
           updateOn: 'blur',
         }),
@@ -79,7 +81,7 @@ export class RegisterMainComponent {
     });
   }
 
-  nextStep(): void {
+  attemptNextStep(): void {
     this.getCurrentStepForm().markAllAsTouched();
     if (this.getCurrentStepForm().invalid) {
       return;
@@ -87,21 +89,46 @@ export class RegisterMainComponent {
 
     if (this.currentStep === 0) {
       // API Call to check email availability.
-      const username = this.loginForm.get('username')?.value;
-      this.api.getEmailExists(username).subscribe((isTaken) => {
+      const email = this.loginForm.get('email')?.value;
+      this.api.requestEmailExists(email).subscribe((isTaken) => {
         if (isTaken) {
-          this.loginForm.get('username')?.setErrors({ taken: true });
+          this.loginForm.get('email')?.setErrors({ taken: true });
           return;
         }
+        // Proceed to the next step if email is available.
+        this.nextStep();
+      });
+    } else if (this.currentStep === 2) {
+      const email = this.loginForm.get('email')?.value;
 
-        if (this.currentStep < this.steps.length - 1) {
-          this.currentStep++;
-        }
+      const payload: TotpRequestDto = {
+        email: email,
+      };
+
+      this.api.requestTotp(payload).subscribe({
+        next: (response) => {
+          if (response.status === TotpResponseStatus.SUCCESS) {
+            console.log('TOTP Request Succesfully Sent');
+            this.nextStep();
+          } else if (response.status === TotpResponseStatus.TOO_MANY_TOTPS) {
+            this.totpForm.get('totp')?.setErrors({ tooManyTotps: true });
+          } else {
+            console.error('Unexpected TOTP response status:', response.status);
+          }
+        },
+        error: (error) => {
+          console.error('Error requesting TOTP:', error);
+        },
       });
     } else {
-      if (this.currentStep < this.steps.length - 1) {
-        this.currentStep++;
-      }
+      // Nothing to attempt.
+      this.nextStep();
+    }
+  }
+
+  nextStep() {
+    if (this.currentStep < this.steps.length - 1) {
+      this.currentStep++;
     }
   }
 

@@ -2,14 +2,14 @@
   <div class="phase1-login-info">
     Informació d'inici de sessió
     <div class="phase1-login-form">
-      @if (form.get('username')?.hasError('taken')) {
+      @if (form.get('email')?.hasError('taken')) {
       <div class="email-in-use">
         La adreça de correu electrònic ja està en ús. <a href="/login">Inicia sessió.</a>
       </div>
       }
       <p-floatlabel variant="on">
-        <input id="username" pInputText formControlName="username" />
-        <label for="username">Usuari</label>
+        <input id="email" pInputText formControlName="email" />
+        <label for="email">Usuari</label>
       </p-floatlabel>
 
       <p-floatlabel variant="on">

@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { TotpRequestDto } from '../dto/request/register';
+import { TotpResponseDto } from '../dto/response/register';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +13,11 @@ export class RegisterApiService {
 
   baseUrl = environment.apiBaseUrl + '/users/register';
 
-  getEmailExists(email: string) {
+  requestEmailExists(email: string) {
     return this.http.get(`${this.baseUrl}/email-registered/${email}`);
+  }
+
+  requestTotp(payload: TotpRequestDto): Observable<TotpResponseDto> {
+    return this.http.post<TotpResponseDto>(`${this.baseUrl}/totp`, payload);
   }
 }
