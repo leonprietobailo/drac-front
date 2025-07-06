@@ -12,8 +12,8 @@ export interface UserRequestDto {
 export interface AddressRequestDto {
   city: string;
   province: string;
-  street: string;
-  flat: string;
+  streetNumber: string;
+  blockFlat: string;
   postalCode: number;
 }
 

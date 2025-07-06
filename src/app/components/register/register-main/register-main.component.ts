@@ -135,22 +135,22 @@ export class RegisterMainComponent {
         address: {
           city: this.addressForm.get('city')?.value,
           province: this.addressForm.get('province')?.value,
-          street: this.addressForm.get('streetNumber')?.value,
-          flat: this.addressForm.get('blockFlat')?.value,
+          streetNumber: this.addressForm.get('streetNumber')?.value,
+          blockFlat: this.addressForm.get('blockFlat')?.value,
           postalCode: this.addressForm.get('postalCode')?.value,
         },
       };
 
       this.api.requestRegister(payload).subscribe({
         next: (response) => {
-          if (response === UserResponseStatus.SUCCESS) {
+          if (response.status === UserResponseStatus.SUCCESS) {
             // Registration successful, proceed to next step or show success message.
             this.nextStep();
-          } else if (response === UserResponseStatus.WRONG_TOTP) {
+          } else if (response.status === UserResponseStatus.WRONG_TOTP) {
             this.totpForm.get('totp')?.setErrors({ wrongTotp: true });
-          } else if (response === UserResponseStatus.VALIDATION_FAILED) {
+          } else if (response.status === UserResponseStatus.VALIDATION_FAILED) {
             this.totpForm.get('totp')?.setErrors({ wrongValidations: true });
-          } else if (response === UserResponseStatus.TOTP_EXPIRED) {
+          } else if (response.status === UserResponseStatus.TOTP_EXPIRED) {
             this.totpForm.get('totp')?.setErrors({ totpExpired: true });
           } else {
             console.error('Unexpected registration response:', response);

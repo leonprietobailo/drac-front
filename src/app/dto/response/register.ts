@@ -8,6 +8,10 @@ export enum TotpResponseStatus {
   UNEXPECTED_ERROR = 'UNEXPECTED_ERROR',
 }
 
+export interface UserResponseDto {
+  status: UserResponseStatus;
+}
+
 export enum UserResponseStatus {
   SUCCESS = 'SUCCESS',
   WRONG_TOTP = 'WRONG_TOTP',
