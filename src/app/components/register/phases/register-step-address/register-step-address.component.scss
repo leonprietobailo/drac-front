@@ -35,6 +35,8 @@
     label {
       &.is-invalid {
         --p-floatlabel-focus-color: #f00;
+        --p-floatlabel-active-color: #f00;
+        --p-floatlabel-invalid-color: #f00;
       }
 
       span {
@@ -64,6 +66,8 @@
     label {
       &.is-invalid {
         --p-floatlabel-focus-color: #f00;
+        --p-floatlabel-active-color: #f00;
+        --p-floatlabel-invalid-color: #f00;
       }
 
       span {

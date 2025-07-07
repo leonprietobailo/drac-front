@@ -7,13 +7,13 @@
         <p-floatlabel variant="on">
           <input id="city" pInputText formControlName="city"
             [ngClass]="{'is-invalid': form.hasError('inconsistentCity') }" />
-          <label [ngClass]="{'is-invalid': form.hasError('inconsistentStreetNumber') }" for="city">Ciutat</label>
+          <label [ngClass]="{'is-invalid': form.hasError('inconsistentCity') }" for="city">Ciutat</label>
         </p-floatlabel>
 
         <p-floatlabel variant="on">
           <input id="province" pInputText formControlName="province"
             [ngClass]="{'is-invalid': form.hasError('inconsistentProvince') }" />
-          <label [ngClass]="{'is-invalid': form.hasError('inconsistentStreetNumber') }" for="province">Provincia</label>
+          <label [ngClass]="{'is-invalid': form.hasError('inconsistentProvince') }" for="province">Provincia</label>
         </p-floatlabel>
       </div>
 
@@ -35,7 +35,7 @@
         <p-floatlabel variant="on">
           <input id="postalCode" pInputText formControlName="postalCode"
             [ngClass]="{'is-invalid': form.hasError('inconsistentPostalCode') }" />
-          <label [ngClass]="{'is-invalid': form.hasError('inconsistentStreetNumber') }" for="postalCode">Codi
+          <label [ngClass]="{'is-invalid': form.hasError('inconsistentPostalCode') }" for="postalCode">Codi
             postal</label>
         </p-floatlabel>
       </div>

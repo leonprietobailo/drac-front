@@ -53,6 +53,7 @@ export class RegisterMainComponent {
           updateOn: 'blur',
         }),
         acceptTerms: [false, Validators.requiredTrue],
+        newsletter: [false],
       }),
       personal: this.fb.group(
         {
@@ -69,7 +70,7 @@ export class RegisterMainComponent {
       address: this.fb.group(
         {
           streetNumber: [''],
-          postalCode: [''],
+          postalCode: ['', [Validators.minLength(5), Validators.maxLength(5)]],
           city: [''],
           province: [''],
           blockFlat: [''],
@@ -127,6 +128,7 @@ export class RegisterMainComponent {
       const payload: UserRequestDto = {
         email: this.loginForm.get('email')?.value,
         password: this.loginForm.get('password')?.value,
+        newsletter: this.loginForm.get('newsletter')?.value,
         firstName: this.personalForm.get('firstName')?.value,
         lastName: this.personalForm.get('lastName')?.value,
         birthdate: this.personalForm.get('birthdate')?.value,

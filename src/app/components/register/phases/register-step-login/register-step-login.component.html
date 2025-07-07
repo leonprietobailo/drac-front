@@ -9,7 +9,7 @@
       }
       <p-floatlabel variant="on">
         <input id="email" pInputText formControlName="email" />
-        <label for="email">Usuari</label>
+        <label for="email">Email</label>
       </p-floatlabel>
 
       <p-floatlabel variant="on">
@@ -28,7 +28,7 @@
       </div>
       <div class="phase1-login-checklist-item">
         <!-- Checkbox2 -->
-        <p-checkbox inputId="news" [binary]="true" />
+        <p-checkbox inputId="news" [binary]="true" formControlName="newsletter" />
         <label for="news" class="ml-2">Vull rebre novetats o ofertes.</label>
       </div>
     </div>

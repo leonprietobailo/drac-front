@@ -1,11 +1,12 @@
 export interface UserRequestDto {
   email: string;
   password: string;
+  newsletter: boolean;
   firstName: string;
   lastName: string;
   birthdate: Date;
   phone: string;
-  totp: number;
+  totp: string;
   address: AddressRequestDto;
 }
 
@@ -14,7 +15,7 @@ export interface AddressRequestDto {
   province: string;
   streetNumber: string;
   blockFlat: string;
-  postalCode: number;
+  postalCode: string;
 }
 
 export interface TotpRequestDto {
