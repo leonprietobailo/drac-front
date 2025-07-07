@@ -77,7 +77,8 @@
         <app-register-step-totp [form]="totpForm"></app-register-step-totp>
         }
         @case (4) {
-        <app-register-step-success></app-register-step-success>
+        <app-register-step-success [accountOwner]="personalForm.get('firstName')?.value"
+          class="app-success"></app-register-step-success>
         }
         }
 
@@ -89,9 +90,14 @@
           </p-button>
           }
 
-          @if (currentStep < steps.length - 1) { <p-button label="Següent" (onClick)="attemptNextStep()"
-            [disabled]="getCurrentStepForm().invalid">
+          @if (currentStep < steps.length - 1) { <p-button [label]="loading? '' : 'Següent'"
+            (onClick)="attemptNextStep()" [disabled]="getCurrentStepForm().invalid || loading">
+            @if (loading) {
+            <p-progressSpinner [style]="{ width: '16px', height: '16px' }" strokeWidth="8"
+              styleClass="p-mr-2"></p-progressSpinner>
+            } @else {
             <img src="/assets/icons/chevron-right.svg" alt="Login Icon">
+            }
             </p-button>
             } @else {
             <p-button label="Finalitzar" (onClick)="attemptNextStep()" [disabled]="!registerForm.valid">

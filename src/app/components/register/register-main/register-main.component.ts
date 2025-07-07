@@ -20,7 +20,7 @@ import {
   UserResponseStatus,
 } from '../../../dto/response/register';
 import { RegisterStepSuccessComponent } from '../phases/register-step-success/register-step-success.component';
-
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 @Component({
   selector: 'app-register-main',
   imports: [
@@ -33,6 +33,7 @@ import { RegisterStepSuccessComponent } from '../phases/register-step-success/re
     ReactiveFormsModule,
     CommonModule,
     RegisterStepSuccessComponent,
+    ProgressSpinnerModule,
   ],
   templateUrl: './register-main.component.html',
   styleUrl: './register-main.component.scss',
@@ -40,6 +41,7 @@ import { RegisterStepSuccessComponent } from '../phases/register-step-success/re
 export class RegisterMainComponent {
   currentStep = 0;
   registerForm: FormGroup;
+  loading: boolean = false;
 
   constructor(private fb: FormBuilder, private api: RegisterApiService) {
     this.registerForm = this.fb.group({
@@ -87,22 +89,31 @@ export class RegisterMainComponent {
   }
 
   attemptNextStep(): void {
+    this.loading = true;
     this.getCurrentStepForm().markAllAsTouched();
     if (this.getCurrentStepForm().invalid) {
+      this.loading = false;
       return;
     }
 
     if (this.currentStep === 0) {
       // API Call to check email availability.
-      const email = this.loginForm.get('email')?.value;
-      this.api.requestEmailExists(email).subscribe((isTaken) => {
-        if (isTaken) {
-          this.loginForm.get('email')?.setErrors({ taken: true });
-          return;
-        }
-        // Proceed to the next step if email is available.
-        this.nextStep();
-      });
+
+      // const email = this.loginForm.get('email')?.value;
+      // this.api.requestEmailExists(email).subscribe((isTaken) => {
+      //   if (isTaken) {
+      //     this.loginForm.get('email')?.setErrors({ taken: true });
+      //     this.loading = false;
+      //     return;
+      //   }
+      //   // Proceed to the next step if email is available.
+      //   this.nextStep();
+      // });
+
+      setTimeout(() => {
+        this.loading = false;
+        // do something
+      }, 3000);
     } else if (this.currentStep === 2) {
       const email = this.loginForm.get('email')?.value;
 

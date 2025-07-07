@@ -1,3 +1,19 @@
-User Registered Successfully!
+<div class="flex-center-column">
 
--> LOGIN
+  <div class="success-header">Compte registrat!</div>
+  <div class="success-body">
+    Hola, <span>{{ accountOwner }}</span>.<br>
+    T’has registrat correctament a la web del drac de Ribes. A partir d’ara, podràs fer el seguiment de les teves
+    comandes
+    i estar al dia de totes les novetats relacionades amb la colla.<br>
+    <br>
+    Benvingut/da i gràcies per formar part de la família del drac!
+  </div>
+  <div class="success-footer">
+    <p-button class="back-btn" label="Iniciar sessió" [link]="false" routerLink="/login">
+      <img src="/assets/icons/chevron-right.svg" alt="Login Icon">
+    </p-button>
+  </div>
+
+
+</div>
