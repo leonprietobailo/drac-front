@@ -2,7 +2,6 @@
   <div class="phase1-login-info">
     Adreça d'enviament
     <div class="input-rows">
-
       <div class="horizontal-fields-display">
         <p-floatlabel variant="on">
           <input id="city" pInputText formControlName="city"
@@ -38,6 +37,16 @@
           <label [ngClass]="{'is-invalid': form.hasError('inconsistentPostalCode') }" for="postalCode">Codi
             postal</label>
         </p-floatlabel>
+      </div>
+      <div>
+        @if (form.get('postalCode')?.hasError('minlength') || form.get('postalCode')?.hasError('maxlength') ) {
+        <p-message severity="error" size="small" variant="simple">El codi postal ha de tenir 5 dígits.</p-message>
+        }
+        @if (form.hasError('inconsistentStreetNumber') || form.hasError('inconsistentCity') ||
+        form.hasError('inconsistentProvince') || form.hasError('inconsistentPostalCode')) {
+        <p-message severity="error" size="small" variant="simple">La informació d'adreça no és consistent. Si us
+          plau, omplena els camps: Ciutat, Provincia, Carrer i Codi postal o bé, afegeix-la més tard.</p-message>
+        }
       </div>
     </div>
   </div>

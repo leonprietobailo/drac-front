@@ -5,32 +5,52 @@
 
 
       <div class="horizontal-fields-display">
-        <p-floatlabel variant="on">
-          <input id="firstName" pInputText formControlName="firstName" [invalid]="isInvalid('firstName')" />
-          <label for="firstName">Nom</label>
-        </p-floatlabel>
+        <div>
+          <p-floatlabel variant="on">
+            <input id="firstName" pInputText formControlName="firstName" [invalid]="isInvalid('firstName')" />
+            <label for="firstName">Nom</label>
+          </p-floatlabel>
+          @if (form.get('firstName')?.touched && form.get('firstName')?.hasError('required')) {
+          <p-message severity="error" size="small" variant="simple">Aquest camp és obligatori.</p-message>
+          }
+        </div>
 
-        <p-floatlabel variant="on">
-          <input id="lastName" pInputText formControlName="lastName" [invalid]="isInvalid('lastName')" />
-          <label for="lastName">Cognoms</label>
-        </p-floatlabel>
+        <div>
+          <p-floatlabel variant="on">
+            <input id="lastName" pInputText formControlName="lastName" [invalid]="isInvalid('lastName')" />
+            <label for="lastName">Cognoms</label>
+          </p-floatlabel>
+          @if (form.get('lastName')?.touched && form.get('lastName')?.hasError('required')) {
+          <p-message severity="error" size="small" variant="simple">Aquest camp és obligatori.</p-message>
+          }
+        </div>
       </div>
 
       <div class="phase1-login-form">
-        <p-floatlabel variant="on">
-          <p-datepicker inputId="birthdate" showIcon iconDisplay="input" dateFormat="dd/mm/yy"
-            formControlName="birthdate" [invalid]="isInvalid('birthdate')" />
-          <label for="birthdate">Data de naixement</label>
-        </p-floatlabel>
+        <div>
+          <p-floatlabel variant="on">
+            <p-datepicker inputId="birthdate" showIcon iconDisplay="input" dateFormat="dd/mm/yy"
+              formControlName="birthdate" [invalid]="isInvalid('birthdate')" />
+            <label for="birthdate">Data de naixement</label>
+          </p-floatlabel>
+          @if (form.get('birthdate')?.touched && form.get('birthdate')?.hasError('required')) {
+          <p-message severity="error" size="small" variant="simple">Aquest camp és obligatori.</p-message>
+          }
+        </div>
       </div>
     </div>
     Contacte
 
     <div class="phase1-login-form">
-      <p-floatlabel variant="on">
-        <input id="phone" pInputText formControlName="phone" [invalid]="isInvalid('phone')" />
-        <label for="phone">Telèfon</label>
-      </p-floatlabel>
+      <div>
+        <p-floatlabel variant="on">
+          <input id="phone" pInputText formControlName="phone" [invalid]="isInvalid('phone')" />
+          <label for="phone">Telèfon</label>
+        </p-floatlabel>
+        @if (form.get('phone')?.touched && form.get('phone')?.hasError('required')) {
+        <p-message severity="error" size="small" variant="simple">Aquest camp és obligatori.</p-message>
+        }
+      </div>
     </div>
   </div>
 </form>

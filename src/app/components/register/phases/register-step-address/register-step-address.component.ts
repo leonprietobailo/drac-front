@@ -7,6 +7,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { ButtonModule } from 'primeng/button';
 import { DatePickerModule } from 'primeng/datepicker';
 import { CommonModule } from '@angular/common';
+import { MessageModule } from 'primeng/message';
 
 @Component({
   selector: 'app-register-step-address',
@@ -19,6 +20,7 @@ import { CommonModule } from '@angular/common';
     DatePickerModule,
     ReactiveFormsModule,
     CommonModule,
+    MessageModule,
   ],
   templateUrl: './register-step-address.component.html',
   styleUrl: './register-step-address.component.scss',

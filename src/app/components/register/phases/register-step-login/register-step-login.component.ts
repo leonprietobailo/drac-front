@@ -6,6 +6,8 @@ import { PasswordModule } from 'primeng/password';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
+import { MessageModule } from 'primeng/message';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-register-step-login',
@@ -17,6 +19,8 @@ import { CommonModule } from '@angular/common';
     CheckboxModule,
     ButtonModule,
     CommonModule,
+    MessageModule,
+    RouterModule,
   ],
   templateUrl: './register-step-login.component.html',
   styleUrl: './register-step-login.component.scss',

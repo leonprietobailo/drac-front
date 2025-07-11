@@ -6,6 +6,7 @@ import { PasswordModule } from 'primeng/password';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ButtonModule } from 'primeng/button';
 import { DatePickerModule } from 'primeng/datepicker';
+import { MessageModule } from 'primeng/message';
 
 @Component({
   selector: 'app-register-step-personal',
@@ -18,6 +19,7 @@ import { DatePickerModule } from 'primeng/datepicker';
     ButtonModule,
     DatePickerModule,
     ReactiveFormsModule,
+    MessageModule,
   ],
   templateUrl: './register-step-personal.component.html',
   styleUrl: './register-step-personal.component.scss',

@@ -98,22 +98,16 @@ export class RegisterMainComponent {
 
     if (this.currentStep === 0) {
       // API Call to check email availability.
-
-      // const email = this.loginForm.get('email')?.value;
-      // this.api.requestEmailExists(email).subscribe((isTaken) => {
-      //   if (isTaken) {
-      //     this.loginForm.get('email')?.setErrors({ taken: true });
-      //     this.loading = false;
-      //     return;
-      //   }
-      //   // Proceed to the next step if email is available.
-      //   this.nextStep();
-      // });
-
-      setTimeout(() => {
-        this.loading = false;
-        // do something
-      }, 3000);
+      const email = this.loginForm.get('email')?.value;
+      this.api.requestEmailExists(email).subscribe((isTaken) => {
+        if (isTaken) {
+          this.loginForm.get('email')?.setErrors({ taken: true });
+          this.loading = false;
+          return;
+        }
+        // Proceed to the next step if email is available.
+        this.nextStep();
+      });
     } else if (this.currentStep === 2) {
       const email = this.loginForm.get('email')?.value;
 
@@ -181,6 +175,7 @@ export class RegisterMainComponent {
 
   nextStep() {
     if (this.currentStep < this.steps.length - 1) {
+      this.loading = false;
       this.currentStep++;
     }
   }

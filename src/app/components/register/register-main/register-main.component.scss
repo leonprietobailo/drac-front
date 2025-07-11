@@ -145,6 +145,11 @@
         .back-btn {
           margin-right: auto;
         }
+
+        ::ng-deep .p-button {
+          width: 123px;
+          height: 42px;
+        }
       }
     }
   }

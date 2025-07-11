@@ -4,14 +4,27 @@
     <div class="phase1-login-form">
       @if (form.get('email')?.hasError('taken')) {
       <div class="email-in-use">
-        La adreça de correu electrònic ja està en ús. <a href="/login">Inicia sessió.</a>
+
       </div>
       }
-      <p-floatlabel variant="on">
-        <input id="email" pInputText formControlName="email" />
-        <label for="email">Email</label>
-      </p-floatlabel>
-
+      <div>
+        <p-floatlabel variant="on">
+          <input id="email" pInputText formControlName="email" />
+          <label for="email">Email</label>
+        </p-floatlabel>
+        @if (form.get('email')?.touched) {
+        @if (form.get('email')?.hasError('email')) {
+        <p-message severity="error" size="small" variant="simple">L'adreça no té el format esperat.</p-message>
+        }
+        @if (form.get('email')?.hasError('taken')) {
+        <p-message severity="error" size="small" variant="simple">La adreça de correu electrònic ja està en ús. <a
+            [routerLink]="['/login']">Inicia sessió.</a></p-message>
+        }
+        @if (form.get('email')?.hasError('required')) {
+        <p-message severity="error" size="small" variant="simple">Aquest camp es obligatori.</p-message>
+        }
+        }
+      </div>
       <p-floatlabel variant="on">
         <div [ngClass]="{'invalid-password': form.get('password')?.invalid && form.get('password')?.touched}">
           <p-password formControlName="password" id="password" [toggleMask]="true" [feedback]="true" />
@@ -21,10 +34,17 @@
       </p-floatlabel>
     </div>
     <div class="phase1-login-checklist">
-      <div class="phase1-login-checklist-item">
-        <!-- Checkbox1 -->
-        <p-checkbox inputId="policy" [binary]="true" formControlName="acceptTerms" />
-        <label for="policy" class="ml-2">Accepto la <a href="google.com">politica de privacitat</a>.</label>
+      <div>
+        <div class="phase1-login-checklist-item">
+          <!-- Checkbox1 -->
+          <p-checkbox inputId="policy" [binary]="true" formControlName="acceptTerms" />
+          <label for="policy" class="ml-2">Accepto la <a href="google.com">politica de privacitat</a>.</label>
+        </div>
+        @if (form.get('acceptTerms')?.touched) {
+        @if (form.get('acceptTerms')?.hasError('required')) {
+        <p-message severity="error" size="small" variant="simple">Aquest camp es obligatori.</p-message>
+        }
+        }
       </div>
       <div class="phase1-login-checklist-item">
         <!-- Checkbox2 -->
