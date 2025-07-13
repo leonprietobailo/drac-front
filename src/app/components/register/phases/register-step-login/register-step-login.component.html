@@ -9,7 +9,7 @@
       }
       <div>
         <p-floatlabel variant="on">
-          <input id="email" pInputText formControlName="email" />
+          <input id="email" pInputText formControlName="email" [invalid]="isInvalid('email')" />
           <label for="email">Email</label>
         </p-floatlabel>
         @if (form.get('email')?.touched) {
@@ -25,13 +25,18 @@
         }
         }
       </div>
-      <p-floatlabel variant="on">
-        <div [ngClass]="{'invalid-password': form.get('password')?.invalid && form.get('password')?.touched}">
-          <p-password formControlName="password" id="password" [toggleMask]="true" [feedback]="true" />
-          <label for="password">Contrasenya</label>
-        </div>
-
-      </p-floatlabel>
+      <div>
+        <p-floatlabel [ngClass]="{'invalid-password': form.get('password')?.invalid && form.get('password')?.touched}"
+          variant="on">
+          <div>
+            <p-password formControlName="password" id="password" [toggleMask]="true" [feedback]="true" />
+            <label for="password">Contrasenya</label>
+          </div>
+        </p-floatlabel>
+        @if (form.get('password')?.touched && form.get('password')?.hasError('required')) {
+        <p-message severity="error" size="small" variant="simple">Aquest camp es obligatori.</p-message>
+        }
+      </div>
     </div>
     <div class="phase1-login-checklist">
       <div>
@@ -40,10 +45,8 @@
           <p-checkbox inputId="policy" [binary]="true" formControlName="acceptTerms" />
           <label for="policy" class="ml-2">Accepto la <a href="google.com">politica de privacitat</a>.</label>
         </div>
-        @if (form.get('acceptTerms')?.touched) {
-        @if (form.get('acceptTerms')?.hasError('required')) {
+        @if (form.get('acceptTerms')?.touched && form.get('acceptTerms')?.hasError('required')) {
         <p-message severity="error" size="small" variant="simple">Aquest camp es obligatori.</p-message>
-        }
         }
       </div>
       <div class="phase1-login-checklist-item">

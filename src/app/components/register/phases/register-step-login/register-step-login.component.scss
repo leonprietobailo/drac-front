@@ -20,7 +20,7 @@
     font-size: 16px;
 
     .email-in-use {
-      color: #ff0000;
+      color: #dc2626;
       font-family: Inter;
       font-size: 14px;
       font-style: normal;
@@ -28,16 +28,18 @@
       line-height: 24px; /* 150% */
 
       a {
-        color: #ff0000;
+        color: #dc2626;
       }
     }
 
     .invalid-password {
+      --p-floatlabel-focus-color: #dc2626;
+      --p-floatlabel-color: #dc2626;
       ::ng-deep p-password .p-inputtext {
-        border-color: #ff0000;
+        border-color: #f87171;
 
         &:focus {
-          border-color: #ff0000;
+          border-color: #f87171;
         }
       }
     }
