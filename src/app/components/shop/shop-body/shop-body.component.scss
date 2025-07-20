@@ -1,0 +1,16 @@
+.main-body {
+  display: flex;
+  justify-content: center;
+  height: calc(100vh - 72px);
+  overflow-y: auto;
+  padding: 32px;
+  .items {
+    max-width: 1300px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: flex-start;
+  }
+}
