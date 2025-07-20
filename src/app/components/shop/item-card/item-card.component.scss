@@ -4,7 +4,7 @@
 
   .item-card-inner {
     display: flex;
-    width: 243px;
+    // width: 243px;
     min-width: 243px;
     max-width: 502px;
     padding: 24px;
@@ -32,9 +32,22 @@
         align-items: center;
         align-self: stretch;
         aspect-ratio: 1/1;
+        position: relative;
 
         img {
           border-radius: 8px;
+        }
+
+        .item-card-color-selectors {
+          position: absolute;
+          bottom: 16px;
+          left: 50%;
+          transform: translateX(-50%);
+
+          display: flex;
+          gap: 16px;
+          align-self: stretch;
+          justify-content: center;
         }
       }
 

@@ -1,16 +1,7 @@
 <div class="main-body">
   <div class="items">
-    <app-item-card></app-item-card>
-    <app-item-card></app-item-card>
-    <app-item-card></app-item-card>
-    <app-item-card></app-item-card>
-    <app-item-card></app-item-card>
-    <app-item-card></app-item-card>
-    <app-item-card></app-item-card>
-    <app-item-card></app-item-card>
-    <app-item-card></app-item-card>
-    <app-item-card></app-item-card>
-    <app-item-card></app-item-card>
-    <app-item-card></app-item-card>
+    @for (item of itemResponse?.items; track item.id) {
+    <app-item-card [item]="item"></app-item-card>
+    }
   </div>
 </div>
