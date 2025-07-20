@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ItemDto } from '../../../dto/response/shop/item';
+import { ItemColorDto, ItemDto } from '../../../dto/response/shop/item';
 import { ItemApiService } from '../../../services/ItemApiService';
 
 @Component({
@@ -12,10 +12,11 @@ export class ItemCardComponent implements OnInit {
   @Input() item!: ItemDto;
 
   currentImage: string = '';
+  selectedImage: string = '';
 
   ngOnInit(): void {
     this.currentImage = this.item.colors[0].url;
-    console.log(this.item);
+    this.selectedImage = this.item.colors[0].url;
   }
 
   blendWithWhite(colorHex: string): string {
@@ -28,5 +29,17 @@ export class ItemCardComponent implements OnInit {
     const blendedB = Math.round(b * 0.8 + 255 * 0.2);
 
     return `rgb(${blendedR}, ${blendedG}, ${blendedB})`;
+  }
+
+  selectColor(_t7: ItemColorDto) {
+    this.selectedImage = _t7.url;
+  }
+
+  resetPreview() {
+    this.currentImage = this.selectedImage;
+  }
+
+  previewColor(_t7: ItemColorDto) {
+    this.currentImage = _t7.url;
   }
 }
