@@ -9,8 +9,8 @@
     <div class="product-body">
         <div class="galleria">
 
-            <p-galleria  [value]="images()" [responsiveOptions]="responsiveOptions"
-                [style]="{'width': '100%'}" [numVisible]="5">
+            <p-galleria [value]="images()" [responsiveOptions]="responsiveOptions" [style]="{'width': '100%'}"
+                [numVisible]="5">
 
                 <ng-template #item let-item>
                     <img [src]="item.itemImageSrc" style="width:100%; height:auto;" />
@@ -27,47 +27,35 @@
                 <div class="details-attr">
                     <span class="details-attr-title"> {{itemDto?.title}}</span>
                     <span class="details-attr-price">{{itemDto?.price}}</span>
-                    <span class="details-attr-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span>
+                    <span class="details-attr-desc">{{itemDto?.description}}</span>
                 </div>
 
+
+                @if (filterUniqueSizes(itemDto?.attributes).length > 1) {
                 <div class="details-meas">
                     <span class="details-subtitle">Mesura:</span>
                     <div class="details-meas-list">
+                        @for (size of filterUniqueSizes(itemDto?.attributes); track $index) {
                         <div class="details-meas-item">
-                            XXL
+                            {{size.size.size}}
                         </div>
-                        <div class="details-meas-item">
-                            XL
-                        </div>
-                        <div class="details-meas-item">
-                            L
-                        </div>
-                        <div class="details-meas-item">
-                            M
-                        </div>
-                        <div class="details-meas-item">
-                            S
-                        </div>
+                        }
                     </div>
                 </div>
+                }
 
-
+                @if (filterUniqueColors(itemDto?.attributes).length > 1) {
                 <div class="details-colors">
                     <span class="details-subtitle">Color:</span>
                     <div class="details-colors-list">
-                        <div class="details-colors-item">
+                        @for (color of filterUniqueColors(itemDto?.attributes); track $index) {
+                        <div class="details-colors-item" [style.background]="color.color.color">
                             <!-- RED -->
                         </div>
-                        <div class="details-colors-item">
-                            <!-- GREEN -->
-                        </div>
-                        <div class="details-colors-item">
-                            <!-- BLUE -->
-                        </div>
+                        }
                     </div>
                 </div>
+                }
 
                 <div class="details-amount">
                     <span class="details-subtitle">Quantitat:</span>

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ItemColorDto, ItemDto } from '../../../dto/response/shop/item';
+import { AttributeDto, ItemDto } from '../../../dto/response/shop/item';
 import { ItemApiService } from '../../../services/ItemApiService';
+import { ShopUtils } from '../../../utils/ShopUtils';
 
 @Component({
   selector: 'app-item-card',
@@ -9,6 +10,7 @@ import { ItemApiService } from '../../../services/ItemApiService';
   styleUrl: './item-card.component.scss',
 })
 export class ItemCardComponent implements OnInit {
+
   @Input() item!: ItemDto;
   @Output() itemSelected = new EventEmitter<ItemDto>();
 
@@ -16,8 +18,8 @@ export class ItemCardComponent implements OnInit {
   selectedImage: string = '';
 
   ngOnInit(): void {
-    this.currentImage = this.item.colors[0].url;
-    this.selectedImage = this.item.colors[0].url;
+    this.currentImage = this.item.attributes[0].urls[0].url;
+    this.selectedImage = this.item.attributes[0].urls[0].url;
   }
 
   blendWithWhite(colorHex: string): string {
@@ -32,20 +34,24 @@ export class ItemCardComponent implements OnInit {
     return `rgb(${blendedR}, ${blendedG}, ${blendedB})`;
   }
 
-  selectColor(_t7: ItemColorDto) {
-    this.selectedImage = _t7.url;
+  selectColor(_t7: AttributeDto) {
+    this.selectedImage = _t7.urls[0].url;
   }
 
   resetPreview() {
     this.currentImage = this.selectedImage;
   }
 
-  previewColor(_t7: ItemColorDto) {
-    this.currentImage = _t7.url;
+  previewColor(_t7: AttributeDto) {
+    this.currentImage = _t7.urls[0].url;
   }
 
-  onItemClick() { 
+  onItemClick() {
     this.itemSelected.emit(this.item);
+  }
+
+  filterUniqueColors(attributes: AttributeDto[]) {
+    return ShopUtils.filterUniqueColors(attributes);
   }
 
 }

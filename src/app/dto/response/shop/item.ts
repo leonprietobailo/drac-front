@@ -6,20 +6,30 @@ export interface ItemResponseDto {
 export interface ItemDto {
   id: number;
   title: string;
+  description: string;
   price: string;
-  colors: ItemColorDto[];
+  attributes: AttributeDto[];
 }
 
-export interface ItemColorDto {
-  color: string;
+export interface AttributeDto {
+  color: ColorResponse;
+  size: SizeResponse;
+  urls: UrlResponse[]
+}
+
+export interface SizeResponse {
+size: string; 
+}
+
+export interface ColorResponse{ 
+color: string; 
+}
+
+export interface UrlResponse {
   url: string;
 }
 
 export enum ItemResponseStatus {
   SUCCESS = 'SUCCESS',
   UNEXPECTED_ERROR = 'UNEXPECTED_ERROR',
-}
-
-export enum ItemResponseColors {
-  UNDEFINED = 'UNDEFINED', // Serves as undefined color placeholder.
 }

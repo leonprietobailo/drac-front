@@ -1,11 +1,12 @@
 import { Component, Input, OnInit, signal } from '@angular/core';
 import { model } from '@angular/core';
-import { ItemDto } from '../../../../dto/response/shop/item';
+import { AttributeDto, ItemDto } from '../../../../dto/response/shop/item';
 import { GalleriaModule } from 'primeng/galleria';
 // import { PhotoService } from '../../../../services/PhotoService';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
+import { ShopUtils } from '../../../../utils/ShopUtils';
 
 @Component({
   selector: 'app-shop-popup',
@@ -35,9 +36,6 @@ export class ShopPopupComponent {
   ngOnInit(): void {
     this.images.update(images => {
       images.push(
-
-
-
         {
           itemImageSrc: 'https://primefaces.org/cdn/primeng/images/galleria/galleria1.jpg',
           thumbnailImageSrc: 'https://primefaces.org/cdn/primeng/images/galleria/galleria1s.jpg',
@@ -134,5 +132,14 @@ export class ShopPopupComponent {
       return images;
     });
   }
+
+  filterUniqueSizes(arg0: AttributeDto[] | undefined) {
+    return ShopUtils.filterUniqueSizes(arg0)
+  }
+
+  filterUniqueColors(arg0: AttributeDto[] | undefined) {
+    return ShopUtils.filterUniqueColors(arg0)
+  }
+
 
 }
