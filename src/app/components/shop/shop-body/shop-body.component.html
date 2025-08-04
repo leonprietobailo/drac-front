@@ -1,7 +1,14 @@
 <div class="main-body">
   <div class="items">
     @for (item of itemResponse?.items; track item.id) {
-    <app-item-card [item]="item"></app-item-card>
+    <app-item-card [item]="item" (itemSelected)="onItemSelected($event)"></app-item-card>
     }
   </div>
 </div>
+
+<p-dialog maskStyleClass="backdrop-blur-sm" [modal]="true" [(visible)]="displayDialog">
+  <ng-template #headless>
+    <app-shop-popup [itemDto]="selectedItem"></app-shop-popup>
+
+  </ng-template>
+</p-dialog>

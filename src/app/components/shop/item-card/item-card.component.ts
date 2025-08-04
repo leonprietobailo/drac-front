@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ItemColorDto, ItemDto } from '../../../dto/response/shop/item';
 import { ItemApiService } from '../../../services/ItemApiService';
 
@@ -10,6 +10,7 @@ import { ItemApiService } from '../../../services/ItemApiService';
 })
 export class ItemCardComponent implements OnInit {
   @Input() item!: ItemDto;
+  @Output() itemSelected = new EventEmitter<ItemDto>();
 
   currentImage: string = '';
   selectedImage: string = '';
@@ -42,4 +43,9 @@ export class ItemCardComponent implements OnInit {
   previewColor(_t7: ItemColorDto) {
     this.currentImage = _t7.url;
   }
+
+  onItemClick() { 
+    this.itemSelected.emit(this.item);
+  }
+
 }

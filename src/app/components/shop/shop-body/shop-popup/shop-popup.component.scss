@@ -1,0 +1,261 @@
+.main-product {
+
+    display: flex;
+    width: 1280px;
+    min-width: 328px;
+    max-width: 1280px;
+    padding: 40px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    // max-height: 80vh;
+    overflow-y: scroll;
+
+    border-radius: 40px;
+    background: #FFF;
+    // box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.10);
+
+    .product-close {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        align-self: stretch;
+
+        svg {
+            width: 24px;
+            height: 24px;
+        }
+
+    }
+
+    .product-body {
+        display: flex;
+        align-items: center;
+        align-content: center;
+        gap: 40px  40px;
+        align-self: stretch;
+        flex-wrap: wrap;
+        height: 100%;
+
+        .galleria {
+            display: flex;
+            min-width: 288px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            flex: 1 0 0;
+        }
+
+        .details {
+
+            display: flex;
+            min-width: 288px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 80px;
+            flex: 1 0 0;
+      
+
+            .details-body {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+                align-self: stretch;
+
+                .details-attr {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 12px;
+                    align-self: stretch;
+
+                    .details-attr-title {
+                        color: #262626;
+                        font-family: Inter;
+                        font-size: 36px;
+                        font-style: normal;
+                        font-weight: 600;
+                        line-height: 36px;
+                    }
+
+                    .details-attr-price {
+                        color: #262626;
+                        font-family: Inter;
+                        font-size: 48px;
+                        font-style: normal;
+                        font-weight: 600;
+                        line-height: 48px;
+                    }
+
+                    .details-attr-desc {
+                        color: #262626;
+                        text-align: justify;
+                        font-family: Inter;
+                        font-size: 16px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 24px;
+                    }
+
+                }
+
+                .details-meas {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 12px;
+                    align-self: stretch;
+
+                    .details-meas-list {
+                        display: flex;
+                        align-items: flex-start;
+                        gap: 10px;
+
+                        .details-meas-item {
+                            display: flex;
+
+                            padding: 2px;
+                            gap: 10px;
+
+                            width: 33px;
+                            height: 33px;
+                            flex-direction: column;
+                            justify-content: center;
+                            align-items: center;
+
+                            border-radius: 8px;
+                            background: #E6E6E6;
+                        }
+                    }
+
+                }
+
+                .details-colors {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 12px;
+                    align-self: stretch;
+
+                    .details-colors-list {
+                        display: flex;
+                        align-items: flex-start;
+                        gap: 10px;
+
+                        .details-colors-item {
+                            display: flex;
+
+                            padding: 2px;
+                            align-items: center;
+
+                            width: 33px;
+                            height: 33px;
+                            aspect-ratio: 1/1;
+
+                            border-radius: 50px;
+                            background: #FF5255;
+
+                        }
+                    }
+
+
+                }
+
+                .details-amount {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 12px;
+                    align-self: stretch;
+
+                    .input-number-container {
+                        display: flex;
+                        width: 122px;
+                        height: 39px;
+                        padding: 2px;
+                        align-items: center;
+                        border-radius: 10px;
+                        // border: 1px solid #C8C8C8;
+                        // background: #FFF;
+                        // box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+
+                        ::ng-deep .p-inputnumber-input {
+                            text-align: center;
+                        }
+                    }
+                }
+
+
+                // Shared elements 
+                .details-subtitle {
+                    color: #262626;
+                    font-family: Inter;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: 24px;
+                    /* 150% */
+
+                }
+            }
+
+            .details-buttons {
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 40px;
+                align-self: stretch;
+
+                .button-cart {
+                    display: flex;
+                    min-width: 82.5px;
+                    max-width: 212px;
+                    padding: 10px 0;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px;
+                    flex: 1 0 0;
+                    border-radius: 50px;
+                    border: 1px solid #68A68F;
+                }
+
+                .button-buy {
+                    display: flex;
+                    min-width: 82.5px;
+                    max-width: 212px;
+                    padding: 10px 0;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px;
+                    flex: 1 0 0;
+                    border-radius: 50px;
+                    background: #68A68F;
+                }
+
+
+                ::ng-deep .p-button {
+                    display: flex;
+                    width: 200px;
+                    // min-width: 100.5px;
+                    // max-width: 212px;
+                    padding: 10px 0;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px;
+                    flex: 1 0 0;
+                    border-radius: 50px;
+
+                    border: 1px solid #68A68F;
+                }
+
+            }
+        }
+
+    }
+
+
+}
