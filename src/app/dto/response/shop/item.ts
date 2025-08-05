@@ -8,24 +8,21 @@ export interface ItemDto {
   title: string;
   description: string;
   price: string;
-  attributes: AttributeDto[];
+  colors: ColorDto[];
+  sizes: SizeDto[];
+  images: ImageDto[];
 }
 
-export interface AttributeDto {
-  color: ColorResponse;
-  size: SizeResponse;
-  urls: UrlResponse[]
+export interface SizeDto {
+  size: string;
 }
 
-export interface SizeResponse {
-size: string; 
+export interface ColorDto {
+  color: string;
+  images: ImageDto[];
 }
 
-export interface ColorResponse{ 
-color: string; 
-}
-
-export interface UrlResponse {
+export interface ImageDto {
   url: string;
 }
 

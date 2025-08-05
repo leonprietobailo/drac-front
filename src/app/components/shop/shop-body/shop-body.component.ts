@@ -13,7 +13,7 @@ import { ShopPopupComponent } from "./shop-popup/shop-popup.component";
 })
 export class ShopBodyComponent implements OnInit {
   displayDialog: boolean = false;
-  selectedItem: ItemDto | null = null;
+  selectedItem: ItemDto | null = null; 
   itemResponse?: ItemResponseDto;
 
   constructor(private itemService: ItemApiService) { }

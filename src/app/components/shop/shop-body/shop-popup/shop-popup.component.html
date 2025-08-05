@@ -13,11 +13,11 @@
                 [numVisible]="5">
 
                 <ng-template #item let-item>
-                    <img [src]="item.itemImageSrc" style="width:100%; height:auto;" />
+                    <img [src]="item.url" style="width:100%; height:auto;" />
                 </ng-template>
 
                 <ng-template #thumbnail let-item>
-                    <img [src]="item.thumbnailImageSrc" style="width:80px; height:auto;" />
+                    <img [src]="item.url" style="width:80px; height:auto;" />
                 </ng-template>
             </p-galleria>
 
@@ -25,32 +25,31 @@
         <div class="details">
             <div class="details-body">
                 <div class="details-attr">
-                    <span class="details-attr-title"> {{itemDto?.title}}</span>
-                    <span class="details-attr-price">{{itemDto?.price}}</span>
-                    <span class="details-attr-desc">{{itemDto?.description}}</span>
+                    <span class="details-attr-title"> {{itemDto.title}}</span>
+                    <span class="details-attr-price">{{itemDto.price}}</span>
+                    <span class="details-attr-desc">{{itemDto.description}}</span>
                 </div>
 
 
-                @if (filterUniqueSizes(itemDto?.attributes).length > 1) {
+                @if (isMultiSize()) {
                 <div class="details-meas">
                     <span class="details-subtitle">Mesura:</span>
                     <div class="details-meas-list">
-                        @for (size of filterUniqueSizes(itemDto?.attributes); track $index) {
+                        @for (size of itemDto.sizes; track $index) {
                         <div class="details-meas-item">
-                            {{size.size.size}}
+                            {{size.size}}
                         </div>
                         }
                     </div>
                 </div>
                 }
 
-                @if (filterUniqueColors(itemDto?.attributes).length > 1) {
+                @if (isMultiColor()) {
                 <div class="details-colors">
                     <span class="details-subtitle">Color:</span>
                     <div class="details-colors-list">
-                        @for (color of filterUniqueColors(itemDto?.attributes); track $index) {
-                        <div class="details-colors-item" [style.background]="color.color.color">
-                            <!-- RED -->
+                        @for (color of itemDto.colors; track $index) {
+                        <div class="details-colors-item" [style.background]="color.color">
                         </div>
                         }
                     </div>

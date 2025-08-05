@@ -1,7 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { AttributeDto, ItemDto } from '../../../dto/response/shop/item';
-import { ItemApiService } from '../../../services/ItemApiService';
-import { ShopUtils } from '../../../utils/ShopUtils';
+import { ColorDto, ItemDto } from '../../../dto/response/shop/item';
 
 @Component({
   selector: 'app-item-card',
@@ -18,8 +16,14 @@ export class ItemCardComponent implements OnInit {
   selectedImage: string = '';
 
   ngOnInit(): void {
-    this.currentImage = this.item.attributes[0].urls[0].url;
-    this.selectedImage = this.item.attributes[0].urls[0].url;
+    if (this.item?.colors?.length > 0) {
+      this.currentImage = this.item.colors[0].images[0].url;
+      this.selectedImage = this.item.colors[0].images[0].url;
+      return;
+    }
+    // No colors -> Fallback to default images.
+    this.currentImage = this.item.images[0].url;
+    this.selectedImage = this.item.images[0].url;
   }
 
   blendWithWhite(colorHex: string): string {
@@ -34,24 +38,24 @@ export class ItemCardComponent implements OnInit {
     return `rgb(${blendedR}, ${blendedG}, ${blendedB})`;
   }
 
-  selectColor(_t7: AttributeDto) {
-    this.selectedImage = _t7.urls[0].url;
+  selectColor(_t7: ColorDto) {
+    this.selectedImage = _t7.images[0].url;
   }
 
   resetPreview() {
     this.currentImage = this.selectedImage;
   }
 
-  previewColor(_t7: AttributeDto) {
-    this.currentImage = _t7.urls[0].url;
+  previewColor(_t7: ColorDto) {
+    this.currentImage = _t7.images[0].url;
   }
 
   onItemClick() {
     this.itemSelected.emit(this.item);
   }
 
-  filterUniqueColors(attributes: AttributeDto[]) {
-    return ShopUtils.filterUniqueColors(attributes);
-  }
+  // filterUniqueColors(attributes: AttributeDto[]) {
+  //   return ShopUtils.filterUniqueColors(attributes);
+  // }
 
 }
