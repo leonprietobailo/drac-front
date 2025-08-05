@@ -7,21 +7,24 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { ShopUtils } from '../../../../utils/ShopUtils';
+import { SkeletonModule } from 'primeng/skeleton';
 
 @Component({
   selector: 'app-shop-popup',
   templateUrl: './shop-popup.component.html',
   styleUrls: ['./shop-popup.component.scss'],
-  imports: [GalleriaModule, FormsModule, InputNumberModule, ButtonModule]
+  imports: [GalleriaModule, FormsModule, InputNumberModule, ButtonModule, SkeletonModule]
 })
 export class ShopPopupComponent {
 
   @Input() itemDto!: ItemDto;
-    @Output() closePopup = new EventEmitter<void>();
+  @Output() closePopup = new EventEmitter<void>();
 
   value1: any = 1;
   selectedColor: ColorDto | null = null;
+  selectedSize: SizeDto | null = null;
   activeGalleriaIndex: number = 0;
+  isImageLoading: boolean = true;
 
   responsiveOptions: any[] = [
     {
@@ -58,12 +61,17 @@ export class ShopPopupComponent {
   }
 
   selectColor(color: ColorDto) {
+    this.isImageLoading = true;
     this.selectedColor = color;
     this.activeGalleriaIndex = 0;
   }
 
-  closeIconClick () {
-this.closePopup.emit();
+  selectSize(size: SizeDto) {
+    this.selectedSize = size;
+  }
+
+  closeIconClick() {
+    this.closePopup.emit();
   }
 
 }

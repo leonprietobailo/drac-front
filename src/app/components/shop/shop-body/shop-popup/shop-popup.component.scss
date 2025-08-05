@@ -135,6 +135,16 @@
 
                             border-radius: 8px;
                             background: #E6E6E6;
+
+                            cursor: pointer;
+
+                            &:hover {
+                                box-shadow: 0 0 4px 0 rgba(#000000, 0.5);
+                            }
+
+                            &.selected {
+                                border: 1px solid #262626;
+                            }
                         }
                     }
 
