@@ -25,6 +25,7 @@
         svg {
             width: 24px;
             height: 24px;
+            cursor: pointer;
         }
 
     }
@@ -33,7 +34,7 @@
         display: flex;
         align-items: center;
         align-content: center;
-        gap: 40px  40px;
+        gap: 40px 40px;
         align-self: stretch;
         flex-wrap: wrap;
         height: 100%;
@@ -45,6 +46,12 @@
             justify-content: center;
             align-items: flex-start;
             flex: 1 0 0;
+
+            // ::ng-deep .p-galleria-thumbnail-item img.custom-thumbnail {
+            //     max-width: 80px;
+            //     height: auto;
+            //     object-fit: contain;
+            // }
         }
 
         .details {
@@ -56,7 +63,7 @@
             align-items: flex-start;
             gap: 80px;
             flex: 1 0 0;
-      
+
 
             .details-body {
                 display: flex;
@@ -156,7 +163,15 @@
                             aspect-ratio: 1/1;
 
                             border-radius: 50px;
+                            cursor: pointer;
 
+                            &:hover {
+                                box-shadow: 0 0 4px 0 rgba(#000000, 0.5);
+                            }
+
+                            &.selected {
+                                border: 1px solid #262626;
+                            }
                         }
                     }
 

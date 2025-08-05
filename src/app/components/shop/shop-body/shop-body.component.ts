@@ -4,6 +4,7 @@ import { ItemDto, ItemResponseDto } from '../../../dto/response/shop/item';
 import { ItemApiService } from '../../../services/ItemApiService';
 import { DialogModule } from 'primeng/dialog';
 import { ShopPopupComponent } from "./shop-popup/shop-popup.component";
+import { DefaultUrlSerializer } from '@angular/router';
 
 @Component({
   selector: 'app-shop-body',
@@ -12,6 +13,7 @@ import { ShopPopupComponent } from "./shop-popup/shop-popup.component";
   styleUrl: './shop-body.component.scss',
 })
 export class ShopBodyComponent implements OnInit {
+
   displayDialog: boolean = false;
   selectedItem: ItemDto | null = null; 
   itemResponse?: ItemResponseDto;
@@ -33,4 +35,9 @@ export class ShopBodyComponent implements OnInit {
     this.selectedItem = $event;
     this.displayDialog = true;
   }
+
+  onPopupClose() {
+    this.displayDialog = false;
+   this.selectedItem = null; 
+}
 }

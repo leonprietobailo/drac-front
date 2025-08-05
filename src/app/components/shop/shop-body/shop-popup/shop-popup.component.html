@@ -1,6 +1,6 @@
 <div class="main-product">
     <div class="product-close">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg (click)="closeIconClick()" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M3.48528 20.4558L20.4558 3.48528M3.48528 3.48528L20.4558 20.4558" stroke="#262626" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round" />
         </svg>
@@ -9,17 +9,34 @@
     <div class="product-body">
         <div class="galleria">
 
-            <p-galleria [value]="images()" [responsiveOptions]="responsiveOptions" [style]="{'width': '100%'}"
-                [numVisible]="5">
-
+            <!-- MULTIPLE COLOR OPTION -->
+             @if (isMultiColor()) {
+            @for (color of itemDto.colors; track $index) {
+                @if (color === selectedColor) {
+            <p-galleria [value]="color.images" [responsiveOptions]="responsiveOptions" [style]="{'width': '100%'}"
+                [numVisible]="5"  showItemNavigators="true" >
                 <ng-template #item let-item>
-                    <img [src]="item.url" style="width:100%; height:auto;" />
+                    <img [src]="item.url" style="width:80%; height:auto;" />
+                </ng-template>
+                <ng-template #thumbnail let-item>
+                    <img [src]="item.url" style="width:80px; height:auto;" />
+                </ng-template>
+            </p-galleria>
+                }
+            }
+             } @else {
+                <!-- SINGLE COLOR OPTION -->
+            <p-galleria [value]="itemDto.images" [responsiveOptions]="responsiveOptions" [style]="{'width': '100%'}"
+                [numVisible]="5"  showItemNavigators="true" >
+                <ng-template #item let-item>
+                    <img [src]="item.url" style="width:80%; height:auto;" />
                 </ng-template>
 
                 <ng-template #thumbnail let-item>
                     <img [src]="item.url" style="width:80px; height:auto;" />
                 </ng-template>
             </p-galleria>
+             }
 
         </div>
         <div class="details">
@@ -49,7 +66,8 @@
                     <span class="details-subtitle">Color:</span>
                     <div class="details-colors-list">
                         @for (color of itemDto.colors; track $index) {
-                        <div class="details-colors-item" [style.background]="color.color">
+                        <div class="details-colors-item" (click)="selectColor(color)"
+                            [ngClass]="{ 'selected': color === selectedColor }" [style.background]="color.color">
                         </div>
                         }
                     </div>

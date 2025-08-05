@@ -7,9 +7,9 @@
 </div>
 
 @if (selectedItem) {
-<p-dialog maskStyleClass="backdrop-blur-sm" [modal]="true" [(visible)]="displayDialog">
+<p-dialog maskStyleClass="backdrop-blur-sm" [modal]="true" [(visible)]="displayDialog" >
   <ng-template #headless>
-    <app-shop-popup [itemDto]="selectedItem"></app-shop-popup>
+    <app-shop-popup [itemDto]="selectedItem" (closePopup)="onPopupClose()"></app-shop-popup>
   </ng-template>
 </p-dialog>
 }

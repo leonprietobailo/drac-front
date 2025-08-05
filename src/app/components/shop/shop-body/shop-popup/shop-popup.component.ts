@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, signal } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, signal } from '@angular/core';
 import { model } from '@angular/core';
 import { ColorDto, ImageDto, ItemDto, SizeDto } from '../../../../dto/response/shop/item';
 import { GalleriaModule } from 'primeng/galleria';
@@ -17,8 +17,11 @@ import { ShopUtils } from '../../../../utils/ShopUtils';
 export class ShopPopupComponent {
 
   @Input() itemDto!: ItemDto;
-  value1: any = 1;
+    @Output() closePopup = new EventEmitter<void>();
 
+  value1: any = 1;
+  selectedColor: ColorDto | null = null;
+  activeGalleriaIndex: number = 0;
 
   responsiveOptions: any[] = [
     {
@@ -31,20 +34,17 @@ export class ShopPopupComponent {
     }
   ];
 
-  images = model<ImageDto[]>([]);
-
   ngOnInit(): void {
-    this.images.update(images => {
-      images.push(
-        ...this.provideImages()
-      );
-      return images;
-    });
+    this.selectedColor = this.itemDto.colors?.[0];
   }
 
   provideImages(): ImageDto[] {
-    if (this.itemDto?.colors?.length > 0) {
-      return this.itemDto.colors[0].images;
+    if (this.selectedColor != null) {
+      const match = this.itemDto.colors.find(color => color === this.selectedColor);
+      if (match) {
+        console.log(match.images)
+        return match.images;
+      }
     }
     return this.itemDto.images;
   }
@@ -54,6 +54,16 @@ export class ShopPopupComponent {
   }
 
   isMultiSize(): boolean {
-        return this.itemDto?.sizes?.length > 0;
+    return this.itemDto?.sizes?.length > 0;
   }
+
+  selectColor(color: ColorDto) {
+    this.selectedColor = color;
+    this.activeGalleriaIndex = 0;
+  }
+
+  closeIconClick () {
+this.closePopup.emit();
+  }
+
 }
