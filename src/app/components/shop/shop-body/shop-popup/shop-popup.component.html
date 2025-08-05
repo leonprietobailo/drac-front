@@ -10,34 +10,34 @@
     <div class="product-body">
         <div class="galleria">
             <!-- MULTIPLE COLOR OPTION -->
-            @if (isMultiColor()) {
-            @for (color of itemDto.colors; track $index) {
-            @if (color === selectedColor) {
-            <p-galleria [value]="color.images" [responsiveOptions]="responsiveOptions" [style]="{'width': '100%'}"
-                [numVisible]="5" showItemNavigators="true">
-                <ng-template #item let-item>
-                    <img [src]="item.url"  style="width:80%; height:auto;" />
-                </ng-template>
-                <ng-template #thumbnail let-item>
-                    <img [src]="item.url" style="width:80px; height:auto;" />
-                </ng-template>
-            </p-galleria>
-            }
-            }
-            } @else {
-            <!-- SINGLE COLOR OPTION -->
-            <p-galleria [value]="itemDto.images" [responsiveOptions]="responsiveOptions" [style]="{'width': '100%'}"
-                [numVisible]="5" showItemNavigators="true">
-                <ng-template #item let-item>
-                    <img [src]="item.url" style="width:80%; height:auto;" />
-                </ng-template>
-
-                <ng-template #thumbnail let-item>
-                    <img [src]="item.url" style="width:80px; height:auto;" />
-                </ng-template>
-            </p-galleria>
-            }
-
+            <div class="galleria-wrapper">
+                @if (isMultiColor()) {
+                @for (color of itemDto.colors; track $index) {
+                @if (color === selectedColor) {
+                <p-galleria [value]="color.images" [responsiveOptions]="responsiveOptions" [style]="{'width': '100%'}"
+                    [numVisible]="5" showThumbnailNavigators="false">
+                    <ng-template #item let-item>
+                        <img [src]="item.url" style="width:100%; height:auto;" />
+                    </ng-template>
+                    <ng-template #thumbnail let-item>
+                        <img [src]="item.url" style="width:80px; height:auto;" />
+                    </ng-template>
+                </p-galleria>
+                }
+                }
+                } @else {
+                <!-- SINGLE COLOR OPTION -->
+                <p-galleria [value]="itemDto.images" [responsiveOptions]="responsiveOptions" [style]="{'width': '100%'}"
+                    [numVisible]="5" showThumbnailNavigators="false">
+                    <ng-template #item let-item>
+                        <img [src]="item.url" style="width:100%; height:auto;" />
+                    </ng-template>
+                    <ng-template #thumbnail let-item>
+                        <img [src]="item.url" style="width:80px; height:auto;" />
+                    </ng-template>
+                </p-galleria>
+                }
+            </div>
         </div>
         <div class="details">
             <div class="details-body">
@@ -79,7 +79,7 @@
                     <span class="details-subtitle">Quantitat:</span>
                     <!-- Fallback to primeng integer selector -->
                     <div class="input-number-container">
-                        <p-inputnumber [(ngModel)]="value1" [min]="0" [showButtons]="true" buttonLayout="horizontal"
+                        <p-inputnumber [(ngModel)]="value1" [min]="1" [showButtons]="true" buttonLayout="horizontal"
                             spinnerMode="horizontal" inputId="horizontal" [inputStyle]="{ width: '3rem' }">
                             <ng-template #incrementbuttonicon>
                                 <span class="pi pi-plus"></span>
