@@ -6,14 +6,14 @@
     <div class="login-form">
       <div class="username-container">
         <p-floatlabel variant="on">
-          <input id="username" pInputText [(ngModel)]="username_value" />
+          <input id="username" pInputText [(ngModel)]="usernameValue" />
           <label for="username">Usuari</label>
         </p-floatlabel>
       </div>
 
       <div class="password-container">
         <p-floatlabel variant="on">
-          <p-password [(ngModel)]="password_value" id="password" [toggleMask]="true" [feedback]="false" />
+          <p-password [(ngModel)]="passwordValue" id="password" [toggleMask]="true" [feedback]="false" />
           <label for="password">Contrasenya</label>
         </p-floatlabel>
         <div class="password-forgotten-container">
@@ -22,7 +22,7 @@
       </div>
 
       <!-- <div class="login-button-container"> -->
-      <p-button label="Entra">
+      <p-button label="Entra" (onClick)="login()">
         <img src="/assets/icons/login.svg" alt="Login Icon">
       </p-button>
       <!-- </div> -->
@@ -31,6 +31,13 @@
       <div class="create-account-container">
         <a href="register">Crear compte</a>
       </div>
+      @if (wrongUser) {
+      <div class="wrong-user">Usuari incorrecte, torna a provar...</div>
+      }
+      @if (loginSuccess) {
+      <div class="login-success">Identificació correcta, redirigint...</div>
+      }
+
       <div class="login-form"></div>
       <!-- </form> -->
     </div>

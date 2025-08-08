@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpXsrfTokenExtractor } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { TotpRequestDto, UserRequestDto } from '../dto/request/register';
 import {
@@ -14,7 +14,6 @@ import { Observable } from 'rxjs';
 })
 export class RegisterApiService {
   constructor(private http: HttpClient) {}
-
   baseUrl = environment.apiBaseUrl + '/users/register';
 
   requestEmailExists(email: string) {

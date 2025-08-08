@@ -25,7 +25,8 @@
       font-size: 36px;
       font-style: normal;
       font-weight: 700;
-      line-height: 24px; /* 66.667% */
+      line-height: 24px;
+      /* 66.667% */
       margin: 0;
     }
 
@@ -71,7 +72,8 @@
         font-size: 12px;
         font-style: normal;
         font-weight: 400;
-        line-height: 14px; /* 116.667% */
+        line-height: 14px;
+        /* 116.667% */
         text-decoration-line: underline;
         text-decoration-style: solid;
         text-decoration-skip-ink: auto;
@@ -99,7 +101,8 @@
         font-size: 16px;
         font-style: normal;
         font-weight: 500;
-        line-height: 24px; /* 150% */
+        line-height: 24px;
+        /* 150% */
       }
 
       .create-account-container {
@@ -122,7 +125,8 @@
           font-size: 12px;
           font-style: normal;
           font-weight: 400;
-          line-height: 14px; /* 116.667% */
+          line-height: 14px;
+          /* 116.667% */
           text-decoration-line: underline;
           text-decoration-style: solid;
           text-decoration-skip-ink: auto;
@@ -130,6 +134,18 @@
           text-underline-offset: auto;
           text-underline-position: from-font;
         }
+      }
+
+      .wrong-user {
+        font-size: small;
+        color: red;
+        font-weight: bold;
+      }
+
+      .login-success {
+        font-size: small;
+        color: green;
+        font-weight: bold;
       }
     }
   }
