@@ -13,13 +13,13 @@ import { ToastModule } from 'primeng/toast';
 import { AddResponseStatus } from '../../../../dto/response/cart';
 
 @Component({
-  selector: 'app-shop-popup',
-  templateUrl: './shop-popup.component.html',
-  styleUrls: ['./shop-popup.component.scss'],
+  selector: 'app-shop-popup-edit',
+  templateUrl: './shop-popup-edit.component.html',
+  styleUrls: ['./shop-popup-edit.component.scss'],
   imports: [GalleriaModule, FormsModule, InputNumberModule, ButtonModule, SkeletonModule, ToastModule],
   providers: [MessageService]
 })
-export class ShopPopupComponent {
+export class ShopPopupEditComponent {
 
   @Input() itemDto!: ItemDto;
   @Output() closePopup = new EventEmitter<void>();

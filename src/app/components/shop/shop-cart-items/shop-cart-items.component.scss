@@ -1,0 +1,153 @@
+.contents {
+    height: calc(100vh - 72px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .table-wrapper {
+        display: flex;
+        justify-content: center;
+        max-height: calc(70vh - 72px);
+        overflow-y: scroll;
+        width: 80%;
+
+        table {
+            // table-layout: fixed;
+            border-collapse: separate;
+            border-spacing: 0;
+
+            th {
+                padding: 4px;
+                position: sticky;
+                top: 0;
+                background-color: white;
+                color: #000;
+                font-family: Inter;
+                font-size: 24px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                border-bottom: 2px solid #262626;
+                z-index: 1;
+            }
+
+            th::after {
+                content: "";
+                display: block;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 5px;
+                box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+                z-index: -1;
+            }
+
+            width: 100%;
+        }
+    }
+
+    .balance {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 8px;
+        width: 80%;
+        padding-top: 12px;
+
+        .concepts {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-end;
+            border-bottom: 1px solid #7C7C7C;
+            border-top: 1px solid #7C7C7C;
+
+            .subtotal {
+                 display: flex;
+                  align-items: flex-end;
+                .subtotal-title {
+                    color: #262626;
+                    font-family: Inter;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 300;
+                    line-height: normal;
+                }
+
+                .subtotal-value {
+                    display: inline-block;
+                    width: 150px;
+                    color: #262626;
+                    text-align: right;
+                    font-family: Inter;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 300;
+                    line-height: normal;
+                }
+            }
+
+            .shipping {
+                              display: flex;
+                  align-items: flex-end;
+                .shipping-title {
+                    color: #262626;
+                    font-family: Inter;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 300;
+                    line-height: normal;
+                }
+
+                .shipping-value {
+                    display: inline-block;
+                    width: 150px;
+                    color: #262626;
+                    text-align: right;
+                    font-family: Inter;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 300;
+                    line-height: normal;
+                }
+            }
+
+        }
+
+        .total {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 10px;
+
+            .total-title {
+                color: #262626;
+                text-align: right;
+                font-family: Inter;
+                font-size: 24px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: normal;
+            }
+
+            .total-value {
+                width: 150px;
+                color: #262626;
+                text-align: right;
+                font-family: Inter;
+                font-size: 24px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: normal;
+            }
+        }
+
+    }
+
+    .buttons {
+        display: flex;
+        gap: 24px;
+    }
+}

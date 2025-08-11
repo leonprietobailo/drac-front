@@ -1,0 +1,51 @@
+<div class="contents">
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Producte</th>
+                    <th>Talla</th>
+                    <th>Quantitat</th>
+                    <th>Preu</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (cartItem of cart?.items; track $index) {
+                <tr class="table-row" app-shop-cart-item [inputCartItem]="cartItem"></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="balance">
+        <div class="concepts">
+            <div class="subtotal">
+                <span class="subtotal-title">Subtotal:</span>
+                <span class="subtotal-value">{{cart?.subtotal}}</span>
+            </div>
+            <div class="shipping">
+                <span class="shipping-title">Enviament:</span>
+                <span class="shipping-value">{{cart?.shipment}}</span>
+            </div>
+
+        </div>
+        <div class="total">
+            <span class="total-title">Total: </span>
+            <span class="total-value">{{cart?.total}}</span>
+        </div>
+    </div>
+    <div class="buttons">
+                <p-button label="Continuar comprant" severity="secondary"></p-button>
+        <p-button label="Tramitar compra"></p-button>
+    </div>
+</div>
+
+
+
+@if (editItem) {
+<p-dialog maskStyleClass="backdrop-blur-sm" [modal]="true" [(visible)]="popupVisible" >
+  <ng-template #headless>
+    <app-shop-popup-edit [itemDto]="editItem" (closePopup)="onPopupClose()"></app-shop-popup-edit>
+  </ng-template>
+</p-dialog>
+}
