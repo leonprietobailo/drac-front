@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../../../environments/environment';
+import { LoginApiService } from '../../../../services/LoginApiService';
+import { LogoutResponseStatus } from '../../../../dto/response/login';
 
 @Component({
   selector: 'app-login-verification-dummy',
@@ -10,9 +12,11 @@ import { environment } from '../../../../../environments/environment';
 })
 export class LoginVerificationDummyComponent implements OnInit {
 
+  logoutResponse: string = ""
+
   verificationResult: boolean | null = null;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private api: LoginApiService) { }
 
   ngOnInit(): void {
     this.http.get(environment.apiBaseUrl + '/auth/verify').subscribe({
@@ -21,6 +25,15 @@ export class LoginVerificationDummyComponent implements OnInit {
       },
       error: () => {
         this.verificationResult = false;
+      }
+    })
+  }
+
+  logout() {
+    this.api.requestLogout().subscribe({
+      next: (response) => {
+        this.logoutResponse = response.status.toString();
+        localStorage.removeItem('token');
       }
     })
   }

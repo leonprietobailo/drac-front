@@ -2,11 +2,10 @@ import { Component, EventEmitter, input, Input, OnInit, Output } from '@angular/
 import { CartItemResponseDto } from '../../../dto/response/cart';
 import { FormsModule } from '@angular/forms';
 import { SelectModule } from 'primeng/select';
-import { InputNumber } from 'primeng/inputnumber';
 
 @Component({
   selector: 'tr[app-shop-cart-item]',
-  imports: [FormsModule, SelectModule, InputNumber],
+  imports: [FormsModule, SelectModule],
   templateUrl: './shop-cart-item.component.html',
   styleUrl: './shop-cart-item.component.scss'
 })

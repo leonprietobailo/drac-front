@@ -11,6 +11,7 @@
         max-height: calc(70vh - 72px);
         overflow-y: scroll;
         width: 80%;
+        border-bottom: 2px solid #262626;
 
         table {
             // table-layout: fixed;
@@ -62,11 +63,12 @@
             justify-content: center;
             align-items: flex-end;
             border-bottom: 1px solid #7C7C7C;
-            border-top: 1px solid #7C7C7C;
+            // border-top: 1px solid #7C7C7C;
 
             .subtotal {
-                 display: flex;
-                  align-items: flex-end;
+                display: flex;
+                align-items: flex-end;
+
                 .subtotal-title {
                     color: #262626;
                     font-family: Inter;
@@ -90,8 +92,9 @@
             }
 
             .shipping {
-                              display: flex;
-                  align-items: flex-end;
+                display: flex;
+                align-items: flex-end;
+
                 .shipping-title {
                     color: #262626;
                     font-family: Inter;
@@ -152,11 +155,12 @@
     }
 
     .no-item-wrapper {
-        display: flex  ;
+        display: flex;
         flex-direction: column;
         gap: 16px;
-justify-content: center;
-align-items: center;
+        justify-content: center;
+        align-items: center;
+
         img {
             height: 350px;
             width: 350px;
@@ -164,22 +168,24 @@ align-items: center;
 
         .title {
             color: #000;
-text-align: center;
-font-family: Inter;
-font-size: 24px;
-font-style: normal;
-font-weight: 500;
-line-height: 24px; /* 100% */
+            text-align: center;
+            font-family: Inter;
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 24px;
+            /* 100% */
         }
 
         .desc {
             color: #262626;
-text-align: center;
-font-family: Inter;
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: 24px; /* 150% */
+            text-align: center;
+            font-family: Inter;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 24px;
+            /* 150% */
         }
     }
 }

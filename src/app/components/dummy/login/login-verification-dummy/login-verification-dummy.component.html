@@ -3,6 +3,10 @@
 
 @if (verificationResult == true) {
     <p style="color: green;">User is logged in!</p>
+
+    <button (click)="logout()">Logout</button>
+
+    {{logoutResponse}}
 } 
 
 @if (verificationResult == false)  {
