@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ColorDto, ItemDto } from '../../../dto/response/shop/item';
+import { ColorDto, ItemDto } from '../../../dto/response/item';
 
 @Component({
   selector: 'app-item-card',

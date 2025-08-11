@@ -14,10 +14,12 @@ export interface ItemDto {
 }
 
 export interface SizeDto {
+  id: number;
   size: string;
 }
 
 export interface ColorDto {
+  id: number;
   color: string;
   images: ImageDto[];
 }

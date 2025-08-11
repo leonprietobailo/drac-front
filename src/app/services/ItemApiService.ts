@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { ItemResponseDto } from '../dto/response/shop/item';
+import { ItemResponseDto } from '../dto/response/item';
 
 @Injectable({
   providedIn: 'root',

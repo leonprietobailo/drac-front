@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemCardComponent } from '../item-card/item-card.component';
-import { ItemDto, ItemResponseDto } from '../../../dto/response/shop/item';
+import { ItemDto, ItemResponseDto } from '../../../dto/response/item';
 import { ItemApiService } from '../../../services/ItemApiService';
 import { DialogModule } from 'primeng/dialog';
 import { ShopPopupComponent } from "./shop-popup/shop-popup.component";

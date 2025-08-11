@@ -79,7 +79,7 @@
                     <span class="details-subtitle">Quantitat:</span>
                     <!-- Fallback to primeng integer selector -->
                     <div class="input-number-container">
-                        <p-inputnumber [(ngModel)]="value1" [min]="1" [showButtons]="true" buttonLayout="horizontal"
+                        <p-inputnumber [(ngModel)]="quantity" [min]="1" [showButtons]="true" buttonLayout="horizontal"
                             spinnerMode="horizontal" inputId="horizontal" [inputStyle]="{ width: '3rem' }">
                             <ng-template #incrementbuttonicon>
                                 <span class="pi pi-plus"></span>
@@ -94,9 +94,12 @@
 
             </div>
             <div class="details-buttons">
-                <p-button label="Carro" severity="secondary" />
+                <p-button label="Carro" severity="secondary" (onClick)="addToCart()" [loading]="addToCartLoading"/>
                 <p-button label="Comprar" />
             </div>
         </div>
     </div>
 </div>
+
+
+<p-toast />
