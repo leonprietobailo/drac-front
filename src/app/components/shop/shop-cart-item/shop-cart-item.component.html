@@ -17,22 +17,19 @@
     </div>
 </td>
 <td>
+    <div class="col-color">
+        <div class="details-colors-item" [style.background]="inputCartItem.selectedColor">
+                    </div>
+    </div>
+</td>
+<td>
     <div class="col2">
-        <p-select [options]="inputCartItem.sizes" [(ngModel)]="selectedSize"
-            [disabled]="inputCartItem.sizes.length == 0" [appendTo]="'body'" />
+           {{inputCartItem.selectedSize}}
     </div>
 </td>
 <td>
     <div class="col3">
-        <p-inputnumber [(ngModel)]="quantity" [min]="1" [showButtons]="true" buttonLayout="horizontal"
-            spinnerMode="horizontal" inputId="horizontal" [inputStyle]="{ width: '3rem' }">
-            <ng-template #incrementbuttonicon>
-                <span class="pi pi-plus"></span>
-            </ng-template>
-            <ng-template #decrementbuttonicon>
-                <span class="pi pi-minus"></span>
-            </ng-template>
-        </p-inputnumber>
+        {{inputCartItem.quantity}}
     </div>
 </td>
 <td>
@@ -42,11 +39,11 @@
 </td>
 <td>
     <div class="col5">
-        <svg  (click)="showPopup()" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000">
+        <svg  (click)="onEditStart()" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000">
             <path
                 d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z" />
         </svg>
-        <svg  (click)="removeItem()" xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="28px" fill="#000000">
+        <svg  (click)="onDeleteStart()" xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="28px" fill="#000000">
             <path
                 d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
         </svg>

@@ -4,3 +4,7 @@ export interface AddRequestDto {
     colorId: number | undefined;
     quantity: number;
 }
+
+export interface ItemDeleteRequestDto {
+    productId: number;
+}

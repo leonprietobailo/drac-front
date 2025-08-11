@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-shop-header',
@@ -7,5 +8,11 @@ import { Component } from '@angular/core';
   styleUrl: './shop-header.component.scss'
 })
 export class ShopHeaderComponent {
+
+  constructor(private router: Router) { }
+
+  onCartClick() {
+    this.router.navigate(['/cart']);
+  }
 
 }

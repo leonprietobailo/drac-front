@@ -47,6 +47,7 @@ export class ShopPopupComponent {
 
   ngOnInit(): void {
     this.selectedColor = this.itemDto.colors?.[0];
+    this.selectedSize = this.itemDto.sizes?.[0];
   }
 
   provideImages(): ImageDto[] {

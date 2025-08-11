@@ -10,7 +10,7 @@ import { SkeletonModule } from 'primeng/skeleton';
 import { CartApiService } from '../../../../services/CartApiService';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
-import { AddResponseStatus } from '../../../../dto/response/cart';
+import { AddResponseStatus, CartItemResponseDto, ItemDeleteResponseStatus } from '../../../../dto/response/cart';
 
 @Component({
   selector: 'app-shop-popup-edit',
@@ -22,11 +22,12 @@ import { AddResponseStatus } from '../../../../dto/response/cart';
 export class ShopPopupEditComponent {
 
   @Input() itemDto!: ItemDto;
+  @Input() cartItemDto!: CartItemResponseDto;
   @Output() closePopup = new EventEmitter<void>();
 
-  quantity: any = 1;
-  selectedColor: ColorDto | null = null;
-  selectedSize: SizeDto | null = null;
+  quantity: number = 1;
+  selectedColor: ColorDto | undefined;
+  selectedSize: SizeDto | undefined;
   activeGalleriaIndex: number = 0;
   isImageLoading: boolean = true;
 
@@ -46,7 +47,10 @@ export class ShopPopupEditComponent {
   constructor(private api: CartApiService, private messageService: MessageService) { }
 
   ngOnInit(): void {
-    this.selectedColor = this.itemDto.colors?.[0];
+    this.selectedColor = this.itemDto.colors.find(color => color.color === this.cartItemDto.selectedColor);
+    this.selectedSize = this.itemDto.sizes.find(size => size.size === this.cartItemDto.selectedSize);
+    this.quantity = this.cartItemDto.quantity;
+    console.log(this.itemDto)
   }
 
   provideImages(): ImageDto[] {
@@ -82,41 +86,24 @@ export class ShopPopupEditComponent {
     this.closePopup.emit();
   }
 
-  addToCart() {
-    this.addToCartLoading = true;
-    this.api.addItem({
-      productId: this.itemDto.id,
-      sizeId: this.selectedSize?.id,
-      colorId: this.selectedColor?.id,
-      quantity: this.quantity
-    }).subscribe(
-      {
-        next: (response) => {
-          switch (response.status) {
-            case AddResponseStatus.SUCCESS: {
-              this.messageService.add({ severity: 'info', summary: 'Informació', detail: 'Producte afegit correctament.' });
-              break;
+  save() {
+    this.api.deleteItem({
+      productId: this.cartItemDto.id
+    }).subscribe({
+      next: (response) => {
+        if (response.status == ItemDeleteResponseStatus.SUCCESS) {
+          this.api.addItem({
+            productId: this.itemDto.id,
+            sizeId: this.selectedSize?.id,
+            colorId: this.selectedColor?.id,
+            quantity: this.quantity
+          }).subscribe({
+            next: () => {
+              this.closeIconClick();
             }
-            case AddResponseStatus.MERGED: {
-              this.messageService.add({ severity: 'info', summary: 'Informació', detail: 'Producte afegit fusionat amb existències prèvies.' });
-              break;
-            }
-            case AddResponseStatus.UNEXPECTED_ERROR: {
-              this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error inesperat! Prova mes tard o contacta amb els administradors de la pàgina.' });
-
-              break;
-            }
-          }
-          this.addToCartLoading = false;
-        },
-
-        error: (error) => {
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error inesperat! Prova mes tard o contacta amb els administradors de la pàgina.' });
-          this.addToCartLoading = false;
+          })
         }
-
-
       }
-    )
+    })
   }
 }

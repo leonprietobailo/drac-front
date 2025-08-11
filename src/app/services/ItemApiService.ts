@@ -16,6 +16,6 @@ export class ItemApiService {
   }
 
   requestItem(id: number) {
-    return this.http.get<ItemDto>(`${this.baseUrl}?id=${id}`);
+    return this.http.get<ItemDto>(`${this.baseUrl}/item?id=${id}`);
   }
 }

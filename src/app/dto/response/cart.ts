@@ -23,6 +23,7 @@ export enum CartResponseStatus {
 
 export interface CartItemResponseDto {
   id: number;
+  itemId: number;
   url: string;
   title: string;
   selectedColor: string;
@@ -31,4 +32,13 @@ export interface CartItemResponseDto {
   price: string;
   colors: string[];
   sizes: string[];
+}
+
+export interface ItemDeleteResponseDto {
+  status: ItemDeleteResponseStatus;
+}
+
+export enum ItemDeleteResponseStatus {
+  SUCCESS = 'SUCCESS',
+  UNEXPECTED_ERROR = 'UNEXPECTED_ERROR',
 }

@@ -1,9 +1,11 @@
 <div class="contents">
+    @if (cart?.items?.length != 0) {
     <div class="table-wrapper">
         <table>
             <thead>
                 <tr>
                     <th>Producte</th>
+                    <th>Color</th>
                     <th>Talla</th>
                     <th>Quantitat</th>
                     <th>Preu</th>
@@ -12,7 +14,8 @@
             </thead>
             <tbody>
                 @for (cartItem of cart?.items; track $index) {
-                <tr class="table-row" app-shop-cart-item [inputCartItem]="cartItem"></tr>
+                <tr class="table-row" app-shop-cart-item [inputCartItem]="cartItem" (onEdit)="onEdit(cartItem)"
+                    (onDelete)="onDelete(cartItem)"></tr>
                 }
             </tbody>
         </table>
@@ -35,17 +38,27 @@
         </div>
     </div>
     <div class="buttons">
-                <p-button label="Continuar comprant" severity="secondary"></p-button>
+        <p-button [routerLink]="['/shop']" label="Continuar comprant" severity="secondary"></p-button>
         <p-button label="Tramitar compra"></p-button>
     </div>
+    } @else {
+    <div class="no-item-wrapper">
+        <img src="https://dummyimage.com/195x195/FFFF00/33FF57">
+        <span class="title">El teu carro està buit</span>
+        <span class="desc">Sembla que encara no hi ha res per aquí… però això té fàcil solució. <br>
+            Descobreix les nostres novetats!</span>
+        <p-button [routerLink]="['/shop']" label="Continuar comprant"></p-button>
+    </div>
+    }
 </div>
 
-
+<p-toast />
 
 @if (editItem) {
-<p-dialog maskStyleClass="backdrop-blur-sm" [modal]="true" [(visible)]="popupVisible" >
-  <ng-template #headless>
-    <app-shop-popup-edit [itemDto]="editItem" (closePopup)="onPopupClose()"></app-shop-popup-edit>
-  </ng-template>
+<p-dialog maskStyleClass="backdrop-blur-sm" [modal]="true" [(visible)]="popupVisible">
+    <ng-template #headless>
+        <app-shop-popup-edit [itemDto]="editItem" [cartItemDto]="editCartItem!"
+            (closePopup)="onPopupClose()"></app-shop-popup-edit>
+    </ng-template>
 </p-dialog>
 }

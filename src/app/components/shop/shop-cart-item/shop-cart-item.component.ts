@@ -1,4 +1,4 @@
-import { Component, input, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, input, Input, OnInit, Output } from '@angular/core';
 import { CartItemResponseDto } from '../../../dto/response/cart';
 import { FormsModule } from '@angular/forms';
 import { SelectModule } from 'primeng/select';
@@ -11,25 +11,25 @@ import { InputNumber } from 'primeng/inputnumber';
   styleUrl: './shop-cart-item.component.scss'
 })
 export class ShopCartItemComponent implements OnInit {
-
-
   @Input() inputCartItem!: CartItemResponseDto;
+
+  @Output() onEdit = new EventEmitter<void>();
+  @Output() onDelete = new EventEmitter<void>();
 
   selectedSize: string | undefined;
   quantity: number | undefined;
 
   ngOnInit(): void {
-    console.log(this.inputCartItem);
     this.selectedSize = this.inputCartItem.selectedSize;
     this.quantity = this.inputCartItem.quantity;
   }
 
-  showPopup() {
-    throw new Error('Method not implemented.');
+  onEditStart() {
+    this.onEdit.emit();
   }
 
-  removeItem() {
-    throw new Error('Method not implemented.');
+  onDeleteStart() {
+    this.onDelete.emit();
   }
 
 
