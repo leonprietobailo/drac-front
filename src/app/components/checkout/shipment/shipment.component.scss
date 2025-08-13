@@ -1,0 +1,186 @@
+.ph1 {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .default-text {
+        color: #7C7C7C;
+        font-family: Inter;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    .group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+
+
+        .shipping-opts {
+            display: flex;
+            gap: 8px;
+
+            .shipping-point {
+                display: flex;
+                min-width: 80px;
+                padding: 10px;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                border-radius: 50px;
+                background: #FFF;
+                // box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+                border: 1px solid #C8C8C8;
+                color: #C8C8C8;
+                text-align: center;
+                font-family: Inter;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                cursor: pointer;
+
+                svg {
+                    stroke: #C8C8C8;
+                }
+
+                &:hover {
+                    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.25);
+                }
+
+                &.active {
+                    border-radius: 50px;
+                    border: 1px solid #68A68F;
+                    background: #FFF;
+                    // box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+
+                    svg {
+                        stroke: #89BFAA;
+                    }
+
+                    color: #89BFAA;
+                }
+            }
+        }
+
+        .carousel-card {
+            display: flex;
+            width: 300px;
+            padding: 16px;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 4px;
+            border-radius: 8px;
+            background: #FFF;
+            margin: 10px;
+            border: 1px solid #C8C8C8;
+
+
+            cursor: pointer;
+
+            .carousel-title {
+                color: #C8C8C8;
+                font-family: Inter;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+                width: 100%;
+                                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+
+            .carousel-line-trim {
+                color: #C8C8C8;
+                font-family: Inter;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                width: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+
+            }
+
+            .carousel-line {
+                color: #C8C8C8;
+                font-family: Inter;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                width: 100%;
+            }
+
+            .carousel-opts {
+                // display: flex;
+                display: none;
+                width: 100%;
+                gap: 8px;
+                justify-content: flex-end;
+                align-items: center;
+
+                svg {
+                    stroke: #C8C8C8;
+                }
+            }
+
+            &:hover {
+                box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.25);
+            }
+
+            &.active {
+                border: 1px solid #68A68F;
+                background: #FFF;
+                // box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+
+                .carousel-title {
+                    color: #89BFAA;
+                }
+
+                .carousel-line {
+                    color: #7C7C7C;
+                }
+
+                .carousel-line-trim {
+                    color: #7C7C7C;
+                }
+
+                .carousel-opts {
+                    svg {
+                        stroke: #7C7C7C;
+                    }
+                }
+            }
+        }
+
+        .add-element {
+            display: flex;
+            gap: 10px;
+            padding: 10px;
+            color: #C8C8C8;
+            font-family: Inter;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            cursor: pointer;
+            stroke: #C8C8C8;
+            align-items: center;
+
+            &:hover {
+                color: #7C7C7C;
+
+                svg {
+                    stroke: #7C7C7C;
+                }
+            }
+        }
+    }
+}

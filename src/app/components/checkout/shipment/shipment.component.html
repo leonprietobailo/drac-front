@@ -1,0 +1,140 @@
+<div class="ph1">
+    <div class="group">
+        <div class="default-text">Tipus d'enviament:</div>
+        <div class="shipping-opts">
+
+            <div class="shipping-point" [ngClass]="{'active': selectedType == ShippingTypes.POINT}"
+                (click)="selectType(ShippingTypes.POINT)">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M20 10C20 14.993 14.461 20.193 12.601 21.799C12.4277 21.9293 12.2168 21.9998 12 21.9998C11.7832 21.9998 11.5723 21.9293 11.399 21.799C9.539 20.193 4 14.993 4 10C4 7.87827 4.84285 5.84344 6.34315 4.34315C7.84344 2.84285 9.87827 2 12 2C14.1217 2 16.1566 2.84285 17.6569 4.34315C19.1571 5.84344 20 7.87827 20 10Z"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                    <path
+                        d="M12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                Punt de recollida
+            </div>
+            <div class="shipping-point" [ngClass]="{'active': selectedType == ShippingTypes.ADDRESS}"
+                (click)="selectType(ShippingTypes.ADDRESS)">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M15 21V13C15 12.7348 14.8946 12.4804 14.7071 12.2929C14.5196 12.1053 14.2652 12 14 12H10C9.73478 12 9.48043 12.1053 9.29289 12.2929C9.10536 12.4804 9 12.7348 9 13V21M3 9.99997C2.99993 9.70904 3.06333 9.42159 3.18579 9.15768C3.30824 8.89378 3.4868 8.65976 3.709 8.47197L10.709 2.47297C11.07 2.16788 11.5274 2.00049 12 2.00049C12.4726 2.00049 12.93 2.16788 13.291 2.47297L20.291 8.47197C20.5132 8.65976 20.6918 8.89378 20.8142 9.15768C20.9367 9.42159 21.0001 9.70904 21 9.99997V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V9.99997Z"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                Direcció
+            </div>
+        </div>
+    </div>
+    @if (selectedType == ShippingTypes.ADDRESS) {
+    <div class="group">
+        <div class="default-text">Destinatari:</div>
+        <p-carousel [value]="shippingResponse.recipients" [numVisible]="5" [numScroll]="5" [showIndicators]="false"
+            [showNavigators]="shippingResponse.recipients.length > 3" [circular]="false"
+            [responsiveOptions]="responsiveOptions">
+            <ng-template let-entry #item>
+                <div class="carousel-card" [ngClass]="{'active': selectedRecipient == entry}"
+                    (click)="selectRecipient(entry)">
+                    <div class="carousel-title">
+                        {{entry.name}} {{entry.surname}}
+                    </div>
+                    <div class="carousel-line-trim">Telèfon: {{entry.phone}}</div>
+                    <div class="carousel-opts">
+                        <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12.9999 21.0719H20.9999M14.9999 5.07191L18.9999 9.07191M21.1739 6.88391C21.7026 6.35534 21.9997 5.63838 21.9998 4.89077C21.9999 4.14315 21.703 3.42612 21.1744 2.89741C20.6459 2.36871 19.9289 2.07163 19.1813 2.07153C18.4337 2.07144 17.7166 2.36834 17.1879 2.89691L3.84193 16.2459C3.60975 16.4774 3.43805 16.7624 3.34193 17.0759L2.02093 21.4279C1.99509 21.5144 1.99314 21.6063 2.01529 21.6938C2.03743 21.7813 2.08285 21.8611 2.14673 21.9249C2.21061 21.9887 2.29055 22.034 2.37809 22.056C2.46563 22.078 2.55749 22.0759 2.64393 22.0499L6.99693 20.7299C7.3101 20.6347 7.59511 20.464 7.82693 20.2329L21.1739 6.88391Z"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M10 11.072V17.072M14 11.072V17.072M19 6.07202V20.072C19 20.6025 18.7893 21.1112 18.4142 21.4862C18.0391 21.8613 17.5304 22.072 17 22.072H7C6.46957 22.072 5.96086 21.8613 5.58579 21.4862C5.21071 21.1112 5 20.6025 5 20.072V6.07202M3 6.07202H21M8 6.07202V4.07202C8 3.54159 8.21071 3.03288 8.58579 2.65781C8.96086 2.28274 9.46957 2.07202 10 2.07202H14C14.5304 2.07202 15.0391 2.28274 15.4142 2.65781C15.7893 3.03288 16 3.54159 16 4.07202V6.07202"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </div>
+            </ng-template>
+        </p-carousel>
+        <div class="add-element" (click)="showRecipientPopup()">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 8.07202H15M8 1.07202V15.072" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Afegir destinatari
+        </div>
+    </div>
+
+    <div class="group">
+        <div class="default-text">Adreça:</div>
+        <p-carousel [value]="shippingResponse.addresses" [numVisible]="3" [numScroll]="3" [showIndicators]="false"
+            [showNavigators]="shippingResponse.addresses.length > 3" [circular]="false"
+            [responsiveOptions]="responsiveOptions">
+            <ng-template let-entry #item>
+                <div class="carousel-card" [ngClass]="{'active': selectedAddress == entry}"
+                    (click)="selectAddress(entry)">
+                    <div class="carousel-line">
+                        {{ entry.street }},
+                        @if(entry.flat) {
+                        {{entry.flat}},
+                        }
+                        {{ entry.city }},
+                        {{ entry.province }},
+                        {{ entry.zip }}</div>
+                    <div class="carousel-opts">
+                        <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12.9999 21.0719H20.9999M14.9999 5.07191L18.9999 9.07191M21.1739 6.88391C21.7026 6.35534 21.9997 5.63838 21.9998 4.89077C21.9999 4.14315 21.703 3.42612 21.1744 2.89741C20.6459 2.36871 19.9289 2.07163 19.1813 2.07153C18.4337 2.07144 17.7166 2.36834 17.1879 2.89691L3.84193 16.2459C3.60975 16.4774 3.43805 16.7624 3.34193 17.0759L2.02093 21.4279C1.99509 21.5144 1.99314 21.6063 2.01529 21.6938C2.03743 21.7813 2.08285 21.8611 2.14673 21.9249C2.21061 21.9887 2.29055 22.034 2.37809 22.056C2.46563 22.078 2.55749 22.0759 2.64393 22.0499L6.99693 20.7299C7.3101 20.6347 7.59511 20.464 7.82693 20.2329L21.1739 6.88391Z"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M10 11.072V17.072M14 11.072V17.072M19 6.07202V20.072C19 20.6025 18.7893 21.1112 18.4142 21.4862C18.0391 21.8613 17.5304 22.072 17 22.072H7C6.46957 22.072 5.96086 21.8613 5.58579 21.4862C5.21071 21.1112 5 20.6025 5 20.072V6.07202M3 6.07202H21M8 6.07202V4.07202C8 3.54159 8.21071 3.03288 8.58579 2.65781C8.96086 2.28274 9.46957 2.07202 10 2.07202H14C14.5304 2.07202 15.0391 2.28274 15.4142 2.65781C15.7893 3.03288 16 3.54159 16 4.07202V6.07202"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </div>
+            </ng-template>
+        </p-carousel>
+        <div class="add-element" (click)="showAddressPopup()">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 8.07202H15M8 1.07202V15.072" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Afegir direcció
+        </div>
+    </div>
+    }
+</div>
+
+<app-recipient-popup [(display)]="displayRecipientPopup" (addedAddress)="updateRecipient($event)"></app-recipient-popup>
+
+@if (displayAddressPopup) {
+<p-dialog maskStyleClass="backdrop-blur-sm" [modal]="true" [(visible)]="displayAddressPopup">
+    <ng-template #headless>
+        <div class="add-popup">
+            <div class="add-popup-title">Destinatari:</div>
+            <div class="add-popup-elements">
+                <p-floatlabel variant="on">
+                    <input pInputText id="name" [(ngModel)]="value1" autocomplete="off" />
+                    <label for="name">Nom</label>
+                </p-floatlabel>
+
+                <p-floatlabel variant="on">
+                    <input pInputText id="surname" [(ngModel)]="value2" autocomplete="off" />
+                    <label for="surname">Cognom</label>
+                </p-floatlabel>
+
+                <p-floatlabel variant="on">
+                    <input pInputText id="phone" [(ngModel)]="value3" autocomplete="off" />
+                    <label for="phone">Telèfon</label>
+                </p-floatlabel>
+            </div>
+            <div class="add-popup-buttons">
+                <p-button label="Afegir">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 18L15 12L9 6" stroke="white" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </p-button>
+            </div>
+        </div>
+    </ng-template>
+</p-dialog>
+}

@@ -35,7 +35,19 @@ export interface RecipientDto {
     id: number;
     name: string;
     surname: string;
-    email: string;
     phone: string;
     starred: boolean;
+}
+
+export interface RecipientResponseDto {
+    status: RecipientResponseStatus;
+    recipient: RecipientDto;
+}
+
+export enum RecipientResponseStatus {
+    SUCCESS = 'SUCCESS',
+    UNAUTHORIZED = 'UNAUTHORIZED' ,
+    UNEXPECTED_ERROR = 'UNEXPECTED_ERROR',
+
+    PENDING = 'PENDING'
 }

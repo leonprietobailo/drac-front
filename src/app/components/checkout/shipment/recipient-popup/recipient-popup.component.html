@@ -1,0 +1,31 @@
+<p-dialog maskStyleClass="backdrop-blur-sm" [(visible)]="display" [modal]="true" (onHide)="onHide()">
+    <ng-template #headless>
+        <div class="add-popup">
+            <div class="add-popup-title">Destinatari:</div>
+            <div class="add-popup-elements">
+                <p-floatlabel variant="on">
+                    <input pInputText id="name" [(ngModel)]="nameValue" autocomplete="off" />
+                    <label for="name">Nom</label>
+                </p-floatlabel>
+
+                <p-floatlabel variant="on">
+                    <input pInputText id="surname" [(ngModel)]="surnameValue" autocomplete="off" />
+                    <label for="surname">Cognom</label>
+                </p-floatlabel>
+
+                <p-floatlabel variant="on">
+                    <input pInputText id="phone" [(ngModel)]="telephoneValue" autocomplete="off" />
+                    <label for="phone">Telèfon</label>
+                </p-floatlabel>
+            </div>
+            <div class="add-popup-buttons" (click)="persistAddress()">
+                <p-button label="Afegir">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 18L15 12L9 6" stroke="white" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </p-button>
+            </div>
+        </div>
+    </ng-template>
+</p-dialog>
