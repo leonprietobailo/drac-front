@@ -1,11 +1,5 @@
 <div class="main-product">
-    <div class="product-close">
-        <svg (click)="closeIconClick()" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            xmlns="http://www.w3.org/2000/svg">
-            <path d="M3.48528 20.4558L20.4558 3.48528M3.48528 3.48528L20.4558 20.4558" stroke="#262626" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-    </div>
+
 
     <div class="product-body">
         <div class="galleria">
@@ -39,63 +33,75 @@
                 }
             </div>
         </div>
-        <div class="details">
-            <div class="details-body">
-                <div class="details-attr">
-                    <span class="details-attr-title"> {{itemDto.title}}</span>
-                    <span class="details-attr-price">{{itemDto.price}}</span>
-                    <span class="details-attr-desc">{{itemDto.description}}</span>
-                </div>
-
-
-                @if (isMultiSize()) {
-                <div class="details-meas">
-                    <span class="details-subtitle">Mesura:</span>
-                    <div class="details-meas-list">
-                        @for (size of itemDto.sizes; track $index) {
-                        <div class="details-meas-item" (click)="selectSize(size)"
-                            [ngClass]="{ 'selected': size === selectedSize }">
-                            {{size.size}}
-                        </div>
-                        }
-                    </div>
-                </div>
-                }
-
-                @if (isMultiColor()) {
-                <div class="details-colors">
-                    <span class="details-subtitle">Color:</span>
-                    <div class="details-colors-list">
-                        @for (color of itemDto.colors; track $index) {
-                        <div class="details-colors-item" (click)="selectColor(color)"
-                            [ngClass]="{ 'selected': color === selectedColor }" [style.background]="color.color">
-                        </div>
-                        }
-                    </div>
-                </div>
-                }
-
-                <div class="details-amount">
-                    <span class="details-subtitle">Quantitat:</span>
-                    <!-- Fallback to primeng integer selector -->
-                    <div class="input-number-container">
-                        <p-inputnumber [(ngModel)]="quantity" [min]="1" [showButtons]="true" buttonLayout="horizontal"
-                            spinnerMode="horizontal" inputId="horizontal" [inputStyle]="{ width: '3rem' }">
-                            <ng-template #incrementbuttonicon>
-                                <span class="pi pi-plus"></span>
-                            </ng-template>
-                            <ng-template #decrementbuttonicon>
-                                <span class="pi pi-minus"></span>
-                            </ng-template>
-                        </p-inputnumber>
-                    </div>
-
-                </div>
-
+        <div class="cross-details">
+            <div class="product-close">
+                <svg (click)="closeIconClick()" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3.48528 20.4558L20.4558 3.48528M3.48528 3.48528L20.4558 20.4558" stroke="#262626"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
             </div>
-            <div class="details-buttons">
-                <p-button label="Carro" severity="secondary" (onClick)="addToCart()" [loading]="addToCartLoading"/>
-                <p-button label="Comprar" />
+            <div class="details">
+
+                <div class="details-body">
+
+                    <div class="details-attr">
+                        <span class="details-attr-title"> {{itemDto.title}}</span>
+                        <span class="details-attr-price">{{itemDto.price}}</span>
+                        <span class="details-attr-desc">{{itemDto.description}}</span>
+                    </div>
+
+
+                    @if (isMultiSize()) {
+                    <div class="details-meas">
+                        <span class="details-subtitle">Mesura:</span>
+                        <div class="details-meas-list">
+                            @for (size of itemDto.sizes; track $index) {
+                            <div class="details-meas-item" (click)="selectSize(size)"
+                                [ngClass]="{ 'selected': size === selectedSize }">
+                                {{size.size}}
+                            </div>
+                            }
+                        </div>
+                    </div>
+                    }
+
+                    @if (isMultiColor()) {
+                    <div class="details-colors">
+                        <span class="details-subtitle">Color:</span>
+                        <div class="details-colors-list">
+                            @for (color of itemDto.colors; track $index) {
+                            <div class="details-colors-item" (click)="selectColor(color)"
+                                [ngClass]="{ 'selected': color === selectedColor }" [style.background]="color.color">
+                            </div>
+                            }
+                        </div>
+                    </div>
+                    }
+
+                    <div class="details-amount">
+                        <span class="details-subtitle">Quantitat:</span>
+                        <!-- Fallback to primeng integer selector -->
+                        <div class="input-number-container">
+                            <p-inputnumber [(ngModel)]="quantity" [min]="1" [showButtons]="true"
+                                buttonLayout="horizontal" spinnerMode="horizontal" inputId="horizontal"
+                                [inputStyle]="{ width: '3rem' }">
+                                <ng-template #incrementbuttonicon>
+                                    <span class="pi pi-plus"></span>
+                                </ng-template>
+                                <ng-template #decrementbuttonicon>
+                                    <span class="pi pi-minus"></span>
+                                </ng-template>
+                            </p-inputnumber>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="details-buttons">
+                    <p-button label="Carro" severity="secondary" (onClick)="addToCart()" [loading]="addToCartLoading" />
+                    <p-button label="Comprar" />
+                </div>
             </div>
         </div>
     </div>

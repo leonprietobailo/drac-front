@@ -51,3 +51,18 @@ export enum RecipientResponseStatus {
 
     PENDING = 'PENDING'
 }
+
+export interface AddressResponseDto {
+    recipient(recipient: any): unknown;
+    status: AddressResponseStatus;
+    address: AddressDto;
+}
+
+export enum AddressResponseStatus {
+    SUCCESS = 'SUCCESS',
+    UNAUTHORIZED = 'UNAUTHORIZED' ,
+    UNEXPECTED_ERROR = 'UNEXPECTED_ERROR',
+
+    PENDING = 'PENDING'
+}
+

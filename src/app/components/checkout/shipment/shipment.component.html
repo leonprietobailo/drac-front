@@ -29,9 +29,10 @@
     @if (selectedType == ShippingTypes.ADDRESS) {
     <div class="group">
         <div class="default-text">Destinatari:</div>
-        <p-carousel [value]="shippingResponse.recipients" [numVisible]="5" [numScroll]="5" [showIndicators]="false"
-            [showNavigators]="shippingResponse.recipients.length > 3" [circular]="false"
-            [responsiveOptions]="responsiveOptions">
+        <div>
+        <p-carousel [value]="shippingResponse.recipients" [numVisible]="5" [numScroll]="1" [showIndicators]="false"
+            [showNavigators]="shippingResponse.recipients.length > 5" [circular]="false" 
+            [responsiveOptions]="responsiveOptions" [style.--carousel-width.px]="carouselWidth">
             <ng-template let-entry #item>
                 <div class="carousel-card" [ngClass]="{'active': selectedRecipient == entry}"
                     (click)="selectRecipient(entry)">
@@ -54,6 +55,7 @@
                 </div>
             </ng-template>
         </p-carousel>
+        </div>
         <div class="add-element" (click)="showRecipientPopup()">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 8.07202H15M8 1.07202V15.072" stroke-linecap="round" stroke-linejoin="round" />
@@ -64,8 +66,8 @@
 
     <div class="group">
         <div class="default-text">Adreça:</div>
-        <p-carousel [value]="shippingResponse.addresses" [numVisible]="3" [numScroll]="3" [showIndicators]="false"
-            [showNavigators]="shippingResponse.addresses.length > 3" [circular]="false"
+        <p-carousel [value]="shippingResponse.addresses" [numVisible]="5" [numScroll]="1" [showIndicators]="false"
+            [showNavigators]="shippingResponse.addresses.length > 5" [circular]="false"
             [responsiveOptions]="responsiveOptions">
             <ng-template let-entry #item>
                 <div class="carousel-card" [ngClass]="{'active': selectedAddress == entry}"
@@ -103,38 +105,5 @@
     }
 </div>
 
-<app-recipient-popup [(display)]="displayRecipientPopup" (addedAddress)="updateRecipient($event)"></app-recipient-popup>
-
-@if (displayAddressPopup) {
-<p-dialog maskStyleClass="backdrop-blur-sm" [modal]="true" [(visible)]="displayAddressPopup">
-    <ng-template #headless>
-        <div class="add-popup">
-            <div class="add-popup-title">Destinatari:</div>
-            <div class="add-popup-elements">
-                <p-floatlabel variant="on">
-                    <input pInputText id="name" [(ngModel)]="value1" autocomplete="off" />
-                    <label for="name">Nom</label>
-                </p-floatlabel>
-
-                <p-floatlabel variant="on">
-                    <input pInputText id="surname" [(ngModel)]="value2" autocomplete="off" />
-                    <label for="surname">Cognom</label>
-                </p-floatlabel>
-
-                <p-floatlabel variant="on">
-                    <input pInputText id="phone" [(ngModel)]="value3" autocomplete="off" />
-                    <label for="phone">Telèfon</label>
-                </p-floatlabel>
-            </div>
-            <div class="add-popup-buttons">
-                <p-button label="Afegir">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9 18L15 12L9 6" stroke="white" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                    </svg>
-                </p-button>
-            </div>
-        </div>
-    </ng-template>
-</p-dialog>
-}
+<app-recipient-popup [(display)]="displayRecipientPopup" (addedRecipient)="updateRecipient($event)"></app-recipient-popup>
+<app-address-popup [(display)]="displayAddressPopup" (addedAddress)="updateAddress($event)"></app-address-popup>

@@ -17,7 +17,6 @@
         flex-direction: column;
         gap: 6px;
 
-
         .shipping-opts {
             display: flex;
             gap: 8px;
@@ -65,9 +64,13 @@
             }
         }
 
+        // ::ng-deep .p-carousel {
+        //     width: min(var(--carousel-width), 100%);
+        // }
+
         .carousel-card {
             display: flex;
-            width: 300px;
+            // width: 300px;
             padding: 16px;
             flex-direction: column;
             align-items: flex-start;
@@ -88,7 +91,7 @@
                 font-weight: 500;
                 line-height: normal;
                 width: 100%;
-                                white-space: nowrap;
+                white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
             }

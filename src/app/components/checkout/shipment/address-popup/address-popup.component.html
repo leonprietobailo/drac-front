@@ -1,1 +1,43 @@
-<p>address-popup works!</p>
+<p-dialog maskStyleClass="backdrop-blur-sm" [(visible)]="display" [modal]="true" (onHide)="onHide()">
+    <ng-template #headless>
+        <div class="add-popup">
+            <div class="add-popup-title">Adreça:</div>
+            <div class="add-popup-elements">
+
+                <p-floatlabel variant="on">
+                    <input pInputText id="street" [(ngModel)]="streetValue" autocomplete="off" />
+                    <label for="street">Carrer, número</label>
+                </p-floatlabel>
+
+                <p-floatlabel variant="on">
+                    <input pInputText id="city" [(ngModel)]="cityValue" autocomplete="off" />
+                    <label for="city">Ciutat</label>
+                </p-floatlabel>
+
+                <p-floatlabel variant="on">
+                    <input pInputText id="province" [(ngModel)]="provinceValue" autocomplete="off" />
+                    <label for="province">Provincia</label>
+                </p-floatlabel>
+
+                <p-floatlabel variant="on">
+                    <input pInputText id="flat" [(ngModel)]="flatValue" autocomplete="off" />
+                    <label for="flat">Bloc, pis</label>
+                </p-floatlabel>
+
+                <p-floatlabel variant="on">
+                    <input pInputText id="zip" [(ngModel)]="zipValue" autocomplete="off" />
+                    <label for="zip">Codi postal</label>
+                </p-floatlabel>
+                <div></div>
+            </div>
+            <div class="add-popup-buttons" (click)="persistAddress()">
+                <p-button label="Afegir">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 18L15 12L9 6" stroke="white" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </p-button>
+            </div>
+        </div>
+    </ng-template>
+</p-dialog>

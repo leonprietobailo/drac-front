@@ -22,7 +22,7 @@ export class RecipientPopupComponent {
 
   @Input() display!: boolean;
   @Output() displayChange = new EventEmitter<boolean>();
-  @Output() addedAddress = new EventEmitter<RecipientDto>();
+  @Output() addedRecipient = new EventEmitter<RecipientDto>();
   persisting: boolean = false;
   nameValue: string = "";
   surnameValue: string = "";
@@ -34,7 +34,7 @@ export class RecipientPopupComponent {
     this.displayChange.emit(false);
   }
 
-  persistAddress() {
+  persistRecipient() {
     this.persisting = true;
     this.api.addRecipient({
       id: 0,
@@ -47,9 +47,8 @@ export class RecipientPopupComponent {
         this.persisting = false;
         switch (response.status) {
           case RecipientResponseStatus.SUCCESS: {
-            this.addedAddress.emit(response.recipient);
+            this.addedRecipient.emit(response.recipient);
             this.display = false;
-            console.log("test")
             break;
           }
           default: {
