@@ -66,3 +66,16 @@ export enum AddressResponseStatus {
     PENDING = 'PENDING'
 }
 
+export interface BillingResponseDto {
+    recipient(recipient: any): unknown;
+    status: BillingResponseStatus;
+    billing: BillingInfoDto;
+}
+
+export enum BillingResponseStatus {
+    SUCCESS = 'SUCCESS',
+    UNAUTHORIZED = 'UNAUTHORIZED' ,
+    UNEXPECTED_ERROR = 'UNEXPECTED_ERROR',
+
+    PENDING = 'PENDING'
+}

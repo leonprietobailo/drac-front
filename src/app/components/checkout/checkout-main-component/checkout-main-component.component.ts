@@ -12,10 +12,11 @@ import { DialogModule } from 'primeng/dialog';
 import { FloatLabel, FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { ShipmentComponent } from "../shipment/shipment.component";
+import { BillingComponent } from "../billing/billing.component";
 
 @Component({
   selector: 'app-checkout-main-component',
-  imports: [ShopHeaderComponent, StepperModule, ButtonModule, FormsModule, SelectButtonModule, CarouselModule, CommonModule, DialogModule, FloatLabelModule, InputTextModule, ShipmentComponent],
+  imports: [ShopHeaderComponent, StepperModule, ButtonModule, FormsModule, SelectButtonModule, CarouselModule, CommonModule, DialogModule, FloatLabelModule, InputTextModule, ShipmentComponent, BillingComponent],
   templateUrl: './checkout-main-component.component.html',
   styleUrl: './checkout-main-component.component.scss'
 })
