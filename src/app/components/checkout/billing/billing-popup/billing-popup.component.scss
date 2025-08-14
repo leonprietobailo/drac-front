@@ -16,7 +16,19 @@
     .add-popup-elements {
         display: flex;
         gap: 8px;
+        flex-wrap: wrap;
+        max-width: 750px;
+        justify-content: flex-start;
     }
+
+    .add-popup-elements * {
+        flex: 1 1 220px;
+
+        input {
+            width: 100%;
+        }
+    }
+    
 
     .add-popup-buttons {
         display: flex;

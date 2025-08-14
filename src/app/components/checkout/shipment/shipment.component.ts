@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Carousel, CarouselModule } from 'primeng/carousel';
 import { AddressDto, RecipientDto, ShippingResponseDto } from '../../../dto/response/checkout';
@@ -19,6 +19,7 @@ import { AddressPopupComponent } from "./address-popup/address-popup.component";
 export class ShipmentComponent implements OnInit, OnChanges {
 
   @Input() shippingResponse!: ShippingResponseDto;
+    @Output() addressUpdate = new EventEmitter<AddressDto>();
   @ViewChild('recipientCr') recipientCr!: Carousel;
   @ViewChild('addressCr') addressCr!: Carousel;
 
@@ -30,9 +31,6 @@ export class ShipmentComponent implements OnInit, OnChanges {
   displayAddressPopup: boolean = false;
 
   responsiveOptions: any[] | undefined;
-  value1: string | undefined;
-  value2: string | undefined;
-  value3: string | undefined;
   recipientCarouselWidth: number = 0;
   addressCarouselWidth: number = 0;
   recipientPage: number = 0;
@@ -69,9 +67,7 @@ export class ShipmentComponent implements OnInit, OnChanges {
     if (changes['shippingResponse']) {
       this.recipientCarouselWidth = 300 * this.shippingResponse.recipients.length;
       this.addressCarouselWidth = 300 * this.shippingResponse.addresses.length;
-      // this.recipientPage = Math.floor(this.shippingResponse.recipients.length / (this.recipientCr?.numVisible || 1))
-      // this.addressPage = Math.floor(this.shippingResponse.addresses.length / (this.addressCr?.numVisible || 1))
-
+      console.log("updated at shipment")
     }
   }
 
@@ -100,7 +96,10 @@ export class ShipmentComponent implements OnInit, OnChanges {
   }
 
   updateRecipient(recipientDto: RecipientDto) {
-    this.shippingResponse.recipients = [...this.shippingResponse.recipients, recipientDto];
+        this.shippingResponse = {
+      ...this.shippingResponse,
+      recipients: [...this.shippingResponse.recipients, recipientDto]
+    };
     this.recipientCarouselWidth = 300 * this.shippingResponse.recipients.length;
     this.selectedRecipient = recipientDto;
 
@@ -112,7 +111,11 @@ export class ShipmentComponent implements OnInit, OnChanges {
   }
 
   updateAddress(addressDto: AddressDto) {
-    this.shippingResponse.addresses = [...this.shippingResponse.addresses, addressDto];
+    this.shippingResponse = {
+      ...this.shippingResponse,
+      addresses: [...this.shippingResponse.addresses, addressDto]
+    };
+        this.addressUpdate.emit(addressDto);
     this.addressCarouselWidth = 300 * this.shippingResponse.addresses.length;
     this.selectedAddress = addressDto;
 

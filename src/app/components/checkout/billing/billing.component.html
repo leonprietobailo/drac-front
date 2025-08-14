@@ -3,47 +3,35 @@
         <div class="default-text">Vols factura?</div>
         <div class="shipping-opts">
 
-            <div class="shipping-point" [ngClass]="{'active': selectedType == ShippingTypes.POINT}"
-                (click)="selectType(ShippingTypes.POINT)">
+            <div class="shipping-point" [ngClass]="{'active': selectedType == BillingOptions.YES}"
+                (click)="selectType(BillingOptions.YES)">
                 Si
             </div>
-            <div class="shipping-point" [ngClass]="{'active': selectedType == ShippingTypes.ADDRESS}"
-                (click)="selectType(ShippingTypes.ADDRESS)">
+            <div class="shipping-point" [ngClass]="{'active': selectedType == BillingOptions.NO}"
+                (click)="selectType(BillingOptions.NO)">
                 No
             </div>
         </div>
     </div>
-    @if (selectedType == ShippingTypes.ADDRESS) {
+    @if (selectedType == BillingOptions.YES) {
     <div class="group">
         <div>
             <div class="default-text">Dades fiscals:</div>
-            <div class="entity-carousel-wrapper">
-                <p-carousel #entityCr [value]="shippingResponse.billingInfos" [numVisible]="5" [numScroll]="5"
+            <div class="billing-carousel-wrapper">
+                <p-carousel #billingCr [value]="shippingResponse.billingInfos" [numVisible]="5" [numScroll]="5"
                     [showIndicators]="false"
-                    [showNavigators]="shippingResponse.billingInfos.length > (entityCr?.numVisible || 0)" [circular]="false"
-                    [responsiveOptions]="responsiveOptions"
-                    [style.--billing-carousel-width.px]="billingCarouselWidth" [page]="billingPage" (onPage)="billingPage = $event.page || 0">
+                    [showNavigators]="shippingResponse.billingInfos.length > (billingCr?.numVisible || 0)"
+                    [circular]="false" [responsiveOptions]="responsiveOptions"
+                    [style.--billing-carousel-width.px]="billingCarouselWidth" [page]="billingPage"
+                    (onPage)="billingPage = $event.page || 0">
                     <ng-template pTemplate="item" let-entry>
                         <div class="carousel-card" [ngClass]="{'active': selectedBilling == entry}"
                             (click)="selectBilling(entry)">
                             <div class="carousel-title">
-                                {{entry.name}} {{entry.surname}}
+                                {{entry.entityName}}
                             </div>
-                            <div class="carousel-line-trim">Telèfon: {{entry.phone}}</div>
-                            <div class="carousel-opts">
-                                <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M12.9999 21.0719H20.9999M14.9999 5.07191L18.9999 9.07191M21.1739 6.88391C21.7026 6.35534 21.9997 5.63838 21.9998 4.89077C21.9999 4.14315 21.703 3.42612 21.1744 2.89741C20.6459 2.36871 19.9289 2.07163 19.1813 2.07153C18.4337 2.07144 17.7166 2.36834 17.1879 2.89691L3.84193 16.2459C3.60975 16.4774 3.43805 16.7624 3.34193 17.0759L2.02093 21.4279C1.99509 21.5144 1.99314 21.6063 2.01529 21.6938C2.03743 21.7813 2.08285 21.8611 2.14673 21.9249C2.21061 21.9887 2.29055 22.034 2.37809 22.056C2.46563 22.078 2.55749 22.0759 2.64393 22.0499L6.99693 20.7299C7.3101 20.6347 7.59511 20.464 7.82693 20.2329L21.1739 6.88391Z"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                                <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M10 11.072V17.072M14 11.072V17.072M19 6.07202V20.072C19 20.6025 18.7893 21.1112 18.4142 21.4862C18.0391 21.8613 17.5304 22.072 17 22.072H7C6.46957 22.072 5.96086 21.8613 5.58579 21.4862C5.21071 21.1112 5 20.6025 5 20.072V6.07202M3 6.07202H21M8 6.07202V4.07202C8 3.54159 8.21071 3.03288 8.58579 2.65781C8.96086 2.28274 9.46957 2.07202 10 2.07202H14C14.5304 2.07202 15.0391 2.28274 15.4142 2.65781C15.7893 3.03288 16 3.54159 16 4.07202V6.07202"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </div>
+                            <div class="carousel-line-trim">CIF/NIF: {{entry.taxId}}</div>
+                            <div class="carousel-line-trim">Correu: {{entry.email}}</div>
                         </div>
                     </ng-template>
                 </p-carousel>
@@ -58,12 +46,21 @@
     </div>
 
     <div class="group">
-        <div class="default-text">Adreça:</div>
+            <div class="checbox-container">
+            <p-checkbox inputId="sameAddressCheckbox" [(ngModel)]="sameAddress" [binary]="true" />
+            <label for="sameAddressCheckbox">Utilitzar la mateixa adreça d'enviament</label>
+        </div>
+    </div>
+    <div class="group">
+        @if(!sameAddress) {
+                    <div class="default-text">Adreça fiscal:</div>
+
         <div class="address-carousel-wrapper">
             <p-carousel #addressCr [value]="shippingResponse.addresses" [numVisible]="5" [numScroll]="5"
-                [showIndicators]="false" [showNavigators]="shippingResponse.addresses.length >  (addressCr?.numVisible || 0)"
-                [circular]="false" [responsiveOptions]="responsiveOptions"
-                [style.--address-carousel-width.px]="addressCarouselWidth" [page]="addressPage" (onPage)="addressPage = $event.page || 0">
+                [showIndicators]="false"
+                [showNavigators]="shippingResponse.addresses.length >  (addressCr?.numVisible || 0)" [circular]="false"
+                [responsiveOptions]="responsiveOptions" [style.--address-carousel-width.px]="addressCarouselWidth"
+                [page]="addressPage" (onPage)="addressPage = $event.page || 0">
                 <ng-template let-entry #item>
                     <div class="carousel-card" [ngClass]="{'active': selectedAddress == entry}"
                         (click)="selectAddress(entry)">
@@ -75,34 +72,21 @@
                             {{ entry.city }},
                             {{ entry.province }},
                             {{ entry.zip }}</div>
-                        <div class="carousel-opts">
-                            <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M12.9999 21.0719H20.9999M14.9999 5.07191L18.9999 9.07191M21.1739 6.88391C21.7026 6.35534 21.9997 5.63838 21.9998 4.89077C21.9999 4.14315 21.703 3.42612 21.1744 2.89741C20.6459 2.36871 19.9289 2.07163 19.1813 2.07153C18.4337 2.07144 17.7166 2.36834 17.1879 2.89691L3.84193 16.2459C3.60975 16.4774 3.43805 16.7624 3.34193 17.0759L2.02093 21.4279C1.99509 21.5144 1.99314 21.6063 2.01529 21.6938C2.03743 21.7813 2.08285 21.8611 2.14673 21.9249C2.21061 21.9887 2.29055 22.034 2.37809 22.056C2.46563 22.078 2.55749 22.0759 2.64393 22.0499L6.99693 20.7299C7.3101 20.6347 7.59511 20.464 7.82693 20.2329L21.1739 6.88391Z"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                            <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M10 11.072V17.072M14 11.072V17.072M19 6.07202V20.072C19 20.6025 18.7893 21.1112 18.4142 21.4862C18.0391 21.8613 17.5304 22.072 17 22.072H7C6.46957 22.072 5.96086 21.8613 5.58579 21.4862C5.21071 21.1112 5 20.6025 5 20.072V6.07202M3 6.07202H21M8 6.07202V4.07202C8 3.54159 8.21071 3.03288 8.58579 2.65781C8.96086 2.28274 9.46957 2.07202 10 2.07202H14C14.5304 2.07202 15.0391 2.28274 15.4142 2.65781C15.7893 3.03288 16 3.54159 16 4.07202V6.07202"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </div>
                     </div>
                 </ng-template>
             </p-carousel>
         </div>
+
         <div class="add-element" (click)="showAddressPopup()">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 8.07202H15M8 1.07202V15.072" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
             Afegir direcció
         </div>
+        }
     </div>
     }
 </div>
 
-<app-billing-popup [(display)]="displayBillingPopup"
-    (addedBilling)="updateBilling($event)"></app-billing-popup>
+<app-billing-popup [(display)]="displayBillingPopup" (addedBilling)="updateBilling($event)"></app-billing-popup>
 <app-address-popup [(display)]="displayAddressPopup" (addedAddress)="updateAddress($event)"></app-address-popup>

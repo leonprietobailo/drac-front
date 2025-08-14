@@ -1,29 +1,31 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Carousel, CarouselModule } from 'primeng/carousel';
-import { AddressDto, BillingInfoDto, RecipientDto, ShippingResponseDto } from '../../../dto/response/checkout';
+import { AddressDto, BillingInfoDto, ShippingResponseDto } from '../../../dto/response/checkout';
 import { DialogModule } from 'primeng/dialog';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { BillingPopupComponent } from "./billing-popup/billing-popup.component";
 import { AddressPopupComponent } from "../shipment/address-popup/address-popup.component";
+import { CheckboxModule } from 'primeng/checkbox';
 
 @Component({
   selector: 'app-billing',
-  imports: [CommonModule, FormsModule, CarouselModule, DialogModule, FloatLabelModule, InputTextModule, ButtonModule, BillingPopupComponent, AddressPopupComponent],
+  imports: [CommonModule, FormsModule, CarouselModule, DialogModule, FloatLabelModule, InputTextModule, ButtonModule, BillingPopupComponent, AddressPopupComponent, CheckboxModule],
   templateUrl: './billing.component.html',
   styleUrl: './billing.component.scss'
 })
 export class BillingComponent implements OnInit, OnChanges {
 
   @Input() shippingResponse!: ShippingResponseDto;
+  @Output() addressUpdate = new EventEmitter<AddressDto>();
   @ViewChild('billingCr') billingCr!: Carousel;
   @ViewChild('addressCr') addressCr!: Carousel;
 
-  ShippingTypes = ShippingTypes;
-  selectedType: ShippingTypes = ShippingTypes.NONE;
+  BillingOptions = BillingOptions;
+  selectedType: BillingOptions = BillingOptions.NONE;
   selectedBilling?: BillingInfoDto;
   selectedAddress?: AddressDto;
   displayBillingPopup: boolean = false;
@@ -37,6 +39,9 @@ export class BillingComponent implements OnInit, OnChanges {
   addressCarouselWidth: number = 0;
   billingPage: number = 0;
   addressPage: number = 0;
+
+  sameAddress: boolean = true;
+
   ngOnInit(): void {
     this.billingCarouselWidth = 300 * this.shippingResponse.billingInfos.length;
     this.addressCarouselWidth = 300 * this.shippingResponse.addresses.length;
@@ -69,13 +74,11 @@ export class BillingComponent implements OnInit, OnChanges {
     if (changes['shippingResponse']) {
       this.billingCarouselWidth = 300 * this.shippingResponse.billingInfos.length;
       this.addressCarouselWidth = 300 * this.shippingResponse.addresses.length;
-      // this.recipientPage = Math.floor(this.shippingResponse.recipients.length / (this.recipientCr?.numVisible || 1))
-      // this.addressPage = Math.floor(this.shippingResponse.addresses.length / (this.addressCr?.numVisible || 1))
-
+            console.log("updated at billing")
     }
   }
 
-  selectType(type: ShippingTypes) {
+  selectType(type: BillingOptions) {
     this.selectedType = type;
   }
 
@@ -96,7 +99,10 @@ export class BillingComponent implements OnInit, OnChanges {
   }
 
   updateBilling(billingDto: BillingInfoDto) {
-    this.shippingResponse.billingInfos = [...this.shippingResponse.billingInfos, billingDto];
+        this.shippingResponse = {
+      ...this.shippingResponse,
+      billingInfos:[...this.shippingResponse.billingInfos, billingDto]
+    };
     this.billingCarouselWidth = 300 * this.shippingResponse.billingInfos.length;
     this.selectedBilling = billingDto;
 
@@ -104,11 +110,14 @@ export class BillingComponent implements OnInit, OnChanges {
       const visible = this.billingCr?.numVisible || 1;
       this.billingPage = Math.max(0, Math.ceil(this.shippingResponse.billingInfos.length / visible) - 1);
     });
-
   }
 
   updateAddress(addressDto: AddressDto) {
-    this.shippingResponse.addresses = [...this.shippingResponse.addresses, addressDto];
+    this.shippingResponse = {
+      ...this.shippingResponse,
+      addresses: [...this.shippingResponse.addresses, addressDto]
+    };
+    this.addressUpdate.emit(addressDto);
     this.addressCarouselWidth = 300 * this.shippingResponse.addresses.length;
     this.selectedAddress = addressDto;
 
@@ -119,8 +128,8 @@ export class BillingComponent implements OnInit, OnChanges {
   }
 }
 
-export enum ShippingTypes {
-  POINT,
-  ADDRESS,
+export enum BillingOptions {
+  YES,
+  NO,
   NONE
 }

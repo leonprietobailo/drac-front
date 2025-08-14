@@ -17,6 +17,12 @@
         flex-direction: column;
         gap: 6px;
 
+        .checbox-container{
+            display: flex;
+            gap: 8px;
+            color: #7C7C7C;
+        }
+
         .shipping-opts {
             display: flex;
             gap: 8px;
@@ -64,9 +70,9 @@
             }
         }
 
-        .recipient-carousel-wrapper {
+        .billing-carousel-wrapper {
             ::ng-deep .p-carousel {
-                width: min(var(--recipient-carousel-width), 100%);
+                width: min(var(--billing-carousel-width), 100%);
             }
         }
 

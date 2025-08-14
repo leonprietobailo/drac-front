@@ -39,5 +39,9 @@ export class CheckoutMainComponentComponent implements OnInit {
       }
     });
   }
+
+  propagateAddressUpdate(addressDto: AddressDto) {
+    this.shippingResponse = { ...this.shippingResponse, addresses: [...this.shippingResponse.addresses, addressDto] };
+  }
 }
 

@@ -4,18 +4,19 @@
             <div class="add-popup-title">Destinatari:</div>
             <div class="add-popup-elements">
                 <p-floatlabel variant="on">
-                    <input pInputText id="name" [(ngModel)]="nameValue" autocomplete="off" />
-                    <label for="name">Nom</label>
+                    <input pInputText id="name" [(ngModel)]="entityNameValue" autocomplete="off" />
+                    <label for="name">Nom o raó social</label>
                 </p-floatlabel>
 
                 <p-floatlabel variant="on">
-                    <input pInputText id="surname" [(ngModel)]="surnameValue" autocomplete="off" />
-                    <label for="surname">Cognom</label>
+                    <input pInputText pTooltip="Enviarem les factures a aquesta direcció de correu electrònic."
+                        id="surname" [(ngModel)]="emailValue" autocomplete="off" />
+                    <label for="surname">Correu</label>
                 </p-floatlabel>
 
                 <p-floatlabel variant="on">
-                    <input pInputText id="phone" [(ngModel)]="telephoneValue" autocomplete="off" />
-                    <label for="phone">Telèfon</label>
+                    <input pInputText id="phone" [(ngModel)]="taxIdValue" autocomplete="off" />
+                    <label for="phone">Identificador fiscal</label>
                 </p-floatlabel>
             </div>
             <div class="add-popup-buttons" (click)="persistRecipient()">

@@ -10,10 +10,11 @@ import { CheckoutApiService } from '../../../../services/CheckoutApiSerivce';
 import { BillingInfoDto, BillingResponseStatus, RecipientDto, RecipientResponseStatus } from '../../../../dto/response/checkout';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-billing-popup',
-  imports: [FormsModule, DialogModule, InputTextModule, CommonModule, FloatLabelModule, ButtonModule, ToastModule],
+  imports: [FormsModule, DialogModule, InputTextModule, CommonModule, FloatLabelModule, ButtonModule, ToastModule, TooltipModule],
   templateUrl: './billing-popup.component.html',
   styleUrl: './billing-popup.component.scss',
   providers: [MessageService]
@@ -24,9 +25,9 @@ export class BillingPopupComponent {
   @Output() displayChange = new EventEmitter<boolean>();
   @Output() addedBilling = new EventEmitter<BillingInfoDto>();
   persisting: boolean = false;
-  nameValue: string = "";
-  surnameValue: string = "";
-  telephoneValue: string = "";
+  entityNameValue: string = "";
+    emailValue: string = "";
+  taxIdValue: string = "";
 
   constructor(private api: CheckoutApiService, private messageService: MessageService) { }
 
@@ -38,9 +39,9 @@ export class BillingPopupComponent {
     this.persisting = true;
     this.api.addBillingInfo({
       id: 0,
-      entityName: '',
-      email: '',
-      taxId: '',
+      entityName: this.entityNameValue,
+      email: this.emailValue,
+      taxId: this.taxIdValue,
       starred: false
     }).subscribe({
       next: (response) => {
