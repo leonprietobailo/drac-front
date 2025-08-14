@@ -64,13 +64,22 @@
             }
         }
 
-        // ::ng-deep .p-carousel {
-        //     width: min(var(--carousel-width), 100%);
-        // }
+        .recipient-carousel-wrapper {
+            ::ng-deep .p-carousel {
+                width: min(var(--recipient-carousel-width), 100%);
+            }
+        }
+
+        .address-carousel-wrapper {
+            ::ng-deep .p-carousel {
+                width: min(var(--address-carousel-width), 100%);
+            }
+        }
+
 
         .carousel-card {
             display: flex;
-            // width: 300px;
+            //  width: 300px;
             padding: 16px;
             flex-direction: column;
             align-items: flex-start;
@@ -186,4 +195,8 @@
             }
         }
     }
+}
+
+.dummy {
+    display: block;
 }
