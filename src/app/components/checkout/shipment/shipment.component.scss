@@ -1,7 +1,8 @@
 .ph1 {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 32px;
+    margin-left: 16px;
 
     .default-text {
         color: #7C7C7C;
@@ -79,7 +80,8 @@
 
         .carousel-card {
             display: flex;
-            //  width: 300px;
+              width: 280px;
+            height: 74px;
             padding: 16px;
             flex-direction: column;
             align-items: flex-start;
@@ -118,6 +120,23 @@
                 overflow: hidden;
                 text-overflow: ellipsis;
 
+            }
+
+
+            .carousel-line-trim-two-lines {
+                color: #C8C8C8;
+                font-family: Inter;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+
+                width: 100%;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+                line-clamp: 2;
+                overflow: hidden;
             }
 
             .carousel-line {

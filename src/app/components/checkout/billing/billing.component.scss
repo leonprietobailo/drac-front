@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-
+margin-left: 16px;
     .default-text {
         color: #7C7C7C;
         font-family: Inter;
@@ -17,7 +17,7 @@
         flex-direction: column;
         gap: 6px;
 
-        .checbox-container{
+        .checbox-container {
             display: flex;
             gap: 8px;
             color: #7C7C7C;
@@ -74,18 +74,26 @@
             ::ng-deep .p-carousel {
                 width: min(var(--billing-carousel-width), 100%);
             }
+
+            .carousel-card {
+                height: 102px;
+            }
         }
 
         .address-carousel-wrapper {
             ::ng-deep .p-carousel {
                 width: min(var(--address-carousel-width), 100%);
             }
+
+            .carousel-card {
+                height: 74px;
+            }
         }
 
 
         .carousel-card {
             display: flex;
-            //  width: 300px;
+            width: 280px;
             padding: 16px;
             flex-direction: column;
             align-items: flex-start;
@@ -124,6 +132,22 @@
                 overflow: hidden;
                 text-overflow: ellipsis;
 
+            }
+
+            .carousel-line-trim-two-lines {
+                color: #C8C8C8;
+                font-family: Inter;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+
+                width: 100%;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+                line-clamp: 2;
+                overflow: hidden;
             }
 
             .carousel-line {

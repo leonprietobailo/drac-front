@@ -80,7 +80,7 @@
                 <ng-template let-entry #item>
                     <div class="carousel-card" [ngClass]="{'active': selectedAddress == entry}"
                         (click)="selectAddress(entry)">
-                        <div class="carousel-line">
+                        <div class="carousel-line-trim-two-lines">
                             {{ entry.street }},
                             @if(entry.flat) {
                             {{entry.flat}},
