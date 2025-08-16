@@ -11,7 +11,7 @@
                     <p-step-panel>
                         <ng-template #content let-activateCallback="activateCallback">
                             <!-- START OF CONTENT 1 -->
-                            <app-shipment [shippingResponse]="shippingResponse" (addressUpdate)="propagateAddressUpdate($event)"></app-shipment>
+                            <app-shipment [shippingResponse]="shippingResponse" (dtoUpdate)="propagateUpdate($event)"></app-shipment>
                             <!-- END OF CONTENT 1 -->
                         </ng-template>
                     </p-step-panel>
@@ -24,7 +24,7 @@
                     </p-step>
                     <p-step-panel>
                         <ng-template #content let-activateCallback="activateCallback">
-                            <app-billing [shippingResponse]="shippingResponse" (addressUpdate)="propagateAddressUpdate($event)"></app-billing>
+                            <app-billing [shippingResponse]="shippingResponse" (dtoUpdate)="propagateUpdate($event)"></app-billing>
                         </ng-template>
                     </p-step-panel>
                 </p-step-item>

@@ -42,7 +42,8 @@ export class BillingPopupComponent {
       entityName: this.entityNameValue,
       email: this.emailValue,
       taxId: this.taxIdValue,
-      starred: false
+      starred: false,
+      type: 'BillingInfoDto'
     }).subscribe({
       next: (response) => {
         this.persisting = false;

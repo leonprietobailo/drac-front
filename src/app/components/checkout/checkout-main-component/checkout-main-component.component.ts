@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { CarouselModule } from 'primeng/carousel';
 import { CheckoutApiService } from '../../../services/CheckoutApiSerivce';
-import { AddressDto, RecipientDto, ShippingResponseDto, ShippingResponseStatus } from '../../../dto/response/checkout';
+import { AddressDto, BillingInfoDto, RecipientDto, ShippingResponseDto, ShippingResponseStatus } from '../../../dto/response/checkout';
 import { CommonModule } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
 import { FloatLabel, FloatLabelModule } from 'primeng/floatlabel';
@@ -40,8 +40,21 @@ export class CheckoutMainComponentComponent implements OnInit {
     });
   }
 
-  propagateAddressUpdate(addressDto: AddressDto) {
-    this.shippingResponse = { ...this.shippingResponse, addresses: [...this.shippingResponse.addresses, addressDto] };
+  propagateUpdate(dto: AddressDto | BillingInfoDto | RecipientDto) {
+    console.log("iniside proapgate update");
+    console.log("dto type is ", dto.type)
+    console.log(dto)
+    switch (dto.type) {
+      case 'AddressDto':
+        this.shippingResponse = { ...this.shippingResponse, addresses: [...this.shippingResponse.addresses, dto] };
+        break;
+      case 'BillingInfoDto':
+        this.shippingResponse = { ...this.shippingResponse, billingInfos: [...this.shippingResponse.billingInfos, dto] };
+        break;
+      case 'RecipientDto':
+        console.log("inside recipient dto switch case")
+        this.shippingResponse = { ...this.shippingResponse, recipients: [...this.shippingResponse.recipients, dto] };
+        break;
+    }
   }
 }
-

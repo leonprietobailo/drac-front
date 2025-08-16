@@ -14,6 +14,7 @@ export enum ShippingResponseStatus {
 }
 
 export interface AddressDto {
+    type: 'AddressDto';
     id: number;
     city: string;
     province: string;
@@ -24,6 +25,7 @@ export interface AddressDto {
 }
 
 export interface BillingInfoDto {
+    type: 'BillingInfoDto';
     id: number;
     entityName: string;
     email: string;
@@ -32,6 +34,7 @@ export interface BillingInfoDto {
 }
 
 export interface RecipientDto {
+    type: 'RecipientDto';
     id: number;
     name: string;
     surname: string;
@@ -46,7 +49,7 @@ export interface RecipientResponseDto {
 
 export enum RecipientResponseStatus {
     SUCCESS = 'SUCCESS',
-    UNAUTHORIZED = 'UNAUTHORIZED' ,
+    UNAUTHORIZED = 'UNAUTHORIZED',
     UNEXPECTED_ERROR = 'UNEXPECTED_ERROR',
 
     PENDING = 'PENDING'
@@ -60,7 +63,7 @@ export interface AddressResponseDto {
 
 export enum AddressResponseStatus {
     SUCCESS = 'SUCCESS',
-    UNAUTHORIZED = 'UNAUTHORIZED' ,
+    UNAUTHORIZED = 'UNAUTHORIZED',
     UNEXPECTED_ERROR = 'UNEXPECTED_ERROR',
 
     PENDING = 'PENDING'
@@ -74,7 +77,7 @@ export interface BillingResponseDto {
 
 export enum BillingResponseStatus {
     SUCCESS = 'SUCCESS',
-    UNAUTHORIZED = 'UNAUTHORIZED' ,
+    UNAUTHORIZED = 'UNAUTHORIZED',
     UNEXPECTED_ERROR = 'UNEXPECTED_ERROR',
 
     PENDING = 'PENDING'

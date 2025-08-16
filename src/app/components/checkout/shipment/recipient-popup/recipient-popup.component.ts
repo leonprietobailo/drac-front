@@ -41,7 +41,8 @@ export class RecipientPopupComponent {
       name: this.nameValue,
       surname: this.surnameValue,
       phone: this.telephoneValue,
-      starred: false
+      starred: false,
+      type: 'RecipientDto'
     }).subscribe({
       next: (response) => {
         this.persisting = false;

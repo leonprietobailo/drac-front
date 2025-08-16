@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Carousel, CarouselModule } from 'primeng/carousel';
-import { AddressDto, BillingInfoDto, ShippingResponseDto } from '../../../dto/response/checkout';
+import { AddressDto, BillingInfoDto, RecipientDto, ShippingResponseDto } from '../../../dto/response/checkout';
 import { DialogModule } from 'primeng/dialog';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
@@ -20,7 +20,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 export class BillingComponent implements OnInit, OnChanges {
 
   @Input() shippingResponse!: ShippingResponseDto;
-  @Output() addressUpdate = new EventEmitter<AddressDto>();
+  @Output() dtoUpdate = new EventEmitter<AddressDto | BillingInfoDto>();
   @ViewChild('billingCr') billingCr!: Carousel;
   @ViewChild('addressCr') addressCr!: Carousel;
 
@@ -74,7 +74,7 @@ export class BillingComponent implements OnInit, OnChanges {
     if (changes['shippingResponse']) {
       this.billingCarouselWidth = 300 * this.shippingResponse.billingInfos.length;
       this.addressCarouselWidth = 300 * this.shippingResponse.addresses.length;
-            console.log("updated at billing")
+      console.log("updated at billing")
     }
   }
 
@@ -99,10 +99,7 @@ export class BillingComponent implements OnInit, OnChanges {
   }
 
   updateBilling(billingDto: BillingInfoDto) {
-        this.shippingResponse = {
-      ...this.shippingResponse,
-      billingInfos:[...this.shippingResponse.billingInfos, billingDto]
-    };
+    this.dtoUpdate.emit(billingDto);
     this.billingCarouselWidth = 300 * this.shippingResponse.billingInfos.length;
     this.selectedBilling = billingDto;
 
@@ -113,11 +110,7 @@ export class BillingComponent implements OnInit, OnChanges {
   }
 
   updateAddress(addressDto: AddressDto) {
-    this.shippingResponse = {
-      ...this.shippingResponse,
-      addresses: [...this.shippingResponse.addresses, addressDto]
-    };
-    this.addressUpdate.emit(addressDto);
+    this.dtoUpdate.emit(addressDto);
     this.addressCarouselWidth = 300 * this.shippingResponse.addresses.length;
     this.selectedAddress = addressDto;
 

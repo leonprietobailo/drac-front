@@ -45,7 +45,8 @@ export class AddressPopupComponent {
       street: this.streetValue,
       flat: this.flatValue,
       zip: this.zipValue,
-      starred: false
+      starred: false,
+      type: 'AddressDto'
     }).subscribe({
       next: (response) => {
         this.persisting = false;
