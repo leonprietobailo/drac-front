@@ -11,6 +11,7 @@ import { CartApiService } from '../../../../services/CartApiService';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { AddResponseStatus } from '../../../../dto/response/cart';
+import { DracStringUtils } from '../../../../interceptor/utils/DracStringUtils';
 
 @Component({
   selector: 'app-shop-popup',
@@ -20,6 +21,8 @@ import { AddResponseStatus } from '../../../../dto/response/cart';
   providers: [MessageService]
 })
 export class ShopPopupComponent {
+
+  DracStringUtils = DracStringUtils;
 
   @Input() itemDto!: ItemDto;
   @Output() closePopup = new EventEmitter<void>();
@@ -42,6 +45,7 @@ export class ShopPopupComponent {
       numVisible: 1
     }
   ];
+
 
   constructor(private api: CartApiService, private messageService: MessageService) { }
 

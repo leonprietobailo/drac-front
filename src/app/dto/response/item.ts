@@ -7,7 +7,7 @@ export interface ItemDto {
   id: number;
   title: string;
   description: string;
-  price: string;
+  price: number;
   colors: ColorDto[];
   sizes: SizeDto[];
   images: ImageDto[];

@@ -1,3 +1,5 @@
+import { CartDto, CartResponseDto } from "./cart";
+
 export interface ShippingResponseDto {
     status: ShippingResponseStatus;
     addresses: AddressDto[];

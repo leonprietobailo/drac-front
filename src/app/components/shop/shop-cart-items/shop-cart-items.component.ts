@@ -23,7 +23,7 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class ShopCartItemsComponent implements OnInit {
 
-  cart: CartResponseDto | undefined;
+  cartResponse: CartResponseDto | undefined;
   editItem: ItemDto | undefined;
   editCartItem: CartItemResponseDto | undefined;
   popupVisible: boolean = false;
@@ -66,7 +66,9 @@ export class ShopCartItemsComponent implements OnInit {
   fetchCart() {
     this.cartApi.getCart().subscribe({
       next: (response) => {
-        this.cart = response;
+        this.cartResponse = response;
+        console.log(this.cartResponse)
+        console.log(this.cartResponse?.cart?.items?.length)
       }
     })
   }

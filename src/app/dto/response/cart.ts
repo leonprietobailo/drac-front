@@ -10,15 +10,22 @@ export enum AddResponseStatus {
 
 export interface CartResponseDto {
   status: CartResponseStatus;
-  subtotal: string,
-  shipment: string,
-  total: string,
-  items: CartItemResponseDto[];
+  cart: CartDto;
 }
 
 export enum CartResponseStatus {
   SUCCESS = 'SUCCESS',
   UNEXPECTED_ERROR = 'UNEXPECTED_ERROR',
+
+  PENDING = 'PENDING'
+}
+
+export interface CartDto {
+  subtotal: number,
+  shipment: number,
+  total: number,
+  totalNoVat: number,
+  items: CartItemResponseDto[];
 }
 
 export interface CartItemResponseDto {
@@ -29,7 +36,7 @@ export interface CartItemResponseDto {
   selectedColor: string;
   selectedSize: string;
   quantity: number;
-  price: string;
+  price: number;
   colors: string[];
   sizes: string[];
 }

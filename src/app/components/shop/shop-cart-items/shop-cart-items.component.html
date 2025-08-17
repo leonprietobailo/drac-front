@@ -1,5 +1,5 @@
 <div class="contents">
-    @if (cart?.items?.length != 0) {
+    @if (cartResponse?.cart?.items?.length != 0) {
     <div class="table-wrapper">
         <table>
             <thead>
@@ -13,7 +13,7 @@
                 </tr>
             </thead>
             <tbody>
-                @for (cartItem of cart?.items; track $index) {
+                @for (cartItem of cartResponse?.cart?.items; track $index) {
                 <tr class="table-row" app-shop-cart-item [inputCartItem]="cartItem" (onEdit)="onEdit(cartItem)"
                     (onDelete)="onDelete(cartItem)"></tr>
                 }
@@ -24,17 +24,17 @@
         <div class="concepts">
             <div class="subtotal">
                 <span class="subtotal-title">Subtotal:</span>
-                <span class="subtotal-value">{{cart?.subtotal}}</span>
+                <span class="subtotal-value">{{cartResponse?.cart?.subtotal}}</span>
             </div>
             <div class="shipping">
                 <span class="shipping-title">Enviament:</span>
-                <span class="shipping-value">{{cart?.shipment}}</span>
+                <span class="shipping-value">{{cartResponse?.cart?.shipment}}</span>
             </div>
 
         </div>
         <div class="total">
             <span class="total-title">Total: </span>
-            <span class="total-value">{{cart?.total}}</span>
+            <span class="total-value">{{cartResponse?.cart?.total}}</span>
         </div>
     </div>
     <div class="buttons">

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ColorDto, ItemDto } from '../../../dto/response/item';
+import { DracStringUtils } from '../../../interceptor/utils/DracStringUtils';
 
 @Component({
   selector: 'app-item-card',
@@ -8,6 +9,8 @@ import { ColorDto, ItemDto } from '../../../dto/response/item';
   styleUrl: './item-card.component.scss',
 })
 export class ItemCardComponent implements OnInit {
+
+  DracStringUtils = DracStringUtils;
 
   @Input() item!: ItemDto;
   @Output() itemSelected = new EventEmitter<ItemDto>();

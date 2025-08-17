@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { CartResponseDto } from '../../../dto/response/cart';
+import { CartApiService } from '../../../services/CartApiService';
+import { DracStringUtils } from '../../../interceptor/utils/DracStringUtils';
 
 @Component({
   selector: 'app-payment',
@@ -7,5 +10,12 @@ import { Component } from '@angular/core';
   styleUrl: './payment.component.scss'
 })
 export class PaymentComponent {
+
+  DracStringUtils = DracStringUtils;
+
+  @Input() cartDto!: CartResponseDto;
+
+  constructor(private api: CartApiService) { }
+
 
 }

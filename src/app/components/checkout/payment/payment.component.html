@@ -1,10 +1,84 @@
 <div class="main">
+    <div class="items">
+        <div class="title">Comanda desglossada:</div>
+        <div class="receipt">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Producte</th>
+                        <th>Quantitat</th>
+                        <th>Color / Talla</th>
+                        <th>Preu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="4" class="separator"></td>
+                    </tr>
+                    @for (item of cartDto.cart.items; track $index) {
+                    <tr>
+                        <td>
+                            {{item.title}}
+                        </td>
+                        <td>
+                            {{ item.quantity}}
+                        </td>
+                        <td>
+                            <div class="color-size">
+                                @if (item.selectedColor) {
+                                <div class="col-color">
+                                    <div class="item-color" [style.background]="item.selectedColor">
+                                    </div>
+                                </div>
+                                }
+                                {{item.selectedSize}}
+                            </div>
+                        </td>
+                        <td>
+                            {{ DracStringUtils.formatPrice(item.price) }}
+                        </td>
+                    </tr>
+                    }
+                    <tr>
+                        <td colspan="4" class="separator"></td>
+                    </tr>
+                    <tr>
+                        <td>Subtotal:</td>
+                        <td>
+                        </td>
+                        <td></td>
+                        <td> {{ DracStringUtils.formatPrice(cartDto.cart.subtotal) }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Enviament:
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td> {{ DracStringUtils.formatPrice(cartDto.cart.shipment) }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="separator dashed"></td>
+                    </tr>
+                    <tr>
+                        <td >Preu total:</td>
+                        <td></td>
+                        <td></td>
+                        <td> {{ DracStringUtils.formatPrice(cartDto.cart.totalNoVat) }}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="bold">Preu total (IVA 21%):</td>
+                        <td></td>
+                        <td></td>
+                        <td class="bold"> {{ DracStringUtils.formatPrice(cartDto.cart.total) }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
     <div class="info">
-        <div class="disclaimer">Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore tempore quisquam
-            omnis dolorum nostrum, distinctio est debitis pariatur quaerat maiores, rerum architecto, commodi dolorem
-            ducimus fuga magnam corporis expedita sapiente. Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore tempore quisquam
-            omnis dolorum nostrum, distinctio est debitis pariatur quaerat maiores, rerum architecto, commodi dolorem
-            ducimus fuga magnam corporis expedita sapiente.</div>
+
         <div class="title">Mètode de pagament:</div>
         <div class="payment-opts">
             <div class="payment-opt">
@@ -24,11 +98,12 @@
                 PayPal
             </div>
         </div>
+                <div class="disclaimer">Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore tempore quisquam
+            omnis dolorum nostrum, distinctio est debitis pariatur quaerat maiores, rerum architecto, commodi dolorem
+            ducimus fuga magnam corporis expedita sapiente. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Inventore tempore quisquam
+            omnis dolorum nostrum, distinctio est debitis pariatur quaerat maiores, rerum architecto, commodi dolorem
+            ducimus fuga magnam corporis expedita sapiente.</div>
     </div>
-    <div class="items">
-        <div class="title">Comanda desglossada:</div>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus id aperiam dolorem expedita corrupti nam
-        esse perspiciatis repellendus, quaerat labore explicabo omnis veniam soluta autem ea, necessitatibus harum
-        tempora nihil!
-    </div>
+
 </div>

@@ -35,7 +35,7 @@
                     </p-step>
                     <p-step-panel>
                         <ng-template #content let-activateCallback="activateCallback">
-                            <app-payment></app-payment>
+                            <app-payment [cartDto]="cartResponse"></app-payment>
                         </ng-template>
                     </p-step-panel>
                 </p-step-item>
