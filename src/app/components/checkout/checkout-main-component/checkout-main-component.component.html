@@ -3,7 +3,7 @@
     <div class="buy-component">
         <div class="details">
 
-            <p-stepper [value]="3" [linear]="false">
+            <p-stepper [value]="selectedStep" [linear]="false">
                 <p-step-item [value]="1">
                     <p-step>
                         <div class="stepper-header">Enviament</div>
@@ -11,7 +11,7 @@
                     <p-step-panel>
                         <ng-template #content let-activateCallback="activateCallback">
                             <!-- START OF CONTENT 1 -->
-                            <app-shipment [shippingResponse]="shippingResponse" (dtoUpdate)="propagateUpdate($event)"></app-shipment>
+                            <app-shipment [shippingResponse]="shippingResponse" [requestPaymentDraft]="requestPaymentDraft"  (dtoUpdate)="propagateUpdate($event)"></app-shipment>
                             <!-- END OF CONTENT 1 -->
                         </ng-template>
                     </p-step-panel>
@@ -24,7 +24,7 @@
                     </p-step>
                     <p-step-panel>
                         <ng-template #content let-activateCallback="activateCallback">
-                            <app-billing [shippingResponse]="shippingResponse" (dtoUpdate)="propagateUpdate($event)"></app-billing>
+                            <app-billing [shippingResponse]="shippingResponse"  [requestPaymentDraft]="requestPaymentDraft" (dtoUpdate)="propagateUpdate($event)"></app-billing>
                         </ng-template>
                     </p-step-panel>
                 </p-step-item>
@@ -35,7 +35,7 @@
                     </p-step>
                     <p-step-panel>
                         <ng-template #content let-activateCallback="activateCallback">
-                            <app-payment [cartDto]="cartResponse"></app-payment>
+                            <app-payment [cartDto]="cartResponse" [requestPaymentDraft]="requestPaymentDraft"></app-payment>
                         </ng-template>
                     </p-step-panel>
                 </p-step-item>
@@ -64,8 +64,8 @@
 
         </div>
         <div class="nav">
-            <button>Back</button>
-            <button class="nxt-button">Next</button>
+            <button (click)="goBack()">Back</button>
+            <button class="nxt-button" (click)="goNext()">Next</button>
         </div>
 
     </div>

@@ -16,6 +16,7 @@ import { BillingComponent } from "../billing/billing.component";
 import { PaymentComponent } from "../payment/payment.component";
 import { CartResponseDto, CartResponseStatus } from '../../../dto/response/cart';
 import { CartApiService } from '../../../services/CartApiService';
+import { RequestPaymentDto, ShipmentTypes } from '../../../dto/request/checkout';
 
 @Component({
   selector: 'app-checkout-main-component',
@@ -24,6 +25,17 @@ import { CartApiService } from '../../../services/CartApiService';
   styleUrl: './checkout-main-component.component.scss'
 })
 export class CheckoutMainComponentComponent implements OnInit {
+
+  selectedStep: number = 1;
+
+  // Form data
+  shipmentType?: ShipmentTypes;
+  selectedRecipient?: RecipientDto;
+  selectedAddress?: AddressDto;
+  requestBilling?: boolean;
+  selectedBillingInfo?: BillingInfoDto;
+  selectedBillingAddress?: AddressDto;
+
   shippingResponse: ShippingResponseDto = {
     status: ShippingResponseStatus.PENDING,
     addresses: [],
@@ -33,7 +45,7 @@ export class CheckoutMainComponentComponent implements OnInit {
 
   cartResponse: CartResponseDto = {
     status: CartResponseStatus.PENDING,
-    cart:{
+    cart: {
       subtotal: 0,
       shipment: 0,
       total: 0,
@@ -41,6 +53,8 @@ export class CheckoutMainComponentComponent implements OnInit {
       totalNoVat: 0
     }
   }
+
+  requestPaymentDraft: Partial<RequestPaymentDto> = {};
 
   constructor(private checkoutApi: CheckoutApiService, private cartApi: CartApiService) { }
 
@@ -54,7 +68,7 @@ export class CheckoutMainComponentComponent implements OnInit {
     this.cartApi.getCart().subscribe({
       next: (response) => {
         this.cartResponse = response;
-        console.log(this.cartResponse);
+        this.requestPaymentDraft.cart = this.cartResponse.cart;
       }
     })
   }
@@ -71,5 +85,18 @@ export class CheckoutMainComponentComponent implements OnInit {
         this.shippingResponse = { ...this.shippingResponse, recipients: [...this.shippingResponse.recipients, dto] };
         break;
     }
+  }
+
+  goBack() {
+    if (this.selectedStep == 1) {
+      return;
+    }
+    this.selectedStep--;
+  }
+  goNext() {
+    if (this.selectedStep == 3) {
+      return;
+    }
+    this.selectedStep++;
   }
 }

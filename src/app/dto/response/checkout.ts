@@ -84,3 +84,17 @@ export enum BillingResponseStatus {
 
     PENDING = 'PENDING'
 }
+
+export interface RequestPaymentResponse {
+    status: RequestPaymentResponseStatus;
+    url: string;
+}
+
+export enum RequestPaymentResponseStatus {
+    UNEXPECTED_ERROR = 'UNEXPECTED_ERROR',
+    NON_AUTHENTICATED = 'NON_AUTHENTICATED',
+    CART_NOT_FOUND = 'CART_NOT_FOUND',
+    UNAUTHORIZED = 'UNAUTHORIZED',
+    EXTERNAL_API_ERROR = 'EXTERNAL_API_ERROR',
+    REDIRECT = 'REDIRECT'
+}

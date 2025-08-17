@@ -9,6 +9,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { RecipientPopupComponent } from "./recipient-popup/recipient-popup.component";
 import { AddressPopupComponent } from "./address-popup/address-popup.component";
+import { RequestPaymentDto, ShipmentTypes } from '../../../dto/request/checkout';
 
 @Component({
   selector: 'app-shipment',
@@ -19,12 +20,13 @@ import { AddressPopupComponent } from "./address-popup/address-popup.component";
 export class ShipmentComponent implements OnInit, OnChanges {
 
   @Input() shippingResponse!: ShippingResponseDto;
+  @Input() requestPaymentDraft!: Partial<RequestPaymentDto>;
   @Output() dtoUpdate = new EventEmitter<AddressDto | RecipientDto>();
   @ViewChild('recipientCr') recipientCr!: Carousel;
   @ViewChild('addressCr') addressCr!: Carousel;
 
-  ShippingTypes = ShippingTypes;
-  selectedType: ShippingTypes = ShippingTypes.NONE;
+  ShipmentTypes = ShipmentTypes;
+  selectedType?: ShipmentTypes;
   selectedRecipient?: RecipientDto;
   selectedAddress?: AddressDto;
   displayRecipientPopup: boolean = false;
@@ -76,16 +78,19 @@ export class ShipmentComponent implements OnInit, OnChanges {
     return r.id ?? index;
   }
 
-  selectType(type: ShippingTypes) {
+  selectType(type: ShipmentTypes) {
     this.selectedType = type;
+    this.requestPaymentDraft.type = type;
   }
 
   selectRecipient(recipient: RecipientDto) {
     this.selectedRecipient = recipient;
+    this.requestPaymentDraft.recipient = recipient;
   }
 
   selectAddress(address: AddressDto) {
     this.selectedAddress = address;
+    this.requestPaymentDraft.address = address;
   }
 
   showRecipientPopup() {
@@ -97,7 +102,7 @@ export class ShipmentComponent implements OnInit, OnChanges {
   }
 
   updateRecipient(recipientDto: RecipientDto) {
-        this.dtoUpdate.emit(recipientDto);
+    this.dtoUpdate.emit(recipientDto);
     this.recipientCarouselWidth = 300 * this.shippingResponse.recipients.length;
     this.selectedRecipient = recipientDto;
 

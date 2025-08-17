@@ -3,8 +3,8 @@
         <div class="default-text">Tipus d'enviament:</div>
         <div class="shipping-opts">
 
-            <div class="shipping-point" [ngClass]="{'active': selectedType == ShippingTypes.POINT}"
-                (click)="selectType(ShippingTypes.POINT)">
+            <div class="shipping-point" [ngClass]="{'active': selectedType == ShipmentTypes.POINT}"
+                (click)="selectType(ShipmentTypes.POINT)">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M20 10C20 14.993 14.461 20.193 12.601 21.799C12.4277 21.9293 12.2168 21.9998 12 21.9998C11.7832 21.9998 11.5723 21.9293 11.399 21.799C9.539 20.193 4 14.993 4 10C4 7.87827 4.84285 5.84344 6.34315 4.34315C7.84344 2.84285 9.87827 2 12 2C14.1217 2 16.1566 2.84285 17.6569 4.34315C19.1571 5.84344 20 7.87827 20 10Z"
@@ -15,8 +15,8 @@
                 </svg>
                 Punt de recollida
             </div>
-            <div class="shipping-point" [ngClass]="{'active': selectedType == ShippingTypes.ADDRESS}"
-                (click)="selectType(ShippingTypes.ADDRESS)">
+            <div class="shipping-point" [ngClass]="{'active': selectedType == ShipmentTypes.ADDRESS}"
+                (click)="selectType(ShipmentTypes.ADDRESS)">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M15 21V13C15 12.7348 14.8946 12.4804 14.7071 12.2929C14.5196 12.1053 14.2652 12 14 12H10C9.73478 12 9.48043 12.1053 9.29289 12.2929C9.10536 12.4804 9 12.7348 9 13V21M3 9.99997C2.99993 9.70904 3.06333 9.42159 3.18579 9.15768C3.30824 8.89378 3.4868 8.65976 3.709 8.47197L10.709 2.47297C11.07 2.16788 11.5274 2.00049 12 2.00049C12.4726 2.00049 12.93 2.16788 13.291 2.47297L20.291 8.47197C20.5132 8.65976 20.6918 8.89378 20.8142 9.15768C20.9367 9.42159 21.0001 9.70904 21 9.99997V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V9.99997Z"
@@ -26,7 +26,7 @@
             </div>
         </div>
     </div>
-    @if (selectedType == ShippingTypes.ADDRESS) {
+    @if (selectedType == ShipmentTypes.ADDRESS) {
     <div class="group">
         <div>
             <div class="default-text">Destinatari:</div>

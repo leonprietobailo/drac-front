@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
-import { AddressDto, AddressResponseDto, BillingInfoDto, BillingResponseDto, RecipientDto, RecipientResponseDto, ShippingResponseDto } from '../dto/response/checkout';
+import { AddressDto, AddressResponseDto, BillingInfoDto, BillingResponseDto, RecipientDto, RecipientResponseDto, RequestPaymentResponse, ShippingResponseDto } from '../dto/response/checkout';
+import { RequestPaymentDto } from '../dto/request/checkout';
 
 @Injectable({
   providedIn: 'root',
@@ -25,6 +26,10 @@ export class CheckoutApiService {
 
     addBillingInfo(billingDto: BillingInfoDto): Observable<BillingResponseDto> {
     return this.http.post<BillingResponseDto>(`${this.baseUrl}/billing`, billingDto);
+  }
+
+  requestPayment(requestPaymentDto: RequestPaymentDto): Observable<RequestPaymentResponse> {
+    return this.http.post<RequestPaymentResponse>(`${this.baseUrl}/request-gateway`, requestPaymentDto);
   }
 
 }

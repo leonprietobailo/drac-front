@@ -10,6 +10,7 @@ import { ButtonModule } from 'primeng/button';
 import { BillingPopupComponent } from "./billing-popup/billing-popup.component";
 import { AddressPopupComponent } from "../shipment/address-popup/address-popup.component";
 import { CheckboxModule } from 'primeng/checkbox';
+import { RequestPaymentDto } from '../../../dto/request/checkout';
 
 @Component({
   selector: 'app-billing',
@@ -20,12 +21,13 @@ import { CheckboxModule } from 'primeng/checkbox';
 export class BillingComponent implements OnInit, OnChanges {
 
   @Input() shippingResponse!: ShippingResponseDto;
+  @Input() requestPaymentDraft!: Partial<RequestPaymentDto>;
   @Output() dtoUpdate = new EventEmitter<AddressDto | BillingInfoDto>();
   @ViewChild('billingCr') billingCr!: Carousel;
   @ViewChild('addressCr') addressCr!: Carousel;
 
   BillingOptions = BillingOptions;
-  selectedType: BillingOptions = BillingOptions.NONE;
+  selectedType?: BillingOptions;
   selectedBilling?: BillingInfoDto;
   selectedAddress?: AddressDto;
   displayBillingPopup: boolean = false;
@@ -80,14 +82,17 @@ export class BillingComponent implements OnInit, OnChanges {
 
   selectType(type: BillingOptions) {
     this.selectedType = type;
+    this.requestPaymentDraft.requestBilling = type == BillingOptions.YES;
   }
 
   selectBilling(billing: BillingInfoDto) {
     this.selectedBilling = billing;
+    this.requestPaymentDraft.billingInfo = billing;
   }
 
   selectAddress(address: AddressDto) {
     this.selectedAddress = address;
+    this.requestPaymentDraft.address = address;
   }
 
   showBillingPopup() {
@@ -123,6 +128,5 @@ export class BillingComponent implements OnInit, OnChanges {
 
 export enum BillingOptions {
   YES,
-  NO,
-  NONE
+  NO
 }
