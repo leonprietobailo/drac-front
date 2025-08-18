@@ -6,6 +6,7 @@ import { ShopMainComponent } from './components/shop/shop-main/shop-main.compone
 import { LoginVerificationDummyComponent } from './components/dummy/login/login-verification-dummy/login-verification-dummy.component';
 import { ShopCartMainComponent } from './components/shop/shop-cart-main/shop-cart-main.component';
 import { CheckoutMainComponentComponent } from './components/checkout/checkout-main-component/checkout-main-component.component';
+import { GatewayComponent } from './components/checkout/gateway/gateway.component';
 
 export const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -13,6 +14,7 @@ export const routes: Routes = [
   { path: 'register', component: RegisterMainComponent },
   { path: 'shop', component: ShopMainComponent },
   { path: 'verify-login', component: LoginVerificationDummyComponent },
-  { path: 'cart', component: ShopCartMainComponent},
-  { path: 'checkout', component: CheckoutMainComponentComponent}
+  { path: 'cart', component: ShopCartMainComponent },
+  { path: 'checkout', component: CheckoutMainComponentComponent },
+  { path: 'verify-payment', component: GatewayComponent }
 ];
