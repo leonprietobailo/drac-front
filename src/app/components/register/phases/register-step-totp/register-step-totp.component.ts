@@ -8,6 +8,7 @@ import { ButtonModule } from 'primeng/button';
 import { DatePickerModule } from 'primeng/datepicker';
 import { InputOtpModule } from 'primeng/inputotp';
 import { OtpInputComponent } from '../../../general/totp/totp.component';
+import { MessageModule } from 'primeng/message';
 
 @Component({
   selector: 'app-register-step-totp',
@@ -21,6 +22,7 @@ import { OtpInputComponent } from '../../../general/totp/totp.component';
     InputOtpModule,
     ReactiveFormsModule,
     OtpInputComponent,
+    MessageModule
   ],
   templateUrl: './register-step-totp.component.html',
   styleUrl: './register-step-totp.component.scss',

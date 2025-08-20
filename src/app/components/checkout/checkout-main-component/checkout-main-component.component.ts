@@ -94,7 +94,7 @@ export class CheckoutMainComponentComponent implements OnInit {
     this.selectedStep--;
   }
   goNext() {
-    if (this.selectedStep == 3) {
+    if (this.selectedStep == 4) {
       return;
     }
     this.selectedStep++;

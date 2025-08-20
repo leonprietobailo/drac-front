@@ -9,6 +9,7 @@ import { RequestPaymentDto } from '../dto/request/checkout';
   providedIn: 'root',
 })
 export class CheckoutApiService {
+
   constructor(private http: HttpClient) { }
   baseUrl = environment.apiBaseUrl + '/checkout';
 

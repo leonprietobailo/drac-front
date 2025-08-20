@@ -88,6 +88,7 @@ export enum BillingResponseStatus {
 export interface RequestPaymentResponse {
     status: RequestPaymentResponseStatus;
     url: string;
+    token: string;
 }
 
 export enum RequestPaymentResponseStatus {

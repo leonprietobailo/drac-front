@@ -17,5 +17,12 @@
     <div class="validate-resend">
       Torna a enviar el codi
     </div>
+    @if ( form.get('totp')?.hasError('wrongTotp')) {
+    <p-message severity="error" size="small" variant="simple">El codi introduït no és correcte. Torna-ho a
+      provar.</p-message>
+    }
+    @if ( form.get('totp')?.hasError('totpExpired')) {
+    <p-message severity="error" size="small" variant="simple">El codi ha caducat. Demana'n un de nou.</p-message>
+    }
   </div>
 </form>
