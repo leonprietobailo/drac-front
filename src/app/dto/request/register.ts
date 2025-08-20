@@ -20,4 +20,5 @@ export interface AddressRequestDto {
 
 export interface TotpRequestDto {
   email: string;
+  firstName: string;
 }

@@ -113,6 +113,7 @@ export class RegisterMainComponent {
 
       const payload: TotpRequestDto = {
         email: email,
+        firstName:  this.personalForm.get('firstName')?.value
       };
 
       this.api.requestTotp(payload).subscribe({
@@ -162,9 +163,11 @@ export class RegisterMainComponent {
           } else {
             console.error('Unexpected registration response:', response);
           }
+          this.loading = false;
         },
         error: (error) => {
           console.error('Error during registration:', error);
+          this.loading = false;
         },
       });
     } else {

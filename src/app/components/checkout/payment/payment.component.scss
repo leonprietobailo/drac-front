@@ -2,7 +2,7 @@
     width: 100%;
     display: flex;
     gap: 24px;
-        flex-wrap: wrap;
+    flex-wrap: wrap;
 
     .info {
         display: flex;
@@ -10,6 +10,7 @@
         // width: 50%;
         gap: 8px;
         flex: 1 1 505px;
+
         .payment-opts {
             display: flex;
 
@@ -87,7 +88,7 @@
 
             table {
                 width: 100%;
-                  font-family: "Noto Sans Mono", monospace;
+                font-family: "Noto Sans Mono", monospace;
             }
 
             th {
@@ -134,5 +135,17 @@
         margin-top: 12px;
         display: flex;
         justify-content: center;
+        gap: 16px;
+
+        .card-button-container {
+            height: 42px;
+            width: 200px;
+        }
+
+        .request-container {
+            height: 42px;
+            width: 200px;
+        }
+
     }
 }
