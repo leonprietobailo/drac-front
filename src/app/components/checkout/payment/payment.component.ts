@@ -48,7 +48,7 @@ export class PaymentComponent implements OnInit {
 
     try {
       const requestPaymentDto = this.requestPaymentDraft as RequestPaymentDto;
-
+console.log(requestPaymentDto)
       const resp = await firstValueFrom(this.api.requestPayment(requestPaymentDto));
       this.token = resp.token;
 

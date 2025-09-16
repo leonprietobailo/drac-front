@@ -76,7 +76,6 @@ export class BillingComponent implements OnInit, OnChanges {
     if (changes['shippingResponse']) {
       this.billingCarouselWidth = 300 * this.shippingResponse.billingInfos.length;
       this.addressCarouselWidth = 300 * this.shippingResponse.addresses.length;
-      console.log("updated at billing")
     }
   }
 
@@ -92,7 +91,7 @@ export class BillingComponent implements OnInit, OnChanges {
 
   selectAddress(address: AddressDto) {
     this.selectedAddress = address;
-    this.requestPaymentDraft.address = address;
+    this.requestPaymentDraft.billingAddress = address;
   }
 
   showBillingPopup() {
